@@ -14,11 +14,15 @@ logging.basicConfig(level=logging.INFO)
 ENCRYPT=True
 
 
+		
+	
 
 class MyRobot():
-	def __init__(self,server,robotName):
+	def __init__(self,server,idx,robotName):
 	
 		self.server =server
+		self.robotName =robotName
+		self.idx=idx
 		
 		"""async with self.server:
 			await self.server.nodes.objects.add_object(idx, robotName)
@@ -28,29 +32,55 @@ class MyRobot():
 		"""
 		pass
 		
-	def doGesture(self):
+	async def initialize(self):
 	
+		#async with self.server:
+		self.currentobj =  await self.server.nodes.objects.add_object(self.idx, self.robotName)
+		
+		#rajout de variables
+		self.ts_map_id_posexyzrxryrz= await self.currentobj.add_variable(self.idx, "ts_map_id_posexyzrxryrz", [0.0, -1.0,1000.0, 1000.0,1000.0,1000.0,1000.0,1000.0])
+		await self.ts_map_id_posexyzrxryrz.set_writable() 
+		
+		self.ts_stdvposexyzrxryrz= await self.currentobj.add_variable(self.idx, "ts_map_id_posexyzrxryrz", [0.0, 1000.0, 1000.0,1000.0,1000.0,1000.0,1000.0])
+		await self.ts_stdvposexyzrxryrz.set_writable() 
+		
+		self.robotStatusVal=0.0
+		self.robotStatus = await self.currentobj.add_variable(self.idx, "robotStatus", self.robotStatusVal)
+		await self.robotStatus.set_writable() 
+		
+		
+		pass
+		
+	async def doGesture(self):
+		
 		#ecriture de la nouvelle pose
-		self.poseVal+=1.0
+		self.robotStatusVal+=1.0
+		await self.robotStatus.write_value(self.robotStatusVal)
 		"""async with self.server:
 			await self.pose.write_value(self.poseVal)
 		"""	
 		pass
 		
 class RobotsGesture():
-	def __init__(self,server):
+	def __init__(self,server,idx):
 		self.server =server
 		
 		#add entry points
 		self.robotList=[]
-		self.robotList.append(MyRobot(server,"Segway"))
+		self.robotList.append(MyRobot(server,idx,"Jean-Michel(Segway)"))
+		self.robotList.append(MyRobot(server,idx,"Jacqueline(AMI)"))
+		self.robotList.append(MyRobot(server,idx,"Jean-Jacques(ESPACE)"))
 		
 		pass
 		
-	def doGesture(self):
+	async def initialize(self):
+		for robots in self.robotList:
+				await robots.initialize()
+		
+	async def doGesture(self):
 		for robot in self.robotList:
-			robot.doGesture()
-		pass
+			await robot.doGesture()
+		
 
 async def main():
 
@@ -89,6 +119,7 @@ async def main():
 	#idx = 0
 	uri = "http://esigelec.ddns.net"
 	idx = await server.register_namespace(uri)
+	
 	print ("idx="+str(idx))
 	# populating our address space
 	myobj = await server.nodes.objects.add_object(idx, "MyObject")
@@ -104,14 +135,16 @@ async def main():
 	myvar2 = await myobj2.add_variable(idx, "MyVariable2", 2.0)
 	await myvar2.set_writable()  # Set MyVariable to be writable by clients
 
+	
 	# starting!
-	#robotsGesture =RobotsGesture(server)
-
+	robotsGesture = RobotsGesture(server,idx)
+	await robotsGesture.initialize()
+	
 	async with server:
 		while True:
 			await asyncio.sleep(1)
 			current_val = await myvar.get_value()
-			#await robotsGesture.doGesture()#call the robot gesture 
+			await robotsGesture.doGesture()#call the robot gesture 
 			count = current_val + 0.1
 			await myvar.write_value(count)
 			await myvarA.write_value(-count)

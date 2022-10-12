@@ -64,6 +64,18 @@ async def task(loop):
 		uri = "http://esigelec.ddns.net"
 		idx = await client.get_namespace_index(uri)
 		print ("idx="+str(idx))
+		
+		ROBOT_NAME="Jean-Michel(Segway)"
+		child = await objects.get_child([str(idx)+':'+ROBOT_NAME, str(idx)+':ts_map_id_posexyzrxryrz'])
+		print(await child.get_value())
+		await child.set_value([0.0, -1.0,1000.0, 2000.0,2000.0,2000.0,1000.0,1000.0])
+		print(await child.get_value())
+		
+		
+		child2 = await objects.get_child([str(idx)+':'+ROBOT_NAME, str(idx)+':robotStatus'])
+		print(await child2.get_value())
+		
+		"""
 		#child = await objects.get_child([str(idx)+':MyObject', str(idx)+':MyVariable'])
 		child = await objects.get_child([str(idx)+':MyObject', str(idx)+':MyVariable'])
 		childA = await objects.get_child([str(idx)+':MyObject', str(idx)+':MyVariableA'])
@@ -133,7 +145,7 @@ async def task(loop):
 		tmpVal=await fullObject.get_child([str(idx)+':MyVariable'])
 		print ( await tmpVal.get_value() )
 		#print(await fullObject.get_value())
-		
+		"""
 		print ("finish")
 
 
