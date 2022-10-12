@@ -67,13 +67,21 @@ async def task(loop):
 		#child = await objects.get_child([str(idx)+':MyObject', str(idx)+':MyVariable'])
 		child = await objects.get_child([str(idx)+':MyObject', str(idx)+':MyVariable'])
 		childA = await objects.get_child([str(idx)+':MyObject', str(idx)+':MyVariableA'])
+		childC = await objects.get_child([str(idx)+':MyObject', str(idx)+':MyVariableC'])
+		
+		
 		
 		print(await child.get_value())
 		print(await childA.get_value())
+		print(await childC.get_value())
+		
 		await child.set_value(42.0)
 		await childA.set_value(-42.0)
+		await childC.set_value([10.0,11.0,12.0])
+		
 		print(await child.get_value())
 		print(await childA.get_value())
+		print(await childC.get_value())
 		
 		print ("try child 2")
 		print ("dir(objects)="+str(dir(objects)))
@@ -99,30 +107,7 @@ async def task(loop):
 		
 		#print (children)
 			
-		"""node=client.nodes.objects
-		node_class = await node.read_node_class()
-		children = []
-		print ("get child")
-		children = []
-		chidlId=0
-		for child in await node.get_children():
-			if await child.read_node_class() in [ua.NodeClass.Object, ua.NodeClass.Variable]:
-				if chidlId <10:
-					children.append(
-						await browse_nodes(child)
-					)
-				childId+=1
-				
-		print ("childreens="+str(children))
-		
-		#tree = await browse_nodes(client.nodes.objects)
-		#_logger.info('Node tree: %r', tree)
-		await client.disconnect()
-		#browse_recursive(root)
-		"""
-		
-		
-		
+
 		objects2 = client.nodes.objects
 		child2 = await objects2.get_child([str(idx)+':MyObject2', str(idx)+':MyVariable2'])
 		#child2 = await objects2.get_child([str(87)+':MyObject2', str(87)+':MyVariable2'])
@@ -130,6 +115,24 @@ async def task(loop):
 		await child2.set_value(43.0)
 		print(await child2.get_value())
 		print(await child2.get_value())
+		
+		
+		print("full object")
+		objectsC = client.nodes.objects
+		fullObject= await objectsC.get_child([str(idx)+':MyObject'])
+		#fullObject= await objectsC.get_child(['0:Objects',str(idx)+':MyObject'])
+		
+		print (fullObject)
+		print (dir(fullObject))
+		#print (fullObject._get_path())
+		#print (await fullObject.get_children())
+		#print (await fullObject.read_data_value())
+		#print ( await fullObject.read_value())
+		
+		print ( await fullObject.get_children_descriptions() )
+		tmpVal=await fullObject.get_child([str(idx)+':MyVariable'])
+		print ( await tmpVal.get_value() )
+		#print(await fullObject.get_value())
 		
 		print ("finish")
 

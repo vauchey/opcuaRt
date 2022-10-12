@@ -94,6 +94,10 @@ async def main():
 	myobj = await server.nodes.objects.add_object(idx, "MyObject")
 	myvar = await myobj.add_variable(idx, "MyVariable", 0.0)
 	myvarA = await myobj.add_variable(idx, "MyVariableA", 0.0)
+	myvarC = await myobj.add_variable(idx, "MyVariableC", [6.7, 7.9])
+	
+	await myvarA.set_writable() 
+	await myvarC.set_writable() 
 	await myvar.set_writable()  # Set MyVariable to be writable by clients
 	
 	myobj2 = await server.nodes.objects.add_object(idx, "MyObject2")
