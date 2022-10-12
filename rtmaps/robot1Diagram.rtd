@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RTMapsDiagram version="4.8.0" EngineVersion="4.9" xmlns="http://schemas.intempora.com/RTMaps/2011/RTMapsFiles" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.intempora.com/RTMaps/2011/RTMapsFiles http://www.intempora.com/schemas/RTMaps/2011/RTMapsDiagram.xsd">
+  <RequiredPackages>
+    <File Version="3.2.1"><![CDATA[C:/Program Files/Intempora/RTMaps 4/packages/rtmaps_python_bridge/rtmaps_python_bridge.pck]]><Relative><![CDATA[%RTMAPS_INSTDIR%/packages/rtmaps_python_bridge/rtmaps_python_bridge.pck]]></Relative></File>
+  </RequiredPackages>
+  <EngineProperties>
+    <Property LongName="Engine.startTimespeed" Type="1">1000</Property>
+    <Property LongName="Engine.startTime" Type="1">0</Property>
+    <Property LongName="Engine.session" Type="3"><![CDATA[unspecified]]></Property>
+    <Property LongName="Engine.recordingAtStart" Type="0">true</Property>
+    <Property LongName="Engine.recording" Type="0">true</Property>
+    <Property LongName="Engine.sequentialStart" Type="0">false</Property>
+    <Property LongName="Engine.shutdownTimeout" Type="1">10000000</Property>
+    <Property LongName="Engine.autoDetectStartTime" Type="0">true</Property>
+    <Property LongName="Engine.coreFunctionsToSaveInDiag" Type="4"><![CDATA[0|-1]]></Property>
+    <Property LongName="Engine.useUTCTimeReference" Type="0">false</Property>
+    <Property LongName="Engine.fastForwardThreshold" Type="1">2000</Property>
+    <Property LongName="Engine.fastRewindThreshold" Type="1">-2000</Property>
+    <Property LongName="Engine.priorityClass" Type="4"><![CDATA[3|0|Shared Time|Preemptive|Auto]]></Property>
+    <Property LongName="Engine.posixTimerThread" Type="4"><![CDATA[3|0|Auto|Timer Interval|Real Time Clock]]></Property>
+    <Property LongName="Engine.posixRealTimeClockIrqFrequency" Type="4"><![CDATA[4|0|1024|2048|4096|8192]]></Property>
+    <Property LongName="Engine.posixPreemptiveSchedulingPolicy" Type="4"><![CDATA[2|0|FIFO|Round Robin]]></Property>
+    <Property LongName="Engine.windowsUsePerformanceCounter" Type="0">true</Property>
+  </EngineProperties>
+  <ClocksManagement>
+    <Property LongName="ClocksManagement.activeClock" Type="4"><![CDATA[1|0|RTMaps_standard_clock]]></Property>
+  </ClocksManagement>
+  <Component InstanceName="Float_constants_generator_1" Model="Float_constants_generator" Version="2.2" x="176" y="256" z="0">
+    <Output LongName="Float_constants_generator_1.output" Name="output">
+      <Property LongName="Float_constants_generator_1.output.subsampling" Type="1">1</Property>
+      <Property LongName="Float_constants_generator_1.output.fifosize" Type="1">16</Property>
+      <Property LongName="Float_constants_generator_1.output.periodic" Type="0">false</Property>
+    </Output>
+    <Property LongName="Float_constants_generator_1.outputMode" Type="4"><![CDATA[3|1|Once at start|Periodic|Use trigger input]]></Property>
+    <Property LongName="Float_constants_generator_1.outputWhenValueChanges" Type="0">true</Property>
+    <Property LongName="Float_constants_generator_1.vectorSize" Type="1">7</Property>
+    <Property LongName="Float_constants_generator_1.outputPeriod" Type="1">10000</Property>
+    <Property LongName="Float_constants_generator_1.value_1" Type="2">0</Property>
+    <Property LongName="Float_constants_generator_1.value_2" Type="2">2.8</Property>
+    <Property LongName="Float_constants_generator_1.value_3" Type="2">49.4</Property>
+    <Property LongName="Float_constants_generator_1.value_4" Type="2">0</Property>
+    <Property LongName="Float_constants_generator_1.value_5" Type="2">0</Property>
+    <Property LongName="Float_constants_generator_1.value_6" Type="2">0</Property>
+    <Property LongName="Float_constants_generator_1.value_7" Type="2">1.5</Property>
+    <Property LongName="Float_constants_generator_1.threaded" Type="0">true</Property>
+    <Property LongName="Float_constants_generator_1.priority" Type="1">128</Property>
+    <Property LongName="Float_constants_generator_1.autoStart" Type="0">false</Property>
+  </Component>
+  <Component InstanceName="PythonBridge_sendPosition" Model="PythonBridge" Version="3.2.0" x="608" y="264" z="0">
+    <Input LongName="PythonBridge_sendPosition.inputPosition_MapID_latLongAltRPYinrad" Name="inputPosition_MapID_latLongAltRPYinrad">
+      <Property LongName="PythonBridge_sendPosition.inputPosition_MapID_latLongAltRPYinrad.readerType" Type="1">0</Property>
+      <Property LongName="PythonBridge_sendPosition.inputPosition_MapID_latLongAltRPYinrad.subsampling" Type="1">1</Property>
+    </Input>
+    <Property LongName="PythonBridge_sendPosition.guard_begin" Type="0" SubType="128">true</Property>
+    <Property LongName="PythonBridge_sendPosition.internalInputs" Type="3" SubType="128"><![CDATA[inputPosition_MapID_latLongAltRPYinrad;1==]]></Property>
+    <Property LongName="PythonBridge_sendPosition.internalOutputs" Type="3" SubType="128"><![CDATA[]]></Property>
+    <Property LongName="PythonBridge_sendPosition.internalProperties" Type="3" SubType="128"><![CDATA[robotName||13||3|0|Jean-Michel(Segway)|Jacqueline(AMI)|Jean-Jacques(ESPACE)||24#ENCRYPT||23||0#url||13||opc.tcp://127.0.0.1:4840/freeopcua/server/||13#namespace||13||http://esigelec.ddns.net||13#certificate||13||D:/data/apresBackup/COLIBRY/opcuaRT/opcuaRt/client/vincent/my_cert.der||14#private_key||13||D:/data/apresBackup/COLIBRY/opcuaRT/opcuaRt/client/vincent/my_private_key.pem||14]]></Property>
+    <ReadOnlyProperty LongName="PythonBridge_sendPosition.advance_begin_configuration" Type="3" SubType="256"><![CDATA[Advanced Configuration]]></ReadOnlyProperty>
+    <Property LongName="PythonBridge_sendPosition.deathBehavior" Type="4"><![CDATA[3|1|WAIT FOR PROCESS INDEFINITELY|KILL PROCESS AFTER TIMEOUT (5sec)|START ANOTHER PROCESS]]></Property>
+    <Property LongName="PythonBridge_sendPosition.logDebug" Type="0">false</Property>
+    <Property LongName="PythonBridge_sendPosition.showTracebackInConsole" Type="0">true</Property>
+    <Property LongName="PythonBridge_sendPosition.autoReloadSubModules" Type="0">true</Property>
+    <Property LongName="PythonBridge_sendPosition.memorySize" Type="1">10000000</Property>
+    <ReadOnlyProperty LongName="PythonBridge_sendPosition.pythonPID" Type="1">6916</ReadOnlyProperty>
+    <Property LongName="PythonBridge_sendPosition.additionalEnvironmentVariables" Type="3"><![CDATA[]]></Property>
+    <ReadOnlyProperty LongName="PythonBridge_sendPosition.advance_end_configuration" Type="0" SubType="512">false</ReadOnlyProperty>
+    <ReadOnlyProperty LongName="PythonBridge_sendPosition.basic_begin_configuration" Type="3" SubType="256"><![CDATA[Basic Configuration]]></ReadOnlyProperty>
+    <Property LongName="PythonBridge_sendPosition.pythonInstallationFolder" Type="3" SubType="32"><![CDATA[]]></Property>
+    <Property LongName="PythonBridge_sendPosition.pythonLogDirectory" Type="3" SubType="32"><![CDATA[C:/Users/admin/RTMaps-4.0/python_log/]]></Property>
+    <Property LongName="PythonBridge_sendPosition.className" Type="3"><![CDATA[rtmaps_python]]></Property>
+    <Property LongName="PythonBridge_sendPosition.pythonFilename" Type="3" SubType="80"><![CDATA[D:/data/apresBackup/COLIBRY/opcuaRT/opcuaRt/rtmaps/robotSender.py]]><Relative><![CDATA[%RTMAPS_DIAGRAMDIR%/robotSender.py]]></Relative></Property>
+    <Property LongName="PythonBridge_sendPosition.readingPolicy" Type="4"><![CDATA[5|3|Synchro|Reactive|Sampling|Triggered by First Input|Periodic Resampling While Post-Processing]]></Property>
+    <ReadOnlyProperty LongName="PythonBridge_sendPosition.prop_end_subsection_default_opened" Type="0" SubType="512">true</ReadOnlyProperty>
+    <ReadOnlyProperty LongName="PythonBridge_sendPosition.userSubsection" Type="3" SubType="256"><![CDATA[User Properties]]></ReadOnlyProperty>
+    <Property LongName="PythonBridge_sendPosition.robotName" Type="4"><![CDATA[3|0|Jean-Michel(Segway)|Jacqueline(AMI)|Jean-Jacques(ESPACE)]]></Property>
+    <Property LongName="PythonBridge_sendPosition.ENCRYPT" Type="0">false</Property>
+    <Property LongName="PythonBridge_sendPosition.url" Type="3"><![CDATA[opc.tcp://127.0.0.1:4840/freeopcua/server/]]></Property>
+    <Property LongName="PythonBridge_sendPosition.namespace" Type="3"><![CDATA[http://esigelec.ddns.net]]></Property>
+    <Property LongName="PythonBridge_sendPosition.certificate" Type="3" SubType="16"><![CDATA[D:/data/apresBackup/COLIBRY/opcuaRT/opcuaRt/client/vincent/my_cert.der]]><Relative><![CDATA[%RTMAPS_DIAGRAMDIR%/../client/vincent/my_cert.der]]></Relative></Property>
+    <Property LongName="PythonBridge_sendPosition.private_key" Type="3" SubType="16"><![CDATA[D:/data/apresBackup/COLIBRY/opcuaRT/opcuaRt/client/vincent/my_private_key.pem]]><Relative><![CDATA[%RTMAPS_DIAGRAMDIR%/../client/vincent/my_private_key.pem]]></Relative></Property>
+    <ReadOnlyProperty LongName="PythonBridge_sendPosition.userSubsectionEnd" Type="0" SubType="512">true</ReadOnlyProperty>
+    <Property LongName="PythonBridge_sendPosition.threaded" Type="0">true</Property>
+    <Property LongName="PythonBridge_sendPosition.priority" Type="1">128</Property>
+    <Property LongName="PythonBridge_sendPosition.autoStart" Type="0">true</Property>
+  </Component>
+  <Connection Output="Float_constants_generator_1.output" Input="PythonBridge_sendPosition.inputPosition_MapID_latLongAltRPYinrad"/>
+  <RTBoardView ID="JavaStudio1.0">
+    <ConnectionShape InstanceName="PythonBridge_sendPosition.inputPosition_MapID_latLongAltRPYinrad" color="0"/>
+  </RTBoardView>
+</RTMapsDiagram>

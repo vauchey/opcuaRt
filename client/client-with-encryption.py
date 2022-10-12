@@ -2,49 +2,42 @@ import asyncio
 import logging
 import sys
 sys.path.insert(0, "..")
+from robotDescription import *
+
+from ServerClient import *
+
 from asyncua import Client, Node, ua
 from asyncua.crypto.security_policies import SecurityPolicyBasic256Sha256
 
-ENCRYPT=True
+CURRENT_ROBOT_NAME="Jean-Michel(Segway)"
+currentRobotDescription = getCurrentRobotName(CURRENT_ROBOT_NAME)#recuperations des informations attends dans le robot current
+assert (currentRobotDescription!=None, "robot not find")#verification que le robot existe
+
+#################### CONFIG AREA START ####################
+ENCRYPT=False#enable encryption
+
+#url where to connecte
+url = "opc.tcp://127.0.0.1:4840/freeopcua/server/"
+
+namespace = "http://esigelec.ddns.net"#namespace
+
+#USER certificate and key
+#cert = f"certificates/peer-certificate-example-1.der"
+#private_key = f"certificates/peer-private-key-example-1.pem"
+cert=f"vincent/my_cert.der"
+private_key=f"vincent/my_private_key.pem"
+
+
+#################### CONFIG AREA END ####################
 
 logging.basicConfig(level=logging.INFO)
 _logger = logging.getLogger("asyncua")
 
-cert_idx = 1
-#cert = f"certificates/peer-certificate-example-{cert_idx}.der"
-#private_key = f"certificates/peer-private-key-example-{cert_idx}.pem"
-cert=f"vincent/my_cert.der"
-private_key=f"vincent/my_private_key.pem"
 
-async def browse_nodes(node: Node):
-    """
-    Build a nested node tree dict by recursion (filtered by OPC UA objects and variables).
-    """
-    node_class = await node.read_node_class()
-    children = []
-    for child in await node.get_children():
-        if await child.read_node_class() in [ua.NodeClass.Object, ua.NodeClass.Variable]:
-            children.append(
-                await browse_nodes(child)
-            )
-    if node_class != ua.NodeClass.Variable:
-        var_type = None
-    else:
-        try:
-            var_type = (await node.read_data_type_as_variant_type()).value
-        except ua.UaError:
-            _logger.warning('Node Variable Type could not be determined for %r', node)
-            var_type = None
-    return {
-        'id': node.nodeid.to_string(),
-        'name': (await node.read_display_name()).Text,
-        'cls': node_class.value,
-        'children': children,
-        'type': var_type,
-    }
-	
+
+			
 async def task(loop):
-	url = "opc.tcp://127.0.0.1:4840/freeopcua/server/"
+	
 	#url = "opc.tcp://admin@127.0.0.1:4840/freeopcua/server/"
 	client = Client(url=url)
 	#client = Client("opc.tcp://admin@localhost:4840/freeopcua/server/") 
@@ -54,98 +47,29 @@ async def task(loop):
 			certificate=cert,
 			private_key=private_key,
 			#server_certificate="certificate-example.der"
-			server_certificate="vincent/my_cert.der"
+			server_certificate=cert #"vincent/my_cert.der"server_certificate="vincent/my_cert.der"
 			#mode=ua.MessageSecurityMode.SignAndEncrypt
 		)
 		#mode=ua.MessageSecurityMode.SignAndEncrypt
 	
 	async with client:
-		objects = client.nodes.objects
-		uri = "http://esigelec.ddns.net"
-		idx = await client.get_namespace_index(uri)
+		#objects = client.nodes.objects
+		
+		idx = await client.get_namespace_index(namespace)
 		print ("idx="+str(idx))
 		
-		ROBOT_NAME="Jean-Michel(Segway)"
-		child = await objects.get_child([str(idx)+':'+ROBOT_NAME, str(idx)+':ts_map_id_posexyzrxryrz'])
-		print(await child.get_value())
-		await child.set_value([0.0, -1.0,1000.0, 2000.0,2000.0,2000.0,1000.0,1000.0])
-		print(await child.get_value())
+		myRobotClient= MyRobotClient(client,idx,currentRobotDescription)
+		await myRobotClient.initialize()
+		robotGet=await myRobotClient.readRobot()
 		
+		import time
+		#simple call to update a value
+		variabluesToUpdate =robotGet.setPosition(time.time(),-1,[11.0,12.0,13.0,0.0,0.0,1.5])#ts, mapid, txyz rxyz
+		await myRobotClient.writeRobot(variabluesToUpdate)#force the update of only variables usefulls
 		
-		child2 = await objects.get_child([str(idx)+':'+ROBOT_NAME, str(idx)+':robotStatus'])
-		print(await child2.get_value())
+		robotGet=await myRobotClient.readRobot()
 		
-		"""
-		#child = await objects.get_child([str(idx)+':MyObject', str(idx)+':MyVariable'])
-		child = await objects.get_child([str(idx)+':MyObject', str(idx)+':MyVariable'])
-		childA = await objects.get_child([str(idx)+':MyObject', str(idx)+':MyVariableA'])
-		childC = await objects.get_child([str(idx)+':MyObject', str(idx)+':MyVariableC'])
-		
-		
-		
-		print(await child.get_value())
-		print(await childA.get_value())
-		print(await childC.get_value())
-		
-		await child.set_value(42.0)
-		await childA.set_value(-42.0)
-		await childC.set_value([10.0,11.0,12.0])
-		
-		print(await child.get_value())
-		print(await childA.get_value())
-		print(await childC.get_value())
-		
-		print ("try child 2")
-		print ("dir(objects)="+str(dir(objects)))
-		print ("objects.nodeid="+str(objects.nodeid))
-		
-		
-		root = client.nodes.root
-		_logger.info("Objects node is: %r", root)
-		
-		
-
-		# Node objects have methods to read and write node attributes as well as browse or populate address space
-		_logger.info("Children of root are: %r", await root.get_children())
-		
-		
-		#print ("get_variables ="+str(root.get_variables()))
-		#print ("get_children_description ="+str(root.get_children_description()))
-		
-		
-		children = []
-		for child in await root.get_children():
-			print ("child="+str(child))
-		
-		#print (children)
-			
-
-		objects2 = client.nodes.objects
-		child2 = await objects2.get_child([str(idx)+':MyObject2', str(idx)+':MyVariable2'])
-		#child2 = await objects2.get_child([str(87)+':MyObject2', str(87)+':MyVariable2'])
-		print(await child2.get_value())
-		await child2.set_value(43.0)
-		print(await child2.get_value())
-		print(await child2.get_value())
-		
-		
-		print("full object")
-		objectsC = client.nodes.objects
-		fullObject= await objectsC.get_child([str(idx)+':MyObject'])
-		#fullObject= await objectsC.get_child(['0:Objects',str(idx)+':MyObject'])
-		
-		print (fullObject)
-		print (dir(fullObject))
-		#print (fullObject._get_path())
-		#print (await fullObject.get_children())
-		#print (await fullObject.read_data_value())
-		#print ( await fullObject.read_value())
-		
-		print ( await fullObject.get_children_descriptions() )
-		tmpVal=await fullObject.get_child([str(idx)+':MyVariable'])
-		print ( await tmpVal.get_value() )
-		#print(await fullObject.get_value())
-		"""
+		await client.disconnect()
 		print ("finish")
 
 

@@ -13,3 +13,4 @@ pip install asyncua
 
 #from opcuaRT\opcuaRt
 create certificate with generate_certificate.sh
+to beguin to use it with your robots, modify file robotDescription.py
