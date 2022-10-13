@@ -75,79 +75,11 @@ class rtmaps_python(BaseComponent):
 		loop.run_until_complete(self.task(loop))
 		loop.close()
 		"""
+		self.clientGesture = ClientGesture(self.url,self.namespace,self.certificate,self.private_key,self.ENCRYPT,self.currentRobotDescription)
+		asyncio.run(self.clientGesture.connect())#do a connection
 		
-		asyncio.run(self.connect())
 		
-	async def connect(self):
-		"""connection au server"""
-		self.client = Client(url=self.url)
-		if self.ENCRYPT:
-			await client.set_security(
-				SecurityPolicyBasic256Sha256,
-				certificate=self.certificate,
-				private_key=self.private_key,
-				#server_certificate="certificate-example.der"
-				server_certificate=self.certificate #"vincent/my_cert.der"server_certificate="vincent/my_cert.der"
-				#mode=ua.MessageSecurityMode.SignAndEncrypt
-			)
-			#mode=ua.MessageSecurityMode.SignAndEncrypt
-	
-	async def process(self):
-		async with self.client:
-			#objects = client.nodes.objects
-			
-			idx = await self.client.get_namespace_index(self.namespace)
-			print ("idx="+str(idx))
-			
-			myRobotClient= MyRobotClient(self.client,idx,self.currentRobotDescription)
-			await myRobotClient.initialize()
-			robotGet=await myRobotClient.readRobot()
-			
-			import time
-			#simple call to update a value
-			variabluesToUpdate =robotGet.setPosition(time.time(),-1,[11.0,12.0,13.0,0.0,0.0,1.5])#ts, mapid, txyz rxyz
-			await myRobotClient.writeRobot(variabluesToUpdate)#force the update of only variables usefulls
-			
-			robotGet=await myRobotClient.readRobot()
-			
-			#await self.client.disconnect()
-			#print ("finish")
-			
-	async def task(self,loop):
-	
-		#url = "opc.tcp://admin@127.0.0.1:4840/freeopcua/server/"
-		client = Client(url=self.url)
-		#client = Client("opc.tcp://admin@localhost:4840/freeopcua/server/") 
-		if self.ENCRYPT:
-			await client.set_security(
-				SecurityPolicyBasic256Sha256,
-				certificate=self.certificate,
-				private_key=self.private_key,
-				#server_certificate="certificate-example.der"
-				server_certificate=self.certificate #"vincent/my_cert.der"server_certificate="vincent/my_cert.der"
-				#mode=ua.MessageSecurityMode.SignAndEncrypt
-			)
-			#mode=ua.MessageSecurityMode.SignAndEncrypt
-		
-		async with client:
-			#objects = client.nodes.objects
-			
-			idx = await client.get_namespace_index(self.namespace)
-			print ("idx="+str(idx))
-			
-			myRobotClient= MyRobotClient(client,idx,self.currentRobotDescription)
-			await myRobotClient.initialize()
-			robotGet=await myRobotClient.readRobot()
-			
-			import time
-			#simple call to update a value
-			variabluesToUpdate =robotGet.setPosition(time.time(),-1,[11.0,12.0,13.0,0.0,0.0,1.5])#ts, mapid, txyz rxyz
-			await myRobotClient.writeRobot(variabluesToUpdate)#force the update of only variables usefulls
-			
-			robotGet=await myRobotClient.readRobot()
-			
-			await client.disconnect()
-			print ("finish")
+
 # Core() is called every time you have a new input
 	def Core(self):
 		
@@ -156,7 +88,7 @@ class rtmaps_python(BaseComponent):
 		data=self.inputs["inputPosition_MapID_latLongAltRPYinrad"].ioelt.data
 		#print ("timeStamp="+str(timeStamp))
 		#print ("data="+str(data))
-		asyncio.run(self.process())
+		asyncio.run(self.clientGesture.process(timeStamp,data))#run a processing
 		
 		#loop.run_until_complete(task(loop))
 		#loop.close()

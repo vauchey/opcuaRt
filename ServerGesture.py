@@ -71,4 +71,8 @@ class RobotsGesture():
 	async def doGesture(self):
 		for robot in self.robotList:
 			await robot.doGesture()
+			
+			
+
+	
 		

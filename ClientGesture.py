@@ -59,3 +59,50 @@ class MyRobotClient():
 			
 
 		
+class ClientGesture():
+	def __init__(self,url,namespace, certificate, private_key,ENCRYPT,currentRobotDescription):
+		self.url=url
+		self.namespace= namespace
+		self.certificate=certificate
+		self.private_key=private_key
+		self.client=None
+		self.ENCRYPT=ENCRYPT
+		self.currentRobotDescription = currentRobotDescription
+		
+	async def connect(self):
+		"""method to connect to server"""
+		self.client = Client(url=self.url)
+		if self.ENCRYPT:
+			await client.set_security(
+				SecurityPolicyBasic256Sha256,
+				certificate=self.certificate,
+				private_key=self.private_key,
+				#server_certificate="certificate-example.der"
+				server_certificate=self.certificate #"vincent/my_cert.der"server_certificate="vincent/my_cert.der"
+				#mode=ua.MessageSecurityMode.SignAndEncrypt
+			)
+			#mode=ua.MessageSecurityMode.SignAndEncrypt
+			
+		async with self.client:
+			self.idx = await self.client.get_namespace_index(self.namespace)
+		#print ("idx="+str(idx))
+		
+		
+		
+	async def process(self,ts,poses):
+		"""method to check connection and then send to server"""
+		if self.client  is None :
+			self.connect()
+			
+		if self.client is not None :
+			async with self.client:
+				myRobotClient= MyRobotClient(self.client,self.idx,self.currentRobotDescription)
+				await myRobotClient.initialize()
+				robotGet=await myRobotClient.readRobot()
+				
+				import time
+				#simple call to update a value
+				variabluesToUpdate =robotGet.setPosition(time.time(),-1,[11.0,12.0,13.0,0.0,0.0,1.5])#ts, mapid, txyz rxyz
+				await myRobotClient.writeRobot(variabluesToUpdate)#force the update of only variables usefulls
+				
+				robotGet=await myRobotClient.readRobot()
