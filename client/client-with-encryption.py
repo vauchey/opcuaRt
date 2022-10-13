@@ -24,8 +24,8 @@ namespace = "http://esigelec.ddns.net"#namespace
 #USER certificate and key
 #cert = f"certificates/peer-certificate-example-1.der"
 #private_key = f"certificates/peer-private-key-example-1.pem"
-cert=f"vincent/my_cert.der"
-private_key=f"vincent/my_private_key.pem"
+cert="D:/data/apresBackup/COLIBRY/opcuaRT/opcuaRt/client/vincent/my_cert.der"#f"vincent/my_cert.der"
+private_key="D:/data/apresBackup/COLIBRY/opcuaRT/opcuaRt/client/vincent/my_private_key.pem"#f"vincent/my_private_key.pem"
 
 
 #################### CONFIG AREA END ####################
@@ -72,13 +72,22 @@ async def task(loop):
 		await client.disconnect()
 		print ("finish")
 
-
+"""
 def main():
 	loop = asyncio.get_event_loop()
 	loop.set_debug(True)
 	loop.run_until_complete(task(loop))
 	loop.close()
+"""
 
-
+def main():
+	clientGesture = ClientGesture(url,namespace,cert,private_key,ENCRYPT,currentRobotDescription)
+	asyncio.run(clientGesture.connect())#do a connection
+	import time
+	timeStamp=time.time()
+	data=[1.0,2.0,3.0,4.0,5.0,6.0]
+	asyncio.run(clientGesture.setPosition(timeStamp,-1,data))
+	
+	
 if __name__ == "__main__":
 	main()

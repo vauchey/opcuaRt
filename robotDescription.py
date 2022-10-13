@@ -16,8 +16,8 @@ class ROBOT_GENERIC():
 		
 		"""
 		assert( len(poseXYZrXYZ) ==6,"poseXYZrXYZ size muse be 6")
-		self.ts_map_id_posexyzrxryrz[0]=timestamp
-		self.ts_map_id_posexyzrxryrz[1]=mapId
+		self.ts_map_id_posexyzrxryrz[0]=float(timestamp)
+		self.ts_map_id_posexyzrxryrz[1]=float(mapId)
 		self.ts_map_id_posexyzrxryrz[2:]=poseXYZrXYZ
 		
 		return ["ts_map_id_posexyzrxryrz"]#do not forger to send back list of variables to update
@@ -33,19 +33,12 @@ class ROBOT_GENERIC():
 		
 
 	
-	def moveRobot(self, timestamp,Vlongi,Vrot):
+	def moveRobot(self, timestamp,enabled,Vlongi,Vrot):
 		""" ask the robot to move with specified Vlongi (m/s) and Vrot (rad/s)"""
-		self.wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec=[timestamp,1.0,float(Vlongi),float(Vrot)]
+		self.wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec=[float(timestamp),float(enabled),float(Vlongi),float(Vrot)]
 		return ["wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec"]
 		
-	def stopRobot(self,timestamp):
-		"""ask the robot to stop moving"""
-		self.wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec=[timestamp,1.0,0.0,0.0]
-		return ["wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec"]
-		
-	def disableControlRobot(sefl,timestamp):
-		self.wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec=[timestamp,0.0,0.0,0.0]
-		return ["wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec"]
+	
 		
 class ROBOT_WITH_WHEEL(ROBOT_GENERIC):
 	def __init__(self,robotName):

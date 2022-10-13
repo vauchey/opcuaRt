@@ -59,13 +59,17 @@ class rtmaps_python(BaseComponent):
 		BaseComponent.__init__(self) # call base class constructor
 
 	def Dynamic(self):
-		self.add_input("inputPosition_MapID_latLongAltRPYinrad", rtmaps.types.ANY) # define input
-		self.add_output("enabled_vLongiwantedMBysedVrotWantedRadBySec", rtmaps.types.AUTO)
-		listOfName = listNames()
+		
+		self.add_input("joystick", rtmaps.types.ANY) # define input[0 is -la, 1 is -ling, 2, is deadman]
+		self.add_input("buttons", rtmaps.types.ANY) # define input[0 is up, 1 is downs]
+		self.add_output("robotOut", rtmaps.types.AUTO,buffer_size=512)
+		#self.add_input("inputVLongiMbysecVrotradbysec", rtmaps.types.ANY) # define input
+		
+		#listOfName = listNames()
 		
 		#genere automatiquement la liste rtmaps
-		listRtMaps=str(len(listOfName))+"|0|"+"|".join(str(val) for val in listOfName)
-		self.add_property("robotName",listRtMaps, rtmaps.types.ENUM)
+		#listRtMaps=str(len(listOfName))+"|0|"+"|".join(str(val) for val in listOfName)
+		#self.add_property("robotName",listRtMaps, rtmaps.types.ENUM)
 		
 		
 		
@@ -83,47 +87,94 @@ class rtmaps_python(BaseComponent):
 		self.certificate=self.properties["certificate"].data
 		self.private_key=self.properties["private_key"].data
 		
-		robotName = listOfName[ self.properties["robotName"].data ]
+		#robotName = listOfName[ self.properties["robotName"].data ]
 		#print ("robotName="+str(robotName))
-		self.currentRobotDescription = getCurrentRobotName(robotName)
+		#self.currentRobotDescription = getCurrentRobotName(robotName)
 		#print (sys.path)
 # Birth() will be called once at diagram execution startup
 
 	def Birth(self):
 		print("Python Birth")
-		assert (self.currentRobotDescription!=None, "robot not find")#verification que le robot existe
+		
 		
 		self._timeStamp=-1
 		
-		self.clientGesture = ClientGesture(self.url,self.namespace,self.certificate,self.private_key,self.ENCRYPT,self.currentRobotDescription)
+		#list all name
+		self.listOfName = listNames()
+		
+		self.currentRobotDescriptionList=[]
+		for names in self.listOfName:
+			self.currentRobotDescriptionList.append( getCurrentRobotName(names) )
+		
+		assert (len(self.currentRobotDescriptionList)>0,"not robots to control")
+		
+		self.currentRobot=0
+		self.clientGesture = ClientGesture(self.url,self.namespace,self.certificate,self.private_key,self.ENCRYPT,self.currentRobotDescriptionList[self.currentRobot])
 		asyncio.run(self.clientGesture.connect())#do a connection
 		
-		#temp
-		"""self.url = "opc.tcp://127.0.0.1:4840/freeopcua/server/"
-		self.namespace = "http://esigelec.ddns.net"#namespace
-		"""
-		#USER certificate and key
-		"""
-		self.certificate="D:/data/apresBackup/COLIBRY/opcuaRT/opcuaRt/client/vincent/my_cert.der"#f"vincent/my_cert.der"
-		self.private_key="D:/data/apresBackup/COLIBRY/opcuaRT/opcuaRt/client/vincent/my_private_key.pem"#f"vincent/my_private_key.pem"
-
-
-		self.clientGesture = ClientGesture(self.url,self.namespace,self.certificate,self.private_key,self.ENCRYPT,self.currentRobotDescription)
-		#asyncio.run(self.clientGesture.connect())#do a connection
+		self.vRot =0.0
+		self.vLongi=0.0
 		
-		clientGesture = ClientGesture(self.url,self.namespace,self.certificate,self.private_key,self.ENCRYPT,self.currentRobotDescription)
-		asyncio.run(clientGesture.connect())#do a connection
-		import time
-		timeStamp=time.time()
-		data=[1.0,2.0,3.0,4.0,5.0,6.0]
-		asyncio.run(clientGesture.setPosition(timeStamp,-1,data))
-		"""
-
 # Core() is called every time you have a new input
 	def Core(self):
 		
-		print ("sys.path="+str(sys.path))
-		try :
+		
+		if( self.input_that_answered==0):
+			timeStamp=self.inputs["joystick"].ioelt.ts
+			joystick = self.inputs["joystick"].ioelt.data
+			self.vRot= np.radians( (-joystick[0]/1000.0) * 15.0 ) # at full will turn of 45 deg by seg
+			self.vLongi= -joystick[1]/1000.0#1 Mbsec max
+			#raz si pas d'homme mort
+			if (joystick[2] < 500):
+				self.vRot=0.0
+				self.vLongi=0.0
+				#disable
+				asyncio.run(self.clientGesture.moveRobot( timeStamp,False,self.vLongi,self.vRot) )#run a processing
+			else:
+				#control the robot
+				asyncio.run(self.clientGesture.moveRobot( timeStamp,True,self.vLongi,self.vRot) )#run a processing
+				
+				
+			#send vlongi
+			
+		elif( self.input_that_answered==1):
+			timeStamp  =self.inputs["buttons"].ioelt.ts
+			
+			print("vectorsize="+str(self.inputs["buttons"].ioelt.vector_size))
+			if self.inputs["buttons"].ioelt.vector_size > 0:
+				buttonRead = self.inputs["buttons"].ioelt.data
+				if (buttonRead == 0):
+					#send vlongi to 0 to current robot
+					asyncio.run(self.clientGesture.moveRobot( timeStamp,False,0.0,0.0) )#stop it
+					
+					#change robot
+					self.currentRobot-=1
+					if(self.currentRobot <0):
+						self.currentRobot=len(self.listOfName)-1
+					self.clientGesture.currentRobotDescription = self.currentRobotDescriptionList[self.currentRobot]#update the robots informations
+					self.clientGesture.getCurrentRobot()#force to connect to the good robot
+					#re init
+					asyncio.run(self.clientGesture.moveRobot( timeStamp,False,0.0,0.0) )#stop it
+					
+				elif (buttonRead == 3):
+					#send vlongi to 0 to current robot
+					
+					#change robot
+					self.currentRobot+=1
+					self.currentRobot=self.currentRobot%len(self.listOfName)
+					self.clientGesture.currentRobotDescription = self.currentRobotDescriptionList[self.currentRobot]#update the robots informations
+					self.clientGesture.getCurrentRobot()#force to connect to the good robot
+					#re init
+					asyncio.run(self.clientGesture.moveRobot( timeStamp,False,0.0,0.0) )#stop it
+					
+		
+		robotOutOuput = rtmaps.types.Ioelt()
+		robotOutOuput.data=self.listOfName[self.currentRobot]+"\n"
+		#robotOutOuput.vector_size = len(enabled_vLongiwantedMBysedVrotWantedRadBySec.data)
+		robotOutOuput.ts = rt.current_time()
+		self.outputs["robotOut"].write(robotOutOuput)
+		
+		"""try :
 			timeStamp=self.inputs["inputPosition_MapID_latLongAltRPYinrad"].ioelt.ts
 			data=self.inputs["inputPosition_MapID_latLongAltRPYinrad"].ioelt.data
 		except:
@@ -147,21 +198,9 @@ class rtmaps_python(BaseComponent):
 		enabled_vLongiwantedMBysedVrotWantedRadBySec.vector_size = len(enabled_vLongiwantedMBysedVrotWantedRadBySec.data)
 		enabled_vLongiwantedMBysedVrotWantedRadBySec.ts = wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec[0]#rt.current_time()
 		self.outputs["enabled_vLongiwantedMBysedVrotWantedRadBySec"].write(enabled_vLongiwantedMBysedVrotWantedRadBySec)
+		"""		
 					
-					
-		"""lf.ts_map_id_posexyzrxryrz = [0.0, -1.0,1000.0, 1000.0,1000.0,1000.0,1000.0,1000.0]#pose in meters
-		self.stdev_ts_map_id_posexyzrxryrz = [0.0, 1000.0, 1000.0,1000.0,1000.0,1000.0,1000.0]
 		
-		self.ts_map_id_posexyzrxryrz_target = [0.0, -1.0,1000.0, 1000.0,1000.0,1000.0,1000.0,1000.0]#target
-		
-		self.robotStatus=0.0 #enumt do describe the status
-		self.wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec=[0.0,0.0,0.0,0.0]"""
-		#print ("timeStamp="+str(timeStamp))
-		#print ("data="+str(data))
-		
-		
-		#loop.run_until_complete(task(loop))
-		#loop.close()
 		
 
 # Death() will be called once at diagram execution shutdown
