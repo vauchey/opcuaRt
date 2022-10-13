@@ -127,10 +127,11 @@ class rtmaps_python(BaseComponent):
 			timeStamp=self.inputs["inputPosition_MapID_latLongAltRPYinrad"].ioelt.ts
 			data=self.inputs["inputPosition_MapID_latLongAltRPYinrad"].ioelt.data
 		except:
+			timeStamp=-1
 			pass
 			
 		#send new pose only if need
-		if timeStamp != self._timeStamp:
+		if ((timeStamp != self._timeStamp) and (timeStamp!=-1)):
 			self._timeStamp=timeStamp
 			asyncio.run(self.clientGesture.setPosition(timeStamp,-1,data))#run a processing
 			

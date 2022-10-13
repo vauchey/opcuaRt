@@ -24,10 +24,11 @@ class MyRobotClient():
 		
 		self.objects = self.client.nodes.objects
 		self.robotName =  self.currentRobotDescription.__dict__["robotName"]
+		print ("initialize robot :"+str(self.robotName))
 		for values in  self.currentRobotDescription.__dict__.keys():
 			if  values!="robotName":
 				self.__dict__[values+"_child"] = await self.objects.get_child([str(self.idx)+':'+self.robotName, str(self.idx) + ':'+values])#recupere les childs (une fois pour toute)
-		pass
+		print ("initialize robot done:"+str(self.robotName))
 		
 
 	async def readRobot(self):
@@ -73,13 +74,14 @@ class ClientGesture():
 		
 	async def getCurrentRobot(self):
 		"""permet de seconnecter au bon robot, peut etre appeller depuis lexterieur en cas de changement de robot"""
+		async with self.client:
+			self.idx = await self.client.get_namespace_index(self.namespace)
+			#print ("idx="+str(idx))
 		
-		self.idx = await self.client.get_namespace_index(self.namespace)
-		#print ("idx="+str(idx))
-	
-		#init robot
-		self.myRobotClient= MyRobotClient(self.client,self.idx,self.currentRobotDescription)
-		await self.myRobotClient.initialize()
+			#init robot
+			#print ("!!!!!!!!!!!!create robot :"+str(self.currentRobotDescription.robotName))
+			self.myRobotClient= MyRobotClient(self.client,self.idx,self.currentRobotDescription)
+			await self.myRobotClient.initialize()
 			
 			
 	async def connect(self):
@@ -98,16 +100,20 @@ class ClientGesture():
 				mode=ua.MessageSecurityMode.SignAndEncrypt
 			)
 			#mode=ua.MessageSecurityMode.SignAndEncrypt
-		async with self.client:
-			await self.getCurrentRobot()#
+		#async with self.client:
+		#	await self.getCurrentRobot()#
+		#print("!!!!!!!!!!!!!!!!!!!!!!!!!!call self.getCurrentRobot")
+		await self.getCurrentRobot()#
 		
-		"""async with self.client:
+		"""
+		async with self.client:
 			self.idx = await self.client.get_namespace_index(self.namespace)
 			#print ("idx="+str(idx))
 		
 			#init robot
 			self.myRobotClient= MyRobotClient(self.client,self.idx,self.currentRobotDescription)
 			await self.myRobotClient.initialize()
+		print("!!!!!!!!!!!!!!!!!!!!!!!!!!call self.getCurrentRobot done")
 		"""
 		
 	async def moveRobot(self, timestamp,enabled,Vlongi,Vrot):

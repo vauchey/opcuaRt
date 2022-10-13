@@ -111,14 +111,13 @@ class rtmaps_python(BaseComponent):
 		self.currentRobot=0
 		self.clientGesture = ClientGesture(self.url,self.namespace,self.certificate,self.private_key,self.ENCRYPT,self.currentRobotDescriptionList[self.currentRobot])
 		asyncio.run(self.clientGesture.connect())#do a connection
+		#asyncio.run(self.clientGesture.getCurrentRobot())
 		
 		self.vRot =0.0
 		self.vLongi=0.0
 		
 # Core() is called every time you have a new input
 	def Core(self):
-		
-		
 		if( self.input_that_answered==0):
 			timeStamp=self.inputs["joystick"].ioelt.ts
 			joystick = self.inputs["joystick"].ioelt.data
@@ -140,7 +139,7 @@ class rtmaps_python(BaseComponent):
 		elif( self.input_that_answered==1):
 			timeStamp  =self.inputs["buttons"].ioelt.ts
 			
-			print("vectorsize="+str(self.inputs["buttons"].ioelt.vector_size))
+			#print("vectorsize="+str(self.inputs["buttons"].ioelt.vector_size))
 			if self.inputs["buttons"].ioelt.vector_size > 0:
 				buttonRead = self.inputs["buttons"].ioelt.data
 				if (buttonRead == 0):
@@ -152,7 +151,7 @@ class rtmaps_python(BaseComponent):
 					if(self.currentRobot <0):
 						self.currentRobot=len(self.listOfName)-1
 					self.clientGesture.currentRobotDescription = self.currentRobotDescriptionList[self.currentRobot]#update the robots informations
-					self.clientGesture.getCurrentRobot()#force to connect to the good robot
+					asyncio.run(self.clientGesture.getCurrentRobot())#force to connect to the good robot
 					#re init
 					asyncio.run(self.clientGesture.moveRobot( timeStamp,False,0.0,0.0) )#stop it
 					
@@ -162,8 +161,10 @@ class rtmaps_python(BaseComponent):
 					#change robot
 					self.currentRobot+=1
 					self.currentRobot=self.currentRobot%len(self.listOfName)
+					
 					self.clientGesture.currentRobotDescription = self.currentRobotDescriptionList[self.currentRobot]#update the robots informations
-					self.clientGesture.getCurrentRobot()#force to connect to the good robot
+					asyncio.run(self.clientGesture.getCurrentRobot())#force to connect to the good robot
+					#print ("rboto selected !!!!!!!!!!="+str(self.clientGesture.currentRobotDescription.robotName))
 					#re init
 					asyncio.run(self.clientGesture.moveRobot( timeStamp,False,0.0,0.0) )#stop it
 					
