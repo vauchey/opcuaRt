@@ -4,7 +4,7 @@ import sys
 sys.path.insert(0, "..")
 from robotDescription import *
 
-from ServerClient import *
+from ClientGesture import *
 
 from asyncua import Client, Node, ua
 from asyncua.crypto.security_policies import SecurityPolicyBasic256Sha256

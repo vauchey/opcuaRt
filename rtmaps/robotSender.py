@@ -14,8 +14,10 @@ import os
 
 
 sys.path.append( os.path.abspath(sys.path[0]+"/../"))
+#import to know the robots
 from robotDescription import *
-from ServerClient import *
+#import to do client gesture
+from ClientGesture import *
 
 """
 pip install asyncua

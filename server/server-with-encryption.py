@@ -4,7 +4,7 @@ import sys
 import logging
 sys.path.insert(0, "..")
 from robotDescription import *
-from ServerClient import *
+from ServerGesture import *
 
 
 
