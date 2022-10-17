@@ -26,7 +26,7 @@
   <ClocksManagement>
     <Property LongName="ClocksManagement.activeClock" Type="4"><![CDATA[1|0|RTMaps_standard_clock]]></Property>
   </ClocksManagement>
-  <Component InstanceName="DataViewer_1" Model="DataViewer" Version="2.0.10" x="1312" y="264" z="0">
+  <Component InstanceName="DataViewer_1" Model="DataViewer" Version="2.0.10" x="1384" y="264" z="0">
     <Input LongName="DataViewer_1.input_0" Name="input_0">
       <Property LongName="DataViewer_1.input_0.readerType" Type="1">4</Property>
       <Property LongName="DataViewer_1.input_0.subsampling" Type="1">1</Property>
@@ -144,193 +144,68 @@
     <Property LongName="DataViewer_2.priority" Type="1">128</Property>
     <Property LongName="DataViewer_2.autoStart" Type="0">true</Property>
   </Component>
-  <Component InstanceName="DataViewer_3" Model="DataViewer" Version="2.0.10" x="1120" y="56" z="0">
-    <Input LongName="DataViewer_3.input_0" Name="input_0">
-      <Property LongName="DataViewer_3.input_0.readerType" Type="1">4</Property>
-      <Property LongName="DataViewer_3.input_0.subsampling" Type="1">1</Property>
-    </Input>
-    <Input LongName="DataViewer_3.input_1" Name="input_1">
-      <Property LongName="DataViewer_3.input_1.readerType" Type="1">4</Property>
-      <Property LongName="DataViewer_3.input_1.subsampling" Type="1">1</Property>
-    </Input>
-    <Property LongName="DataViewer_3.begin_guard" Type="0" SubType="128">true</Property>
-    <ReadOnlyProperty LongName="DataViewer_3.widget_begin_config" Type="3" SubType="256"><![CDATA[General Configuration]]></ReadOnlyProperty>
-    <Property LongName="DataViewer_3.autoDirty" Type="0">true</Property>
-    <Property LongName="DataViewer_3.run" Type="0">true</Property>
-    <Property LongName="DataViewer_3.alwaysOnTop" Type="4"><![CDATA[4|0|Only at run time|Only at design time|No|Both at run time and design time]]></Property>
-    <Property LongName="DataViewer_3.moveable" Type="0">true</Property>
-    <Property LongName="DataViewer_3.hidden" Type="0">false</Property>
-    <Property LongName="DataViewer_3.title" Type="3"><![CDATA[]]></Property>
-    <Property LongName="DataViewer_3.x" Type="1">45</Property>
-    <Property LongName="DataViewer_3.y" Type="1">202</Property>
-    <Property LongName="DataViewer_3.width" Type="1">530</Property>
-    <Property LongName="DataViewer_3.height" Type="1">420</Property>
-    <Property LongName="DataViewer_3.end_guard" Type="0" SubType="128">true</Property>
-    <ReadOnlyProperty LongName="DataViewer_3.widget_end_config" Type="0" SubType="512">false</ReadOnlyProperty>
-    <ReadOnlyProperty LongName="DataViewer_3.specific_begin_config" Type="3" SubType="256"><![CDATA[Specific Configuration]]></ReadOnlyProperty>
-    <Property LongName="DataViewer_3.nbInputs" Type="1">2</Property>
-    <Property LongName="DataViewer_3.compactMode" Type="0">false</Property>
-    <Property LongName="DataViewer_3.showInfo" Type="0">true</Property>
-    <Property LongName="DataViewer_3.showData" Type="0">true</Property>
-    <Property LongName="DataViewer_3.showPrettyTimestamp" Type="0">true</Property>
-    <Property LongName="DataViewer_3.float32Format" Type="3"><![CDATA[%9g]]></Property>
-    <Property LongName="DataViewer_3.float64Format" Type="3"><![CDATA[%9g]]></Property>
-    <Property LongName="DataViewer_3.integer8Format" Type="3"><![CDATA[%d]]></Property>
-    <Property LongName="DataViewer_3.integer16Format" Type="3"><![CDATA[%d]]></Property>
-    <Property LongName="DataViewer_3.integer32Format" Type="3"><![CDATA[%I32d]]></Property>
-    <Property LongName="DataViewer_3.integer64Format" Type="3"><![CDATA[%I64d]]></Property>
-    <Property LongName="DataViewer_3.unsignedInteger8Format" Type="3"><![CDATA[%u]]></Property>
-    <Property LongName="DataViewer_3.unsignedInteger16Format" Type="3"><![CDATA[%u]]></Property>
-    <Property LongName="DataViewer_3.unsignedInteger32Format" Type="3"><![CDATA[%I32u]]></Property>
-    <Property LongName="DataViewer_3.unsignedInteger64Format" Type="3"><![CDATA[%I64u]]></Property>
-    <Property LongName="DataViewer_3.hexDisplay" Type="0">false</Property>
-    <Property LongName="DataViewer_3.internalState" Type="3" SubType="128"><![CDATA[303;196]]></Property>
-    <Property LongName="DataViewer_3.expandedState" Type="3" SubType="128"><![CDATA[1|PythonBridge_sendPositionRobot1.enabled_vLongiwantedMBysedVrotWantedRadBySec;0|Info:PythonBridge_sendPositionRobot1.enabled_vLongiwantedMBysedVrotWantedRadBySec;1|Data:PythonBridge_sendPositionRobot1.enabled_vLongiwantedMBysedVrotWantedRadBySec;1|PythonBridge_robotSimulator.ouputPosition;0|Info:PythonBridge_robotSimulator.ouputPosition;1|Data:PythonBridge_robotSimulator.ouputPosition]]></Property>
-    <ReadOnlyProperty LongName="DataViewer_3.specific_end_config" Type="0" SubType="512">true</ReadOnlyProperty>
-    <Property LongName="DataViewer_3.threaded" Type="0">true</Property>
-    <Property LongName="DataViewer_3.priority" Type="1">128</Property>
-    <Property LongName="DataViewer_3.autoStart" Type="0">true</Property>
+  <Component InstanceName="Joystick_1Xbox" Model="Joystick" Version="1.7" x="40" y="336" z="0">
+    <Output LongName="Joystick_1Xbox.xyzAxisPosition" Name="xyzAxisPosition">
+      <Property LongName="Joystick_1Xbox.xyzAxisPosition.subsampling" Type="1">1</Property>
+      <Property LongName="Joystick_1Xbox.xyzAxisPosition.fifosize" Type="1">16</Property>
+      <Property LongName="Joystick_1Xbox.xyzAxisPosition.periodic" Type="0">false</Property>
+    </Output>
+    <Output LongName="Joystick_1Xbox.xyzAxisRotation" Name="xyzAxisRotation">
+      <Property LongName="Joystick_1Xbox.xyzAxisRotation.subsampling" Type="1">1</Property>
+      <Property LongName="Joystick_1Xbox.xyzAxisRotation.fifosize" Type="1">16</Property>
+      <Property LongName="Joystick_1Xbox.xyzAxisRotation.periodic" Type="0">false</Property>
+    </Output>
+    <Output LongName="Joystick_1Xbox.sliders" Name="sliders">
+      <Property LongName="Joystick_1Xbox.sliders.subsampling" Type="1">1</Property>
+      <Property LongName="Joystick_1Xbox.sliders.fifosize" Type="1">16</Property>
+      <Property LongName="Joystick_1Xbox.sliders.periodic" Type="0">false</Property>
+    </Output>
+    <Output LongName="Joystick_1Xbox.POV" Name="POV">
+      <Property LongName="Joystick_1Xbox.POV.subsampling" Type="1">1</Property>
+      <Property LongName="Joystick_1Xbox.POV.fifosize" Type="1">16</Property>
+      <Property LongName="Joystick_1Xbox.POV.periodic" Type="0">false</Property>
+    </Output>
+    <Output LongName="Joystick_1Xbox.rgbButtons" Name="rgbButtons">
+      <Property LongName="Joystick_1Xbox.rgbButtons.subsampling" Type="1">1</Property>
+      <Property LongName="Joystick_1Xbox.rgbButtons.fifosize" Type="1">16</Property>
+      <Property LongName="Joystick_1Xbox.rgbButtons.periodic" Type="0">false</Property>
+    </Output>
+    <Property LongName="Joystick_1Xbox.deviceType" Type="4"><![CDATA[2|0|DirectInput|XInput]]></Property>
+    <Property LongName="Joystick_1Xbox.inputDevice" Type="4"><![CDATA[1|0|Controller (Xbox One For Windows)]]></Property>
+    <Property LongName="Joystick_1Xbox.notification_mode" Type="4"><![CDATA[2|1|Polling|Event based]]></Property>
+    <Property LongName="Joystick_1Xbox.poll_once_at_init" Type="0">false</Property>
+    <Property LongName="Joystick_1Xbox.polling_period" Type="1">30000</Property>
+    <Property LongName="Joystick_1Xbox.axis_range_min" Type="1">-1000</Property>
+    <Property LongName="Joystick_1Xbox.axis_range_max" Type="1">1000</Property>
+    <Property LongName="Joystick_1Xbox.axis_saturation" Type="1">10000</Property>
+    <Property LongName="Joystick_1Xbox.axis_dead_zone" Type="1">0</Property>
+    <Property LongName="Joystick_1Xbox.axis_mode" Type="4"><![CDATA[2|0|Absolute|Relative]]></Property>
+    <Property LongName="Joystick_1Xbox.auto_center" Type="0">true</Property>
+    <Property LongName="Joystick_1Xbox.cooperative_level" Type="4"><![CDATA[2|0|Exclusive|Non exclusive]]></Property>
+    <Property LongName="Joystick_1Xbox.force_feedback" Type="0">false</Property>
+    <Property LongName="Joystick_1Xbox.ff_spring_coeff" Type="1">10000</Property>
+    <Property LongName="Joystick_1Xbox.pxyzAxisPosition" Type="0">true</Property>
+    <Property LongName="Joystick_1Xbox.pxyzAxisRotation" Type="0">true</Property>
+    <Property LongName="Joystick_1Xbox.psliders" Type="0">true</Property>
+    <Property LongName="Joystick_1Xbox.pPOV" Type="0">true</Property>
+    <Property LongName="Joystick_1Xbox.prgbButtons" Type="0">true</Property>
+    <Property LongName="Joystick_1Xbox.pxyzAxisVelocity" Type="0">false</Property>
+    <Property LongName="Joystick_1Xbox.pxyzAxisAngVelocity" Type="0">false</Property>
+    <Property LongName="Joystick_1Xbox.prglVSliders" Type="0">false</Property>
+    <Property LongName="Joystick_1Xbox.pxyzAxisAcc" Type="0">false</Property>
+    <Property LongName="Joystick_1Xbox.pxyzAxisAngAcc" Type="0">false</Property>
+    <Property LongName="Joystick_1Xbox.prglASliders" Type="0">false</Property>
+    <Property LongName="Joystick_1Xbox.pxyzAxisForce" Type="0">false</Property>
+    <Property LongName="Joystick_1Xbox.pxyzAxisTorque" Type="0">false</Property>
+    <Property LongName="Joystick_1Xbox.prglFSliders" Type="0">false</Property>
+    <Property LongName="Joystick_1Xbox.startButton" Type="1">0</Property>
+    <Property LongName="Joystick_1Xbox.nbButtons" Type="1">128</Property>
+    <Property LongName="Joystick_1Xbox.buttons_output_mode" Type="4"><![CDATA[2|1|Vectorized buttons states|Pressed buttons indexes]]></Property>
+    <Property LongName="Joystick_1Xbox.threaded" Type="0">true</Property>
+    <Property LongName="Joystick_1Xbox.priority" Type="1">128</Property>
+    <Property LongName="Joystick_1Xbox.autoStart" Type="0">true</Property>
   </Component>
-  <Component InstanceName="Float_constants_generator_1" Model="Float_constants_generator" Version="2.2" x="720" y="184" z="0">
-    <Output LongName="Float_constants_generator_1.output" Name="output">
-      <Property LongName="Float_constants_generator_1.output.subsampling" Type="1">1</Property>
-      <Property LongName="Float_constants_generator_1.output.fifosize" Type="1">16</Property>
-      <Property LongName="Float_constants_generator_1.output.periodic" Type="0">false</Property>
-    </Output>
-    <Property LongName="Float_constants_generator_1.outputMode" Type="4"><![CDATA[3|1|Once at start|Periodic|Use trigger input]]></Property>
-    <Property LongName="Float_constants_generator_1.outputWhenValueChanges" Type="0">true</Property>
-    <Property LongName="Float_constants_generator_1.vectorSize" Type="1">7</Property>
-    <Property LongName="Float_constants_generator_1.outputPeriod" Type="1">10000</Property>
-    <Property LongName="Float_constants_generator_1.value_1" Type="2">0</Property>
-    <Property LongName="Float_constants_generator_1.value_2" Type="2">2.8</Property>
-    <Property LongName="Float_constants_generator_1.value_3" Type="2">49.4</Property>
-    <Property LongName="Float_constants_generator_1.value_4" Type="2">0</Property>
-    <Property LongName="Float_constants_generator_1.value_5" Type="2">0</Property>
-    <Property LongName="Float_constants_generator_1.value_6" Type="2">0</Property>
-    <Property LongName="Float_constants_generator_1.value_7" Type="2">1.5</Property>
-    <Property LongName="Float_constants_generator_1.threaded" Type="0">true</Property>
-    <Property LongName="Float_constants_generator_1.priority" Type="1">128</Property>
-    <Property LongName="Float_constants_generator_1.autoStart" Type="0">true</Property>
-  </Component>
-  <Component InstanceName="Float_constants_generator_1_1" Model="Float_constants_generator" Version="2.2" x="728" y="432" z="0">
-    <Output LongName="Float_constants_generator_1_1.output" Name="output">
-      <Property LongName="Float_constants_generator_1_1.output.subsampling" Type="1">1</Property>
-      <Property LongName="Float_constants_generator_1_1.output.fifosize" Type="1">16</Property>
-      <Property LongName="Float_constants_generator_1_1.output.periodic" Type="0">false</Property>
-    </Output>
-    <Property LongName="Float_constants_generator_1_1.outputMode" Type="4"><![CDATA[3|1|Once at start|Periodic|Use trigger input]]></Property>
-    <Property LongName="Float_constants_generator_1_1.outputWhenValueChanges" Type="0">true</Property>
-    <Property LongName="Float_constants_generator_1_1.vectorSize" Type="1">7</Property>
-    <Property LongName="Float_constants_generator_1_1.outputPeriod" Type="1">10000</Property>
-    <Property LongName="Float_constants_generator_1_1.value_1" Type="2">0</Property>
-    <Property LongName="Float_constants_generator_1_1.value_2" Type="2">2.8</Property>
-    <Property LongName="Float_constants_generator_1_1.value_3" Type="2">49.4</Property>
-    <Property LongName="Float_constants_generator_1_1.value_4" Type="2">0</Property>
-    <Property LongName="Float_constants_generator_1_1.value_5" Type="2">0</Property>
-    <Property LongName="Float_constants_generator_1_1.value_6" Type="2">0</Property>
-    <Property LongName="Float_constants_generator_1_1.value_7" Type="2">1.5</Property>
-    <Property LongName="Float_constants_generator_1_1.threaded" Type="0">true</Property>
-    <Property LongName="Float_constants_generator_1_1.priority" Type="1">128</Property>
-    <Property LongName="Float_constants_generator_1_1.autoStart" Type="0">true</Property>
-  </Component>
-  <Component InstanceName="Float_constants_generator_1_1_1" Model="Float_constants_generator" Version="2.2" x="728" y="664" z="0">
-    <Output LongName="Float_constants_generator_1_1_1.output" Name="output">
-      <Property LongName="Float_constants_generator_1_1_1.output.subsampling" Type="1">1</Property>
-      <Property LongName="Float_constants_generator_1_1_1.output.fifosize" Type="1">16</Property>
-      <Property LongName="Float_constants_generator_1_1_1.output.periodic" Type="0">false</Property>
-    </Output>
-    <Property LongName="Float_constants_generator_1_1_1.outputMode" Type="4"><![CDATA[3|1|Once at start|Periodic|Use trigger input]]></Property>
-    <Property LongName="Float_constants_generator_1_1_1.outputWhenValueChanges" Type="0">true</Property>
-    <Property LongName="Float_constants_generator_1_1_1.vectorSize" Type="1">7</Property>
-    <Property LongName="Float_constants_generator_1_1_1.outputPeriod" Type="1">10000</Property>
-    <Property LongName="Float_constants_generator_1_1_1.value_1" Type="2">0</Property>
-    <Property LongName="Float_constants_generator_1_1_1.value_2" Type="2">2.8</Property>
-    <Property LongName="Float_constants_generator_1_1_1.value_3" Type="2">49.4</Property>
-    <Property LongName="Float_constants_generator_1_1_1.value_4" Type="2">0</Property>
-    <Property LongName="Float_constants_generator_1_1_1.value_5" Type="2">0</Property>
-    <Property LongName="Float_constants_generator_1_1_1.value_6" Type="2">0</Property>
-    <Property LongName="Float_constants_generator_1_1_1.value_7" Type="2">1.5</Property>
-    <Property LongName="Float_constants_generator_1_1_1.threaded" Type="0">true</Property>
-    <Property LongName="Float_constants_generator_1_1_1.priority" Type="1">128</Property>
-    <Property LongName="Float_constants_generator_1_1_1.autoStart" Type="0">true</Property>
-  </Component>
-  <Component InstanceName="Integer_constants_generator_robotId" Model="Integer_constants_generator" Version="2.5.1" x="376" y="632" z="0">
-    <Output LongName="Integer_constants_generator_robotId.output" Name="output">
-      <Property LongName="Integer_constants_generator_robotId.output.subsampling" Type="1">1</Property>
-      <Property LongName="Integer_constants_generator_robotId.output.fifosize" Type="1">16</Property>
-      <Property LongName="Integer_constants_generator_robotId.output.periodic" Type="0">false</Property>
-    </Output>
-    <Property LongName="Integer_constants_generator_robotId.outputMode" Type="4"><![CDATA[3|1|Once at start|Periodic|Use trigger input]]></Property>
-    <Property LongName="Integer_constants_generator_robotId.outputWhenValueChanges" Type="0">true</Property>
-    <Property LongName="Integer_constants_generator_robotId.vectorSize" Type="1">1</Property>
-    <Property LongName="Integer_constants_generator_robotId.outputPeriod" Type="1">1000000</Property>
-    <Property LongName="Integer_constants_generator_robotId.value_1" Type="1">0</Property>
-    <Property LongName="Integer_constants_generator_robotId.threaded" Type="0">true</Property>
-    <Property LongName="Integer_constants_generator_robotId.priority" Type="1">128</Property>
-    <Property LongName="Integer_constants_generator_robotId.autoStart" Type="0">true</Property>
-  </Component>
-  <Component InstanceName="Joystick_1" Model="Joystick" Version="1.7" x="40" y="336" z="0">
-    <Output LongName="Joystick_1.xyzAxisPosition" Name="xyzAxisPosition">
-      <Property LongName="Joystick_1.xyzAxisPosition.subsampling" Type="1">1</Property>
-      <Property LongName="Joystick_1.xyzAxisPosition.fifosize" Type="1">16</Property>
-      <Property LongName="Joystick_1.xyzAxisPosition.periodic" Type="0">false</Property>
-    </Output>
-    <Output LongName="Joystick_1.xyzAxisRotation" Name="xyzAxisRotation">
-      <Property LongName="Joystick_1.xyzAxisRotation.subsampling" Type="1">1</Property>
-      <Property LongName="Joystick_1.xyzAxisRotation.fifosize" Type="1">16</Property>
-      <Property LongName="Joystick_1.xyzAxisRotation.periodic" Type="0">false</Property>
-    </Output>
-    <Output LongName="Joystick_1.sliders" Name="sliders">
-      <Property LongName="Joystick_1.sliders.subsampling" Type="1">1</Property>
-      <Property LongName="Joystick_1.sliders.fifosize" Type="1">16</Property>
-      <Property LongName="Joystick_1.sliders.periodic" Type="0">false</Property>
-    </Output>
-    <Output LongName="Joystick_1.POV" Name="POV">
-      <Property LongName="Joystick_1.POV.subsampling" Type="1">1</Property>
-      <Property LongName="Joystick_1.POV.fifosize" Type="1">16</Property>
-      <Property LongName="Joystick_1.POV.periodic" Type="0">false</Property>
-    </Output>
-    <Output LongName="Joystick_1.rgbButtons" Name="rgbButtons">
-      <Property LongName="Joystick_1.rgbButtons.subsampling" Type="1">1</Property>
-      <Property LongName="Joystick_1.rgbButtons.fifosize" Type="1">16</Property>
-      <Property LongName="Joystick_1.rgbButtons.periodic" Type="0">false</Property>
-    </Output>
-    <Property LongName="Joystick_1.deviceType" Type="4"><![CDATA[2|0|DirectInput|XInput]]></Property>
-    <Property LongName="Joystick_1.inputDevice" Type="4"><![CDATA[1|0|Controller (Xbox One For Windows)]]></Property>
-    <Property LongName="Joystick_1.notification_mode" Type="4"><![CDATA[2|1|Polling|Event based]]></Property>
-    <Property LongName="Joystick_1.poll_once_at_init" Type="0">false</Property>
-    <Property LongName="Joystick_1.polling_period" Type="1">30000</Property>
-    <Property LongName="Joystick_1.axis_range_min" Type="1">-1000</Property>
-    <Property LongName="Joystick_1.axis_range_max" Type="1">1000</Property>
-    <Property LongName="Joystick_1.axis_saturation" Type="1">10000</Property>
-    <Property LongName="Joystick_1.axis_dead_zone" Type="1">0</Property>
-    <Property LongName="Joystick_1.axis_mode" Type="4"><![CDATA[2|0|Absolute|Relative]]></Property>
-    <Property LongName="Joystick_1.auto_center" Type="0">true</Property>
-    <Property LongName="Joystick_1.cooperative_level" Type="4"><![CDATA[2|0|Exclusive|Non exclusive]]></Property>
-    <Property LongName="Joystick_1.force_feedback" Type="0">false</Property>
-    <Property LongName="Joystick_1.ff_spring_coeff" Type="1">10000</Property>
-    <Property LongName="Joystick_1.pxyzAxisPosition" Type="0">true</Property>
-    <Property LongName="Joystick_1.pxyzAxisRotation" Type="0">true</Property>
-    <Property LongName="Joystick_1.psliders" Type="0">true</Property>
-    <Property LongName="Joystick_1.pPOV" Type="0">true</Property>
-    <Property LongName="Joystick_1.prgbButtons" Type="0">true</Property>
-    <Property LongName="Joystick_1.pxyzAxisVelocity" Type="0">false</Property>
-    <Property LongName="Joystick_1.pxyzAxisAngVelocity" Type="0">false</Property>
-    <Property LongName="Joystick_1.prglVSliders" Type="0">false</Property>
-    <Property LongName="Joystick_1.pxyzAxisAcc" Type="0">false</Property>
-    <Property LongName="Joystick_1.pxyzAxisAngAcc" Type="0">false</Property>
-    <Property LongName="Joystick_1.prglASliders" Type="0">false</Property>
-    <Property LongName="Joystick_1.pxyzAxisForce" Type="0">false</Property>
-    <Property LongName="Joystick_1.pxyzAxisTorque" Type="0">false</Property>
-    <Property LongName="Joystick_1.prglFSliders" Type="0">false</Property>
-    <Property LongName="Joystick_1.startButton" Type="1">0</Property>
-    <Property LongName="Joystick_1.nbButtons" Type="1">128</Property>
-    <Property LongName="Joystick_1.buttons_output_mode" Type="4"><![CDATA[2|1|Vectorized buttons states|Pressed buttons indexes]]></Property>
-    <Property LongName="Joystick_1.threaded" Type="0">true</Property>
-    <Property LongName="Joystick_1.priority" Type="1">128</Property>
-    <Property LongName="Joystick_1.autoStart" Type="0">true</Property>
-  </Component>
-  <Component InstanceName="PythonBridge_ControlRobots" Model="PythonBridge" Version="3.2.0" x="336" y="488" z="0">
+  <Component InstanceName="PythonBridge_ControlRobots" Model="PythonBridge" Version="3.2.0" x="320" y="560" z="0">
     <Input LongName="PythonBridge_ControlRobots.joystick" Name="joystick">
       <Property LongName="PythonBridge_ControlRobots.joystick.readerType" Type="1">0</Property>
       <Property LongName="PythonBridge_ControlRobots.joystick.subsampling" Type="1">1</Property>
@@ -354,7 +229,7 @@
     <Property LongName="PythonBridge_ControlRobots.showTracebackInConsole" Type="0">true</Property>
     <Property LongName="PythonBridge_ControlRobots.autoReloadSubModules" Type="0">true</Property>
     <Property LongName="PythonBridge_ControlRobots.memorySize" Type="1">10000000</Property>
-    <ReadOnlyProperty LongName="PythonBridge_ControlRobots.pythonPID" Type="1">13756</ReadOnlyProperty>
+    <ReadOnlyProperty LongName="PythonBridge_ControlRobots.pythonPID" Type="1">19876</ReadOnlyProperty>
     <Property LongName="PythonBridge_ControlRobots.additionalEnvironmentVariables" Type="3"><![CDATA[]]></Property>
     <ReadOnlyProperty LongName="PythonBridge_ControlRobots.advance_end_configuration" Type="0" SubType="512">false</ReadOnlyProperty>
     <ReadOnlyProperty LongName="PythonBridge_ControlRobots.basic_begin_configuration" Type="3" SubType="256"><![CDATA[Basic Configuration]]></ReadOnlyProperty>
@@ -396,7 +271,7 @@
     <Property LongName="PythonBridge_robotSimulator.showTracebackInConsole" Type="0">true</Property>
     <Property LongName="PythonBridge_robotSimulator.autoReloadSubModules" Type="0">true</Property>
     <Property LongName="PythonBridge_robotSimulator.memorySize" Type="1">10000000</Property>
-    <ReadOnlyProperty LongName="PythonBridge_robotSimulator.pythonPID" Type="1">20056</ReadOnlyProperty>
+    <ReadOnlyProperty LongName="PythonBridge_robotSimulator.pythonPID" Type="1">7520</ReadOnlyProperty>
     <Property LongName="PythonBridge_robotSimulator.additionalEnvironmentVariables" Type="3"><![CDATA[]]></Property>
     <ReadOnlyProperty LongName="PythonBridge_robotSimulator.advance_end_configuration" Type="0" SubType="512">false</ReadOnlyProperty>
     <ReadOnlyProperty LongName="PythonBridge_robotSimulator.basic_begin_configuration" Type="3" SubType="256"><![CDATA[Basic Configuration]]></ReadOnlyProperty>
@@ -436,7 +311,7 @@
     <Property LongName="PythonBridge_robotSimulator_1.showTracebackInConsole" Type="0">true</Property>
     <Property LongName="PythonBridge_robotSimulator_1.autoReloadSubModules" Type="0">true</Property>
     <Property LongName="PythonBridge_robotSimulator_1.memorySize" Type="1">10000000</Property>
-    <ReadOnlyProperty LongName="PythonBridge_robotSimulator_1.pythonPID" Type="1">20048</ReadOnlyProperty>
+    <ReadOnlyProperty LongName="PythonBridge_robotSimulator_1.pythonPID" Type="1">10960</ReadOnlyProperty>
     <Property LongName="PythonBridge_robotSimulator_1.additionalEnvironmentVariables" Type="3"><![CDATA[]]></Property>
     <ReadOnlyProperty LongName="PythonBridge_robotSimulator_1.advance_end_configuration" Type="0" SubType="512">false</ReadOnlyProperty>
     <ReadOnlyProperty LongName="PythonBridge_robotSimulator_1.basic_begin_configuration" Type="3" SubType="256"><![CDATA[Basic Configuration]]></ReadOnlyProperty>
@@ -476,7 +351,7 @@
     <Property LongName="PythonBridge_robotSimulator_1_1.showTracebackInConsole" Type="0">true</Property>
     <Property LongName="PythonBridge_robotSimulator_1_1.autoReloadSubModules" Type="0">true</Property>
     <Property LongName="PythonBridge_robotSimulator_1_1.memorySize" Type="1">10000000</Property>
-    <ReadOnlyProperty LongName="PythonBridge_robotSimulator_1_1.pythonPID" Type="1">1604</ReadOnlyProperty>
+    <ReadOnlyProperty LongName="PythonBridge_robotSimulator_1_1.pythonPID" Type="1">19628</ReadOnlyProperty>
     <Property LongName="PythonBridge_robotSimulator_1_1.additionalEnvironmentVariables" Type="3"><![CDATA[]]></Property>
     <ReadOnlyProperty LongName="PythonBridge_robotSimulator_1_1.advance_end_configuration" Type="0" SubType="512">false</ReadOnlyProperty>
     <ReadOnlyProperty LongName="PythonBridge_robotSimulator_1_1.basic_begin_configuration" Type="3" SubType="256"><![CDATA[Basic Configuration]]></ReadOnlyProperty>
@@ -516,7 +391,7 @@
     <Property LongName="PythonBridge_sendPositionRobot1.showTracebackInConsole" Type="0">true</Property>
     <Property LongName="PythonBridge_sendPositionRobot1.autoReloadSubModules" Type="0">true</Property>
     <Property LongName="PythonBridge_sendPositionRobot1.memorySize" Type="1">10000000</Property>
-    <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot1.pythonPID" Type="1">10352</ReadOnlyProperty>
+    <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot1.pythonPID" Type="1">20020</ReadOnlyProperty>
     <Property LongName="PythonBridge_sendPositionRobot1.additionalEnvironmentVariables" Type="3"><![CDATA[]]></Property>
     <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot1.advance_end_configuration" Type="0" SubType="512">false</ReadOnlyProperty>
     <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot1.basic_begin_configuration" Type="3" SubType="256"><![CDATA[Basic Configuration]]></ReadOnlyProperty>
@@ -559,7 +434,7 @@
     <Property LongName="PythonBridge_sendPositionRobot2.showTracebackInConsole" Type="0">true</Property>
     <Property LongName="PythonBridge_sendPositionRobot2.autoReloadSubModules" Type="0">true</Property>
     <Property LongName="PythonBridge_sendPositionRobot2.memorySize" Type="1">10000000</Property>
-    <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot2.pythonPID" Type="1">12220</ReadOnlyProperty>
+    <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot2.pythonPID" Type="1">14244</ReadOnlyProperty>
     <Property LongName="PythonBridge_sendPositionRobot2.additionalEnvironmentVariables" Type="3"><![CDATA[]]></Property>
     <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot2.advance_end_configuration" Type="0" SubType="512">false</ReadOnlyProperty>
     <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot2.basic_begin_configuration" Type="3" SubType="256"><![CDATA[Basic Configuration]]></ReadOnlyProperty>
@@ -602,7 +477,7 @@
     <Property LongName="PythonBridge_sendPositionRobot2_1.showTracebackInConsole" Type="0">true</Property>
     <Property LongName="PythonBridge_sendPositionRobot2_1.autoReloadSubModules" Type="0">true</Property>
     <Property LongName="PythonBridge_sendPositionRobot2_1.memorySize" Type="1">10000000</Property>
-    <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot2_1.pythonPID" Type="1">4472</ReadOnlyProperty>
+    <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot2_1.pythonPID" Type="1">13772</ReadOnlyProperty>
     <Property LongName="PythonBridge_sendPositionRobot2_1.additionalEnvironmentVariables" Type="3"><![CDATA[]]></Property>
     <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot2_1.advance_end_configuration" Type="0" SubType="512">false</ReadOnlyProperty>
     <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot2_1.basic_begin_configuration" Type="3" SubType="256"><![CDATA[Basic Configuration]]></ReadOnlyProperty>
@@ -638,7 +513,7 @@
       <Property LongName="QMLViewer_1_1_1_1_1.latlongAltYaw2.readerType" Type="1">0</Property>
       <Property LongName="QMLViewer_1_1_1_1_1.latlongAltYaw2.subsampling" Type="1">1</Property>
     </Input>
-    <Property LongName="QMLViewer_1_1_1_1_1.qmlFile" Type="3" SubType="80"><![CDATA[D:\data\apresBackup\COLIBRY\opcuaRT\opcuaRt\rtmaps\qmlVisualiser.qml]]><Relative><![CDATA[%RTMAPS_DIAGRAMDIR%/qmlVisualiser.qml]]></Relative></Property>
+    <Property LongName="QMLViewer_1_1_1_1_1.qmlFile" Type="3" SubType="80"><![CDATA[D:/data/apresBackup/COLIBRY/opcuaRT/opcuaRt/rtmaps/qmlVisualiser.qml]]><Relative><![CDATA[%RTMAPS_DIAGRAMDIR%/qmlVisualiser.qml]]></Relative></Property>
     <Property LongName="QMLViewer_1_1_1_1_1.qmlReportToConsole" Type="4"><![CDATA[3|1|Disabled|Errors|Warnings & Errors]]></Property>
     <Property LongName="QMLViewer_1_1_1_1_1.qmlImportPath" Type="3" SubType="96"><![CDATA[]]></Property>
     <Property LongName="QMLViewer_1_1_1_1_1.windowed" Type="0">true</Property>
@@ -655,7 +530,7 @@
     <Property LongName="QMLViewer_1_1_1_1_1.priority" Type="1">128</Property>
     <Property LongName="QMLViewer_1_1_1_1_1.autoStart" Type="0">true</Property>
   </Component>
-  <Component InstanceName="TextViewer_1" Model="TextViewer" Version="2.0.5" x="520" y="520" z="0">
+  <Component InstanceName="TextViewer_1" Model="TextViewer" Version="2.0.5" x="392" y="488" z="0">
     <Input LongName="TextViewer_1.input" Name="input">
       <Property LongName="TextViewer_1.input.readerType" Type="1">0</Property>
       <Property LongName="TextViewer_1.input.subsampling" Type="1">1</Property>
@@ -734,7 +609,7 @@
     <Property LongName="vectors_manipulator_1Robot0_1_1.priority" Type="1">128</Property>
     <Property LongName="vectors_manipulator_1Robot0_1_1.autoStart" Type="0">true</Property>
   </Component>
-  <Component InstanceName="VlongiRotWanted" Model="Float_constants_generator" Version="2.2" x="496" y="352" z="0">
+  <Component InstanceName="VlongiRotWanted" Model="Float_constants_generator" Version="2.2" x="424" y="352" z="0">
     <Output LongName="VlongiRotWanted.output" Name="output">
       <Property LongName="VlongiRotWanted.output.subsampling" Type="1">1</Property>
       <Property LongName="VlongiRotWanted.output.fifosize" Type="1">16</Property>
@@ -755,14 +630,12 @@
   <Connection Output="PythonBridge_robotSimulator.ouputPosition" Input="DataViewer_1.input_3"/>
   <Connection Output="PythonBridge_robotSimulator_1.ouputPosition" Input="DataViewer_1.input_4"/>
   <Connection Output="PythonBridge_robotSimulator_1_1.ouputPosition" Input="DataViewer_1.input_5"/>
-  <Connection Output="Joystick_1.xyzAxisPosition" Input="DataViewer_2.input_0"/>
-  <Connection Output="Joystick_1.xyzAxisRotation" Input="DataViewer_2.input_1"/>
-  <Connection Output="Joystick_1.sliders" Input="DataViewer_2.input_2"/>
-  <Connection Output="Joystick_1.rgbButtons" Input="DataViewer_2.input_3"/>
-  <Connection Output="PythonBridge_sendPositionRobot1.enabled_vLongiwantedMBysedVrotWantedRadBySec" Input="DataViewer_3.input_0"/>
-  <Connection Output="PythonBridge_robotSimulator.ouputPosition" Input="DataViewer_3.input_1"/>
-  <Connection Output="Joystick_1.xyzAxisPosition" Input="PythonBridge_ControlRobots.joystick"/>
-  <Connection Output="Joystick_1.rgbButtons" Input="PythonBridge_ControlRobots.buttons"/>
+  <Connection Output="Joystick_1Xbox.xyzAxisPosition" Input="DataViewer_2.input_0"/>
+  <Connection Output="Joystick_1Xbox.xyzAxisRotation" Input="DataViewer_2.input_1"/>
+  <Connection Output="Joystick_1Xbox.sliders" Input="DataViewer_2.input_2"/>
+  <Connection Output="Joystick_1Xbox.rgbButtons" Input="DataViewer_2.input_3"/>
+  <Connection Output="Joystick_1Xbox.xyzAxisPosition" Input="PythonBridge_ControlRobots.joystick"/>
+  <Connection Output="Joystick_1Xbox.rgbButtons" Input="PythonBridge_ControlRobots.buttons"/>
   <Connection Output="PythonBridge_sendPositionRobot1.enabled_vLongiwantedMBysedVrotWantedRadBySec" Input="PythonBridge_robotSimulator.inputOdometryWanted"/>
   <Connection Output="PythonBridge_sendPositionRobot2.enabled_vLongiwantedMBysedVrotWantedRadBySec" Input="PythonBridge_robotSimulator_1.inputOdometryWanted"/>
   <Connection Output="PythonBridge_sendPositionRobot2_1.enabled_vLongiwantedMBysedVrotWantedRadBySec" Input="PythonBridge_robotSimulator_1_1.inputOdometryWanted"/>
@@ -777,10 +650,10 @@
   <Connection Output="PythonBridge_robotSimulator_1.ouputPosition" Input="vectors_manipulator_1Robot0_1.input"/>
   <Connection Output="PythonBridge_robotSimulator_1_1.ouputPosition" Input="vectors_manipulator_1Robot0_1_1.input"/>
   <RTBoardView ID="JavaStudio1.0">
-    <ComponentBox InstanceName="Float_constants_generator_1_1" reversed="false">
+    <ComponentBox InstanceName="gpsaccuracySImulator_1" reversed="false">
       <Description/>
     </ComponentBox>
-    <ComponentBox InstanceName="Float_constants_generator_1_1_1" reversed="false">
+    <ComponentBox InstanceName="JPEGDecompress_2_1" reversed="false">
       <Description/>
     </ComponentBox>
     <ComponentBox InstanceName="PythonBridge_robotSimulator_1" reversed="false">
@@ -798,12 +671,39 @@
     <ComponentBox InstanceName="QMLViewer_1_1_1_1_1" reversed="false">
       <Description/>
     </ComponentBox>
+    <ComponentBox InstanceName="SampleRate_CAM1_1" reversed="false">
+      <Description/>
+    </ComponentBox>
+    <ComponentBox InstanceName="SampleRate_CAM2_1" reversed="false">
+      <Description/>
+    </ComponentBox>
+    <ComponentBox InstanceName="SampleRate_Cloud_1" reversed="false">
+      <Description/>
+    </ComponentBox>
+    <ComponentBox InstanceName="SampleRate_Gen_1" reversed="false">
+      <Description/>
+    </ComponentBox>
+    <ComponentBox InstanceName="SampleRate_GPS_1" reversed="false">
+      <Description/>
+    </ComponentBox>
+    <ComponentBox InstanceName="SampleRate_Out_1_1" reversed="false">
+      <Description/>
+    </ComponentBox>
+    <ComponentBox InstanceName="stopDiagram_1" reversed="false">
+      <Description/>
+    </ComponentBox>
     <ComponentBox InstanceName="vectors_manipulator_1Robot0_1" reversed="false">
       <Description/>
     </ComponentBox>
     <ComponentBox InstanceName="vectors_manipulator_1Robot0_1_1" reversed="false">
       <Description/>
     </ComponentBox>
+    <CommentBox x="833" y="810" z="-1" w="557" h="399" align="4" bgcolor="ffff00" fgcolor="0">HMI for 3 robots</CommentBox>
+    <CommentBox x="650" y="12" z="-1" w="572" h="249" align="2" bgcolor="ff40" fgcolor="0">robot Jean-Michel(Segway)</CommentBox>
+    <CommentBox x="652" y="275" z="-1" w="572" h="249" align="2" bgcolor="80ff00" fgcolor="0">robot Jacqueline(AMI)</CommentBox>
+    <CommentBox x="652" y="541" z="-1" w="572" h="251" align="2" bgcolor="80ff80" fgcolor="0">robot Jean-Jacques(ESPACE)</CommentBox>
+    <CommentBox x="29" y="259" z="-1" w="510" h="441" align="0" bgcolor="ffff" fgcolor="0">Insert your comment here</CommentBox>
+    <ConnectionShape InstanceName="Calc_1speedmbysec.speed" color="0"/>
     <ConnectionShape InstanceName="DataViewer_1.input_0" color="0"/>
     <ConnectionShape InstanceName="DataViewer_1.input_1" color="0"/>
     <ConnectionShape InstanceName="DataViewer_1.input_2" color="0"/>
@@ -814,20 +714,87 @@
     <ConnectionShape InstanceName="DataViewer_2.input_1" color="0"/>
     <ConnectionShape InstanceName="DataViewer_2.input_2" color="0"/>
     <ConnectionShape InstanceName="DataViewer_2.input_3" color="0"/>
-    <ConnectionShape InstanceName="DataViewer_3.input_0" color="0"/>
-    <ConnectionShape InstanceName="DataViewer_3.input_1" color="0"/>
+    <ConnectionShape InstanceName="DataViewer_4.input_0" color="0"/>
+    <ConnectionShape InstanceName="DataViewer_4.input_1" color="0"/>
+    <ConnectionShape InstanceName="DataViewer_4.input_2" color="0"/>
+    <ConnectionShape InstanceName="DataViewer_5.input_0" color="0"/>
+    <ConnectionShape InstanceName="DataViewer_5.input_1" color="0"/>
+    <ConnectionShape InstanceName="DataViewer_6.input_0" color="0"/>
+    <ConnectionShape InstanceName="DataViewer_6.input_1" color="0"/>
+    <ConnectionShape InstanceName="decoderjpeg_CAM1.iStream8" color="0"/>
+    <ConnectionShape InstanceName="decoderjpeg_CAM1_1.iStream8" color="0"/>
+    <ConnectionShape InstanceName="imageMuxer_1.iImagesJpeg1" color="0"/>
+    <ConnectionShape InstanceName="imageMuxer_1.iImagesJpeg2" color="0"/>
+    <ConnectionShape InstanceName="imageSender_CAM1.iImagesJpeg" color="0"/>
+    <ConnectionShape InstanceName="imageSender_CAM1_1.iImagesJpeg" color="0"/>
+    <ConnectionShape InstanceName="ImageViewer_2.input" color="0"/>
+    <ConnectionShape InstanceName="ImageViewer_3.input" color="0"/>
+    <ConnectionShape InstanceName="JPEGCompress_1.input" color="0"/>
+    <ConnectionShape InstanceName="JPEGDecompress_1.input" color="0"/>
+    <ConnectionShape InstanceName="JPEGDecompress_2.input" color="0"/>
+    <ConnectionShape InstanceName="JPEGDecompress_CAM1.input" color="0"/>
+    <ConnectionShape InstanceName="JPEGDecompress_CAM2.input" color="0"/>
+    <ConnectionShape InstanceName="multiplexer_GPS_Accuracy.input_1" color="0"/>
+    <ConnectionShape InstanceName="multiplexer_GPS_Accuracy.input_2" color="0"/>
+    <ConnectionShape InstanceName="OpenCV_Resize_1.imageIn" color="0"/>
+    <ConnectionShape InstanceName="OpenCV_Resize_1_1.imageIn" color="0"/>
+    <ConnectionShape InstanceName="OpenCV_RotateAndFlip_1.imageIn" color="0"/>
+    <ConnectionShape InstanceName="PythonBridge_1.in" color="0"/>
+    <ConnectionShape InstanceName="PythonBridge_baterymeasurementdecoder.in" color="0"/>
     <ConnectionShape InstanceName="PythonBridge_ControlRobots.buttons" color="0"/>
     <ConnectionShape InstanceName="PythonBridge_ControlRobots.joystick" color="0"/>
+    <ConnectionShape InstanceName="PythonBridge_ExifDecoder.in" color="0"/>
+    <ConnectionShape InstanceName="PythonBridge_ExifEncoder.imageCamera1" color="0"/>
+    <ConnectionShape InstanceName="PythonBridge_ExifEncoder.imageCamera2" color="0"/>
+    <ConnectionShape InstanceName="PythonBridge_ExifEncoder_1.imageCamera2" color="0"/>
     <ConnectionShape InstanceName="PythonBridge_robotSimulator.inputOdometryWanted" color="0"/>
     <ConnectionShape InstanceName="PythonBridge_robotSimulator_1.inputOdometryWanted" color="0"/>
     <ConnectionShape InstanceName="PythonBridge_robotSimulator_1_1.inputOdometryWanted" color="0"/>
     <ConnectionShape InstanceName="PythonBridge_sendPositionRobot1.inputPosition_MapID_latLongAltRPYinrad" color="0"/>
     <ConnectionShape InstanceName="PythonBridge_sendPositionRobot2.inputPosition_MapID_latLongAltRPYinrad" color="0"/>
     <ConnectionShape InstanceName="PythonBridge_sendPositionRobot2_1.inputPosition_MapID_latLongAltRPYinrad" color="0"/>
+    <ConnectionShape InstanceName="QMLViewer_1_1_1_1.batteryValue" color="0"/>
+    <ConnectionShape InstanceName="QMLViewer_1_1_1_1.latlongAltYaw" color="0"/>
+    <ConnectionShape InstanceName="QMLViewer_1_1_1_1.leds" color="0"/>
+    <ConnectionShape InstanceName="QMLViewer_1_1_1_1.vehiculeSpeed" color="0"/>
+    <ConnectionShape InstanceName="QMLViewer_1_1_1_1.videoCam1" color="0"/>
+    <ConnectionShape InstanceName="QMLViewer_1_1_1_1.videoCam1Main" color="0"/>
+    <ConnectionShape InstanceName="QMLViewer_1_1_1_1.videoCam2" color="0"/>
+    <ConnectionShape InstanceName="QMLViewer_1_1_1_1.videoCam2Main" color="0"/>
     <ConnectionShape InstanceName="QMLViewer_1_1_1_1_1.latlongAltYaw" color="0"/>
     <ConnectionShape InstanceName="QMLViewer_1_1_1_1_1.latlongAltYaw1" color="0"/>
     <ConnectionShape InstanceName="QMLViewer_1_1_1_1_1.latlongAltYaw2" color="0"/>
+    <ConnectionShape InstanceName="RecFile_1.decoderjpeg_CAM1.outputImageJPEG.input" color="0"/>
+    <ConnectionShape InstanceName="SampleRate_BatteryMeasurement.input" color="0"/>
+    <ConnectionShape InstanceName="SampleRate_CAM1.input" color="0"/>
+    <ConnectionShape InstanceName="SampleRate_CAM2.input" color="0"/>
+    <ConnectionShape InstanceName="SampleRate_Cloud.input" color="0"/>
+    <ConnectionShape InstanceName="SampleRate_Gen.input" color="0"/>
+    <ConnectionShape InstanceName="SampleRate_GPS.input" color="0"/>
+    <ConnectionShape InstanceName="SampleRate_Out.input" color="0"/>
+    <ConnectionShape InstanceName="shutdownComputer.input" color="0"/>
+    <ConnectionShape InstanceName="stopDiagram.input" color="0"/>
+    <ConnectionShape InstanceName="Stream2Text_1.inputStream8" color="0"/>
+    <ConnectionShape InstanceName="switcher_CAM1.index" color="0"/>
+    <ConnectionShape InstanceName="switcher_CAM1.input_1" color="0"/>
+    <ConnectionShape InstanceName="switcher_CAM1.input_2" color="0"/>
+    <ConnectionShape InstanceName="switcher_CAM1.input_3" color="0"/>
+    <ConnectionShape InstanceName="switcher_CAM2.index" color="0"/>
+    <ConnectionShape InstanceName="switcher_CAM2.input_1" color="0"/>
+    <ConnectionShape InstanceName="switcher_CAM2.input_2" color="0"/>
+    <ConnectionShape InstanceName="switcher_CAM2.input_3" color="0"/>
+    <ConnectionShape InstanceName="SystemCall_1Poweroff.trigger" color="0"/>
+    <ConnectionShape InstanceName="TCPClient_Server.input" color="0"/>
+    <ConnectionShape InstanceName="TCPClient_Server_1.input" color="0"/>
     <ConnectionShape InstanceName="TextViewer_1.input" color="0"/>
+    <ConnectionShape InstanceName="TextViewer_2.input" color="0"/>
+    <ConnectionShape InstanceName="Vectorizer_LEDS.input1" color="0"/>
+    <ConnectionShape InstanceName="Vectorizer_LEDS.input2" color="0"/>
+    <ConnectionShape InstanceName="Vectorizer_LEDS.input3" color="0"/>
+    <ConnectionShape InstanceName="Vectorizer_LEDS.input4" color="0"/>
+    <ConnectionShape InstanceName="Vectorizer_LEDS.input5" color="0"/>
+    <ConnectionShape InstanceName="Vectorizer_LEDS.input6" color="0"/>
+    <ConnectionShape InstanceName="vectors_manipulator_1LatlongAltYaw.input" color="0"/>
     <ConnectionShape InstanceName="vectors_manipulator_1Robot0.input" color="0"/>
     <ConnectionShape InstanceName="vectors_manipulator_1Robot0_1.input" color="0"/>
     <ConnectionShape InstanceName="vectors_manipulator_1Robot0_1_1.input" color="0"/>
