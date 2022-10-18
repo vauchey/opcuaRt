@@ -1,0 +1,8 @@
+prefix=/home/user/Colibry/opcuaRt/ROS/catkin_ws/devel
+
+Name: tutorial
+Description: Description of tutorial
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

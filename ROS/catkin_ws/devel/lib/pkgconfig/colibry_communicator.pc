@@ -1,0 +1,8 @@
+prefix=/home/user/Colibry/opcuaRt/ROS/catkin_ws/devel
+
+Name: colibry_communicator
+Description: Description of colibry_communicator
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

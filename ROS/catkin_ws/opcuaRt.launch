@@ -1,0 +1,4 @@
+<launch>
+    <node name="colibry_communicator" pkg="colibry_communicator" type="communicator.py" />
+    <node name="myrviz" pkg="rviz" type="rviz" />
+</launch>
