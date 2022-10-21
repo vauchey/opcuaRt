@@ -38,12 +38,13 @@ async def main():
 	#await cert_user_manager.add_user("vincent/my_cert.der", name='VAUCHEY')
 	#look her to know how to configure it
 	#await cert_user_manager.add_admin("vincent/my_cert.der", name='VAUCHEY')
-	for admins in ADMIN_DICT.keys():
-		await cert_user_manager.add_admin(ADMIN_DICT[admins]["certificate"], name=admins)
-		
-	#user cannot write data
-	for users in USER_DICT.keys():
-		await cert_user_manager.add_admin(USER_DICT[users]["certificate"], name=users)
+	if ENCRYPT:
+		for admins in ADMIN_DICT.keys():
+			await cert_user_manager.add_admin(ADMIN_DICT[admins]["certificate"], name=admins)
+			
+		#user cannot write data
+		for users in USER_DICT.keys():
+			await cert_user_manager.add_admin(USER_DICT[users]["certificate"], name=users)
 	
 	
 	if ENCRYPT:

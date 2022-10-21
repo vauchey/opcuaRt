@@ -54,6 +54,7 @@ ROBOT_LIST=[]
 ROBOT_LIST.append(ROBOT_WITH_WHEEL("Jean-Michel(Segway)"))
 ROBOT_LIST.append(ROBOT_WITH_WHEEL("Jacqueline(AMI)"))
 ROBOT_LIST.append(ROBOT_WITH_WHEEL("Jean-Jacques(ESPACE)"))
+ROBOT_LIST.append(ROBOT_WITH_WHEEL("Fab1(MIR)"))
 
 def getCurrentRobotName(name):
 	for robots in ROBOT_LIST:

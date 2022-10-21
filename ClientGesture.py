@@ -136,6 +136,7 @@ class ClientGesture():
 	async def setPosition(self,ts,mapId,poses):
 		"""method to check connection and then send to server"""
 		if self.client  is None :
+			print ("e::::::::::::::client is None::::::::::::::,reconnect")
 			self.connect()
 			
 		if self.client is not None :

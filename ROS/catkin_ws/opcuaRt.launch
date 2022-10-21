@@ -1,4 +1,63 @@
 <launch>
+
+    
+    <!--> <param name="my_float" type="double" value="3.14" /></-->
+    <!-->  <param name="my_string" type="str" value="hello" /></-->
+    <!-->  <remap from="/imu/data" to="/your/imu/topic" /></-->
+
+    <!--> parameters fors communicator, I'm using the following naming convention pythonfilename followed by underscore followed by paramter name</-->
+
+
+    <!-->  !!!!!!!!!!node communicator!!!!!!!!!!!<!-->
+    <!--><param name="communicator_FREQUENCY" type="int" value="10" />
+    <param name="communicator_robotName" type="str" value="Fab1(MIR)"/><!--> robot list can be fin in robotDescription.py<!--> 
+    <param name="communicator_ENCRYPT" type="int" value="0" />
+    <param name="communicator_url" type="str" value="opc.tcp://127.0.0.1:4840/freeopcua/server/"/>
+    <param name="communicator_namespace" type="str" value="http://esigelec.ddns.net"/>
+    <param name="communicator_certificate" type="str" value="vincent/my_cert.der"/>
+    <param name="communicator_private_key" type="str" value="vincent/my_private_key.pem"/>
     <node name="colibry_communicator" pkg="colibry_communicator" type="communicator.py" />
-    <node name="myrviz" pkg="rviz" type="rviz" />
+    <!-->
+
+
+    <!--> this node can be use to comminucate with ua server with, it is reading command from server to give back cmd_vel and it sending pose to server
+    by using poseInUtmTiles (if defaultLatitude or defaultLongitude are setted), or using a mix with navSat and imu data or a mix with navSat and poseInUtmTiles    
+    <!--> 
+    <param name="robot_sender_FREQUENCY" type="int" value="10" /><!--><wakeup frequency to communicate with ua server<!-->
+    <param name="robot_sender_robotName" type="str" value="Fab1(MIR)"/><!--> robot list can be fin in robotDescription.py<!--> 
+    <param name="robot_sender_ENCRYPT" type="int" value="0" />
+    <param name="robot_sender_url" type="str" value="opc.tcp://127.0.0.1:4840/freeopcua/server/"/>
+    <param name="robot_sender_namespace" type="str" value="http://esigelec.ddns.net"/>
+    <param name="robot_sender_certificate" type="str" value="vincent/my_cert.der"/>
+    <param name="robot_sender_private_key" type="str" value="vincent/my_private_key.pem"/>
+    <param name="robot_sender_defaultLatitude" type="double" value="49.383224" /><!-->   only here to know the default utm tile<!-->  
+    <param name="robot_sender_defaultLongitude" type="double" value="1.073758" /><!-->   only here to know the default utm tile<!-->  
+    <node name="robot_sender" pkg="colibry_communicator" type="robot_sender.py"  output="screen"/>
+    <!-->  topic in robot_sender_navSatFix </-->
+    <!-->  topic in rrobot_sender_imu </-->
+    <!-->  topic in robot_sender_poseInUtmTiles (Twist)</-->
+    <!-->  topic out communicator_cmd_vel </-->
+
+
+    <remap from="/robot_simulator_cmd_vel" to="/robot_sender_cmd_vel" />   <!-->   attention la logique de la connecion est inverse<!-->  
+
+    <!-->  connect two nodes robot_simulator and robot_sender</-->
+    <!--><remap from="/robot_simulator_navSatFix" to="/robot_sender_navSatFix" /><!-->
+    <!--><remap from="/robot_simulator_imu" to="/robot_sender_imu" /><!-->
+    <remap from="/robot_simulator_poseInUtmTiles" to="/robot_sender_poseInUtmTiles" />
+
+   
+    <!-->  !!!!!!!!!!node robot_simulator!!!!!!!!!!!<!-->
+    <param name="robot_simulator_defaultLatitude" type="double" value="49.383224" />
+    <param name="robot_simulator_defaultLongitude" type="double" value="1.073758" />
+    <param name="robot_simulator_defaultYawDeg" type="double" value="0.0" />
+    <node name="colibry_robot_simulator" pkg="colibry_robot_simulator" type="robot_simulator.py" output="screen"/>
+    <!-->  topic in robot_simulator_cmd_vel</-->
+    <!-->  topic out robot_simulator_navSatFix </-->
+    <!-->  topic out robot_simulator_imu </-->
+    <!-->  topic out robot_simulator_poseInUtmTiles (Twist)</-->
+    
+    
+   
+    <!--> <node name="myrviz" pkg="rviz" type="rviz" />  </-->
 </launch>
