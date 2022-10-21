@@ -5,20 +5,10 @@
     <!-->  <param name="my_string" type="str" value="hello" /></-->
     <!-->  <remap from="/imu/data" to="/your/imu/topic" /></-->
 
-    <!--> parameters fors communicator, I'm using the following naming convention pythonfilename followed by underscore followed by paramter name</-->
+    <!--> parameters fors node, I'm using the following naming convention pythonfilename followed by underscore followed by paramter name</-->
 
 
-    <!-->  !!!!!!!!!!node communicator!!!!!!!!!!!<!-->
-    <!--><param name="communicator_FREQUENCY" type="int" value="10" />
-    <param name="communicator_robotName" type="str" value="Fab1(MIR)"/><!--> robot list can be fin in robotDescription.py<!--> 
-    <param name="communicator_ENCRYPT" type="int" value="0" />
-    <param name="communicator_url" type="str" value="opc.tcp://127.0.0.1:4840/freeopcua/server/"/>
-    <param name="communicator_namespace" type="str" value="http://esigelec.ddns.net"/>
-    <param name="communicator_certificate" type="str" value="vincent/my_cert.der"/>
-    <param name="communicator_private_key" type="str" value="vincent/my_private_key.pem"/>
-    <node name="colibry_communicator" pkg="colibry_communicator" type="communicator.py" />
-    <!-->
-
+    
 
     <!--> this node can be use to comminucate with ua server with, it is reading command from server to give back cmd_vel and it sending pose to server
     by using poseInUtmTiles (if defaultLatitude or defaultLongitude are setted), or using a mix with navSat and imu data or a mix with navSat and poseInUtmTiles    
