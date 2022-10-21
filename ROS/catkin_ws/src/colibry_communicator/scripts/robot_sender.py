@@ -95,7 +95,7 @@ class RobotSender:
             self.lontitude=None
         #try to get zone number and letter
         try:
-            utmX, utmY, zoneNumber, zoneLetter = utm.from_latlon( navSatFix.latitude, navSatFix.longitude )
+            utmX, utmY, zoneNumber, zoneLetter = utm.from_latlon( self.latitude, self.lontitude)
             self.zoneNumber=zoneNumber
             self.zoneLetter=zoneLetter
         except:
@@ -133,7 +133,7 @@ class RobotSender:
         #envoit d'informations au server
         if  self.newData == True:
             asyncio.run(self.clientGesture.setPosition(self.timeStamp,-1,self.data))#run a processing
-            myPrint ("!send new Dataaaaaaaaaaaaaaa")
+            #myPrint ("!send new Dataaaaaaaaaaaaaaa")
             self.newData=False
 
         #recuperation d'infos du robot
@@ -211,6 +211,17 @@ class RobotSender:
 
     def sendPose(self):
         """send current robot pose to server"""
+
+        #myPrint ("self.utmx :::"+str(self.utmx))
+        #myPrint ("self.utmy :::"+str(self.utmy))
+        #myPrint ("self.altitude :::"+str(self.altitude))
+        #myPrint ("self.zoneNumber :::"+str(self.zoneNumber))
+        #myPrint ("self.zoneLetter :::"+str(self.zoneLetter))
+        #myPrint ("self.roll :::"+str(self.roll))
+        #myPrint ("self.pitch :::"+str(self.pitch))
+        #myPrint ("self.yaw :::"+str(self.yaw))
+
+
         if ( \
             (self.utmx is not None) \
             and \
@@ -229,7 +240,7 @@ class RobotSender:
             (self.yaw is not None)  \
             ):
 
-            #myPrint ("send to server !!!!!!!!!!")
+            myPrint ("send to server !!!!!!!!!!")
             lati,longi = utm.to_latlon(self.utmx,self.utmy,self.zoneNumber,self.zoneLetter)
             self.timeStamp=(rospy.Time.now().to_nsec()/1000)#time us us
             self.data=[lati,longi, self.altitude,self.roll, self.pitch, self.yaw]
