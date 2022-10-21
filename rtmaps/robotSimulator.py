@@ -26,7 +26,7 @@ class rtmaps_python(BaseComponent):
 
 	def Dynamic(self):
 		self.add_input("inputOdometryWanted", rtmaps.types.ANY) # define input
-		self.add_output("ouputPosition", rtmaps.types.AUTO)
+		self.add_output("ouput_Mapid_Position", rtmaps.types.AUTO)
 		
 		
 		self.add_property("defaultLatitude",49.383224), 
@@ -84,7 +84,7 @@ class rtmaps_python(BaseComponent):
 					currentPose.data=[0.0,self.pose[0],self.pose[1],self.pose[2],self.pose[3],self.pose[4],self.pose[5]]
 					currentPose.vector_size = len(currentPose.data)
 					currentPose.ts = timeStamp
-					self.outputs["ouputPosition"].write(currentPose)
+					self.outputs["ouput_Mapid_Position"].write(currentPose)
 					
 				self._timeStamp=timeStamp
 				

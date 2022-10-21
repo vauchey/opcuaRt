@@ -61,6 +61,7 @@ class rtmaps_python(BaseComponent):
 	def Dynamic(self):
 		self.add_input("inputPosition_MapID_latLongAltRPYinrad", rtmaps.types.ANY) # define input
 		self.add_output("enabled_vLongiwantedMBysedVrotWantedRadBySec", rtmaps.types.AUTO)
+		self.add_output("ouput_Mapid_Position", rtmaps.types.AUTO)
 		listOfName = listNames()
 		
 		#genere automatiquement la liste rtmaps
@@ -133,7 +134,7 @@ class rtmaps_python(BaseComponent):
 		#send new pose only if need
 		if ((timeStamp != self._timeStamp) and (timeStamp!=-1)):
 			self._timeStamp=timeStamp
-			asyncio.run(self.clientGesture.setPosition(timeStamp,-1,data))#run a processing
+			asyncio.run(self.clientGesture.setPosition(timeStamp,-1,data[1:]))#run a processing
 			
 		#get information about robot
 		asyncio.run(self.clientGesture.readRobot())
@@ -150,6 +151,15 @@ class rtmaps_python(BaseComponent):
 		self.outputs["enabled_vLongiwantedMBysedVrotWantedRadBySec"].write(enabled_vLongiwantedMBysedVrotWantedRadBySec)
 					
 					
+					
+		#send pose
+		currentPose = rtmaps.types.Ioelt()
+		ts_map_id_posexyzrxryrz=self.clientGesture.currentRobotDescription.ts_map_id_posexyzrxryrz
+		print ("ts_map_id_posexyzrxryrz.shape="+str(len(ts_map_id_posexyzrxryrz)))
+		currentPose.data=[ts_map_id_posexyzrxryrz[1],ts_map_id_posexyzrxryrz[2],ts_map_id_posexyzrxryrz[3],ts_map_id_posexyzrxryrz[4],ts_map_id_posexyzrxryrz[5],ts_map_id_posexyzrxryrz[6],ts_map_id_posexyzrxryrz[7]]
+		currentPose.vector_size = len(currentPose.data)
+		currentPose.ts = timeStamp
+		self.outputs["ouput_Mapid_Position"].write(currentPose)
 		"""lf.ts_map_id_posexyzrxryrz = [0.0, -1.0,1000.0, 1000.0,1000.0,1000.0,1000.0,1000.0]#pose in meters
 		self.stdev_ts_map_id_posexyzrxryrz = [0.0, 1000.0, 1000.0,1000.0,1000.0,1000.0,1000.0]
 		

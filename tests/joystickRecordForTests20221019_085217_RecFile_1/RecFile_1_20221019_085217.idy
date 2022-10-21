@@ -1,0 +1,9 @@
+RTMaps Remote Runtime Release v4.9.0 (build 264448) for Win64
+Copyright (c) 2000-2021 INTEMPORA S.A.S.
+This product is licensed to: ESIGELEC (RLM).
+Session: unspecified
+Launched at 08:52:17.717 (19/10/2022) UTC+02:00 - 06:52:17.717 (19/10/2022) UTC
+[Misc]
+00:05.764632 @ Record Joystick_1Xbox.xyzAxisPosition(Joystick.xyzAxisPosition[0x8000000000000002,,,16,3]) as numeric_binary
+00:05.764627 @ Record Joystick_1Xbox.xyzAxisRotation(Joystick.xyzAxisRotation[0x8000000000000002,,,16,3]) as numeric_binary
+00:05.764631 @ Record Joystick_1Xbox.rgbButtons(Joystick.rgbButtons[0x8000000000000002,,,16,128]) as numeric_binary
