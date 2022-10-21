@@ -127,13 +127,15 @@ class RobotSender:
         pass
 
     def process(self):
+        #myPrint ("process call")
         #send a new position only if neede
         #asyncio.run(self.clientGesture.setPosition(timeStamp,-1,data))#run a processing
 
         #envoit d'informations au server
         if  self.newData == True:
+            myPrint ("!will send new Dataaaaaaaaaaaaaaa")
             asyncio.run(self.clientGesture.setPosition(self.timeStamp,-1,self.data))#run a processing
-            #myPrint ("!send new Dataaaaaaaaaaaaaaa")
+            myPrint ("!send new Dataaaaaaaaaaaaaaa")
             self.newData=False
 
         #recuperation d'infos du robot
@@ -212,14 +214,16 @@ class RobotSender:
     def sendPose(self):
         """send current robot pose to server"""
 
-        #myPrint ("self.utmx :::"+str(self.utmx))
-        #myPrint ("self.utmy :::"+str(self.utmy))
-        #myPrint ("self.altitude :::"+str(self.altitude))
-        #myPrint ("self.zoneNumber :::"+str(self.zoneNumber))
-        #myPrint ("self.zoneLetter :::"+str(self.zoneLetter))
-        #myPrint ("self.roll :::"+str(self.roll))
-        #myPrint ("self.pitch :::"+str(self.pitch))
-        #myPrint ("self.yaw :::"+str(self.yaw))
+        """
+        myPrint ("self.utmx :::"+str(self.utmx))
+        myPrint ("self.utmy :::"+str(self.utmy))
+        myPrint ("self.altitude :::"+str(self.altitude))
+        myPrint ("self.zoneNumber :::"+str(self.zoneNumber))
+        myPrint ("self.zoneLetter :::"+str(self.zoneLetter))
+        myPrint ("self.roll :::"+str(self.roll))
+        myPrint ("self.pitch :::"+str(self.pitch))
+        myPrint ("self.yaw :::"+str(self.yaw))
+        """
 
 
         if ( \
@@ -240,10 +244,11 @@ class RobotSender:
             (self.yaw is not None)  \
             ):
 
-            myPrint ("send to server !!!!!!!!!!")
+            #myPrint ("send to server !!!!!!!!!!")
             lati,longi = utm.to_latlon(self.utmx,self.utmy,self.zoneNumber,self.zoneLetter)
             self.timeStamp=(rospy.Time.now().to_nsec()/1000)#time us us
             self.data=[lati,longi, self.altitude,self.roll, self.pitch, self.yaw]
+            myPrint ("send to server !!!!!!!!!!"+str(self.data))
             self.newData=True
             #asyncio.run(self.clientGesture.setPosition(timeStamp,-1,data))#run a processing
 
@@ -268,8 +273,10 @@ def main():
     #stay reactive
 
     robot_sender_FREQUENCY=getParameter("FREQUENCY")
+    myPrint("robot_sender_FREQUENCY="+str(robot_sender_FREQUENCY))
     rate = rospy.Rate(robot_sender_FREQUENCY)  # 5hz
     while not rospy.is_shutdown():
+        #myPrint ("will process callaaaaaa")
         robotSender.process()
         """
         if  robotSender.newData == True:

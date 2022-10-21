@@ -50,8 +50,9 @@ sudo apt install ipython3
 pip install scipy
 #sudo apt install ros-foxy-tf-transformations
 #sudo pip3 install transforms3d
+#lister des topic rostopic list
 #visualiser un topich #rostopic echo /communicator_cmd_vel
-
+rostopic echo turtle1/pose
 #install anaconda and python https://phoenixnap.com/kb/how-to-install-anaconda-ubuntu-18-04-or-20-04
 #sudo apt-get install curl
 #curl –O https://repo.anaconda.com/archive/Anaconda3-2022.10-Linux-x86_64.sh
@@ -61,3 +62,48 @@ pip install scipy
 #pip install asyncua
 #pip install -U rospkg #apres avoir installe anaconda, il faut installer le rospkg
 #sudo apt install python3-roslaunch# apres avoir installe annaconda, il faut le refaires
+
+#simulatin d'un turlebot
+#export TURTLEBOT3_MODEL=waffle
+#sudo apt udpate
+#sudo apt install ros-foxy-turtlebot3-description ros-foxy-turtlebot3-simulations ros-foxy-turtlebot3-bringup #ros-foxy-turtlebot3-navigation2 ros-foxy-turtlebot3 ros-foxy-xacro ros-foxy-turtlebot3-teleop #ros-foxy-turtlebot3-cartographer
+
+
+
+#essai d'un simulator webots
+sudo snap install webots
+webots
+
+#/snap/webots/22/usr/share/webots/
+#cp -r <webots>/projects/languages/ros/webots_ros .
+#cp -r <webots>/projects/default/controllers/ros/include/srv webots_ros/
+#cp -r <webots>/projects/default/controllers/ros/include/msg webots_ros/
+#install ros 2 with lxd
+#https://ubuntu.com/blog/install-ros-2-humble-in-ubuntu-20-04-or-18-04-using-lxd-containers
+#sudo snap install lxd
+#sudo lxd init --minimal
+#lxc launch images:ubuntu/22.04 ubuntu-container
+#list all : lxc list
+#get the shell:
+#lxc exec ubuntu-container -- /bin/bash
+
+#ros robot
+https://www.theconstructsim.com/gazebo-5-minutes-003-spawn-robot-gazebo/
+
+
+#
+#mkdir -p gazeboSimulator/src
+#cd gazeboSimulator/src
+#git clone https://bitbucket.org/theconstructcore/two-wheeled-robot-simulation
+
+
+
+#rosrun gazebo_ros gazebo
+#rostopic echo /odom
+
+
+cd gazeboSimulator
+catkin_make
+source devel/setup.bash
+rospack profile
+roslaunch m2wr_description spawn.launch
