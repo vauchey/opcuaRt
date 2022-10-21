@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-from tf import TransformBroadcaster
+
 import rospy
 from rospy import Time 
 from geometry_msgs.msg import Twist
@@ -45,77 +45,62 @@ def getParameter(parameterName):
     else:
         raise ValueError("parameter "+str(fullParameterName)+"is missing!!")
 
-def main():
-    rospy.init_node('my_broadcaster')
-    
-    myPrint("!!!!!!!!!!!!!!!!!!sys.path="+str(sys.path))
-
-    #get parameters
-    robotName=getParameter("robotName")
-    url=getParameter("url")
-    namespace=getParameter("namespace")
-    certificate=getParameter("certificate")
-    private_key=getParameter("private_key")
-    ENCRYPT=getParameter("ENCRYPT")
 
 
-    
-    myPrint ("robotName="+str(robotName))
-    myPrint ("url="+str(url))
-    myPrint ("namespace="+str(namespace))
-    myPrint ("certificate="+str(certificate))
-    myPrint ("private_key="+str(private_key))
-    myPrint ("ENCRYPT="+str(ENCRYPT))
- 
-    listOfName = listNames()
-    myPrint ("robotName availaibles="+str(listOfName))
-
-    currentRobotDescription = getCurrentRobotName(robotName)
-
-
-    clientGesture = ClientGesture(url,namespace,certificate,private_key,ENCRYPT,currentRobotDescription)
-    asyncio.run(clientGesture.connect())#do a connection
-
-    #initiallisation des topics 
-    pubVelocity = rospy.Publisher('cmd_vel', Twist, queue_size=10)
-
-
-    #
-    b = TransformBroadcaster()
-    
-    translation = (0.0, 0.0, 0.0)
-    rotation = (0.0, 0.0, 0.0, 1.0)
-    rate = rospy.Rate(5)  # 5hz
-    
-    x, y = 0.0, 0.0
-    
-    while not rospy.is_shutdown():
-        if x >= 2:
-            x, y = 0.0, 0.0 
+class Comunicator:
+    def __init__(self):
         
-        x += 0.1
-        y += 0.1
-        #rospy.loginfo("!!x")
-        translation = (x, y, 0.0)
-        #myPrint("x")
-        
-        b.sendTransform(translation, rotation, Time.now(), 'ignite_robot', '/world')
 
+        myPrint("!!!!!!!!!!!!!!!!!!sys.path="+str(sys.path))
+
+        #get parameters
+        self.robotName=getParameter("robotName")
+        self.url=getParameter("url")
+        self.namespace=getParameter("namespace")
+        self.certificate=getParameter("certificate")
+        self.private_key=getParameter("private_key")
+        self.ENCRYPT=getParameter("ENCRYPT")
+
+
+        
+        myPrint ("robotName="+str(self.robotName))
+        myPrint ("url="+str(self.url))
+        myPrint ("namespace="+str(self.namespace))
+        myPrint ("certificate="+str(self.certificate))
+        myPrint ("private_key="+str(self.private_key))
+        myPrint ("ENCRYPT="+str(self.ENCRYPT))
+    
+        listOfName = listNames()
+        myPrint ("robotName availaibles="+str(listOfName))
+
+        currentRobotDescription = getCurrentRobotName(self.robotName)
+
+
+        """
+        self.clientGesture = ClientGesture(self.url,self.namespace,self.certificate,self.private_key,self.ENCRYPT,currentRobotDescription)
+        asyncio.run(self.clientGesture.connect())#do a connection
+        """
+
+        #initiallisation des topics 
+        self.pubVelocity = rospy.Publisher(getCurrentFileName()+"_"+'cmd_vel', Twist, queue_size=10)
+
+        pass
+    def process(self):
         #send a new position only if neede
         #asyncio.run(self.clientGesture.setPosition(timeStamp,-1,data))#run a processing
 
-        asyncio.run(clientGesture.readRobot())
-        myPrint ("robotGet.ts_map_id_posexyzrxryrz="+str(clientGesture.currentRobotDescription.ts_map_id_posexyzrxryrz))
+        asyncio.run(self.clientGesture.readRobot())
+        myPrint ("robotGet.ts_map_id_posexyzrxryrz="+str(self.clientGesture.currentRobotDescription.ts_map_id_posexyzrxryrz))
 		
 
         #sortie de la commande venant du server
-        wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec=clientGesture.currentRobotDescription.wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec
+        wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec=self.clientGesture.currentRobotDescription.wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec
         myPrint ("wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec="+str(wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec))
 		
         twist = Twist()
         if wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec[1] :
             twist.linear.x = wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec[2] #already meter by sec
-            twist.linear.y = 1.0
+            twist.linear.y = 0.0
             twist.linear.z = 0.0
 
             twist.angular.x = 0.0
@@ -123,13 +108,42 @@ def main():
             twist.angular.z = wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec[3]#rad by sec
         else:
             twist.linear.x  =0.0
-            twist.linear.y  =1.0
+            twist.linear.y  =0.0
             twist.linear.z  =0.0
             twist.angular.x =0.0
             twist.angular.y =0.0
             twist.angular.z =0.0
 
-        pubVelocity.publish(twist)
+        self.pubVelocity.publish(twist)
+
+   
+
+
+def main():
+    rospy.init_node('my_broadcaster')
+
+    
+   
+    communicator = Comunicator()
+
+    
+
+
+    communicator_FREQUENCY=getParameter("FREQUENCY")
+    
+
+
+    
+    rate = rospy.Rate(communicator_FREQUENCY)  # 5hz
+    
+  
+    
+    while not rospy.is_shutdown():
+        
+        #communicator.process()
+        #faire un multiple subscriber, + un wakeup
+        tmpTwist=Twist()
+        communicator.pubVelocity.publish(tmpTwist)
 
 
         rate.sleep()
