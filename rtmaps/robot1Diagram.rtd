@@ -294,7 +294,7 @@
     <Property LongName="Player_Joystick.update" Type="0">true</Property>
     <ReadOnlyProperty LongName="Player_Joystick.replayPath" Type="3"><![CDATA[D:\data\apresBackup\COLIBRY\opcuaRT\opcuaRt\tests/joystickRecordForTests20221019_085217_RecFile_1/]]></ReadOnlyProperty>
     <ReadOnlyProperty LongName="Player_Joystick.comments" Type="3"><![CDATA[]]></ReadOnlyProperty>
-    <ReadOnlyProperty LongName="Player_Joystick.ahead" Type="1">2110976</ReadOnlyProperty>
+    <ReadOnlyProperty LongName="Player_Joystick.ahead" Type="1">2015818</ReadOnlyProperty>
     <ReadOnlyProperty LongName="Player_Joystick.percentage" Type="1">0</ReadOnlyProperty>
     <ReadOnlyProperty LongName="Player_Joystick.time" Type="1">0</ReadOnlyProperty>
     <ReadOnlyProperty LongName="Player_Joystick.first" Type="1">5764556</ReadOnlyProperty>
