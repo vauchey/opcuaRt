@@ -26,7 +26,8 @@
     <param name="robot_sender_FREQUENCY" type="int" value="10" /><!--><wakeup frequency to communicate with ua server<!-->
     <param name="robot_sender_robotName" type="str" value="Fab1(MIR)"/><!--> robot list can be fin in robotDescription.py<!--> 
     <param name="robot_sender_ENCRYPT" type="int" value="0" />
-    <param name="robot_sender_url" type="str" value="opc.tcp://127.0.0.1:4840/freeopcua/server/"/>
+    <!--><param name="robot_sender_url" type="str" value="opc.tcp://127.0.0.1:4840/freeopcua/server/"/><!-->
+    <param name="robot_sender_url" type="str" value="opc.tcp://192.168.2.105:4840/freeopcua/server/"/>
     <param name="robot_sender_namespace" type="str" value="http://esigelec.ddns.net"/>
     <param name="robot_sender_certificate" type="str" value="vincent/my_cert.der"/>
     <param name="robot_sender_private_key" type="str" value="vincent/my_private_key.pem"/>
