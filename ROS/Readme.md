@@ -1,3 +1,88 @@
+
+#####################"install ros2
+peut etre fait sous lxd : https://ubuntu.com/blog/install-ros-2-humble-in-ubuntu-20-04-or-18-04-using-lxd-containers
+
+https://docs.ros.org/en/humble/Installation/Alternatives/Ubuntu-Development-Setup.html
+locale  # check for UTF-8
+
+sudo apt update && sudo apt install locales
+sudo locale-gen en_US en_US.UTF-8
+sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+locale  # verify settings
+
+apt-cache policy | grep universe
+
+sudo apt install software-properties-common
+sudo add-apt-repository universe
+
+sudo apt update && sudo apt install curl gnupg lsb-release
+sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(source /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
+
+sudo apt update && sudo apt install -y \
+  build-essential \
+  cmake \
+  git \
+  python3-colcon-common-extensions \
+  python3-flake8 \
+  python3-flake8-docstrings \
+  python3-pip \
+  python3-pytest \
+  python3-pytest-cov \
+  python3-rosdep \
+  python3-setuptools \
+  python3-vcstool \
+  wget
+
+python3 -m pip install -U \
+   flake8-blind-except \
+   flake8-builtins \
+   flake8-class-newline \
+   flake8-comprehensions \
+   flake8-deprecated \
+   flake8-import-order \
+   flake8-quotes \
+   pytest-repeat \
+   pytest-rerunfailures
+
+#j'ai du faire 2 fois
+
+mkdir -p ~/ros2_humble/src
+cd ~/ros2_humble
+vcs import --input https://raw.githubusercontent.com/ros2/ros2/humble/ros2.repos src
+
+sudo apt upgrade
+
+sudo rosdep init
+rosdep update
+rosdep install --from-paths src --ignore-src -y --skip-keys "fastcdr rti-connext-dds-6.0.1 urdfdom_headers"
+
+cd ~/ros2_humble/
+colcon build --symlink-install
+#sourcing ros2 :
+#source ~/ros2_humble/install/local_setup.bash
+
+##############################install ros 1
+http://wiki.ros.org/noetic/Installation/Ubuntu
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+sudo apt install curl
+curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
+sudo apt update
+sudo apt install ros-noetic-desktop-full
+#source ros 1
+source /opt/ros/noetic/setup.bash
+
+
+####################################install python
+pip install scipy
+pip install asyncua
+pip install utm
+
+
+####################################################
 #python ros components inspired from
 https://www.theconstructsim.com/publish-position-robot-using-transformbroadcaster-python/
 
@@ -19,6 +104,8 @@ git config --global user.nmame "myemal@toto.com"
 #ros2 run rviz2 rviz2
 #catkin_DIR
 
+####################################################
+####################################################
 #au final on va faire en ros 1 :
 http://wiki.ros.org/noetic/Installation/Ubuntu
 
@@ -62,6 +149,9 @@ rostopic echo turtle1/pose
 #pip install asyncua
 #pip install -U rospkg #apres avoir installe anaconda, il faut installer le rospkg
 #sudo apt install python3-roslaunch# apres avoir installe annaconda, il faut le refaires
+####################################################
+####################################################
+
 
 #simulatin d'un turlebot
 #export TURTLEBOT3_MODEL=waffle

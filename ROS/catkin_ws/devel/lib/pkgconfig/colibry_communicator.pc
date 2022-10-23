@@ -1,4 +1,4 @@
-prefix=/home/user/Colibry/opcuaRt/ROS/catkin_ws/devel
+prefix=/home/user/colibry/opcuaRt/ROS/catkin_ws/devel
 
 Name: colibry_communicator
 Description: Description of colibry_communicator
