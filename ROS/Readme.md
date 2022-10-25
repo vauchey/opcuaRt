@@ -81,6 +81,20 @@ pip install scipy
 pip install asyncua
 pip install utm
 
+#git config --list user.name=vvauchey user.email=v.vauchey@gmail.com
+git config --global user.email "v.vauchey@gmail.com"
+
+#####################################creation d'un package ros 2
+#source ~/ros2_humble/install/local_setup.bash
+cd /home/user/colibry/opcuaRt/ROS
+#https://docs.ros.org/en/foxy/Tutorials/Beginner-Client-Libraries/Creating-Your-First-ROS2-Package.html
+mkdir -p ros2_ws/src
+cd ros2_ws/src
+#creation du package ros2 pkg create --build-type ament_python --node-name my_node my_package
+ros2 pkg create --build-type ament_python --node-name robot_sender colibry_communicator
+ros2 pkg create --build-type ament_python --node-name robot_simulator colibry_robot_simulator
+cd ~/colibry/opcuaRt/ROS/ros2_ws/src/colibry_communicator/colibry_communicator$
+ln -s  ../../../../catkin_ws/src/colibry_communicator/scripts/robot_sender.py robot_sender.py
 
 ####################################################
 #python ros components inspired from

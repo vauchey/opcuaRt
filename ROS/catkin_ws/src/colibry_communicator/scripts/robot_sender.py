@@ -1,8 +1,16 @@
 #! /usr/bin/env python3
 
 
-import rospy
-from rospy import Time 
+
+try:
+    import rospy
+    from rospy import Time 
+except :
+    print ("rospy not find, will try ros 2 rclpy")
+    import rclpy as rospy
+    from rclpy.clock import Clock
+
+
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import Imu
 from sensor_msgs.msg import NavSatFix
@@ -34,8 +42,9 @@ def myPrint(msg):
         #rospy.loginfo(msg)
         print(msg)
 
-
+print ("sys.path[0]="+str(sys.path[0]))
 sys.path.append( os.path.abspath(sys.path[0]+"/../../../../../"))
+sys.path.append( os.path.abspath(sys.path[0]+"/../../../../../../"))#for ros2 arch
 
 #import to know the robots
 from robotDescription import *
@@ -246,7 +255,10 @@ class RobotSender:
 
             #myPrint ("send to server !!!!!!!!!!")
             lati,longi = utm.to_latlon(self.utmx,self.utmy,self.zoneNumber,self.zoneLetter)
-            self.timeStamp=(rospy.Time.now().to_nsec()/1000)#time us us
+            try :
+                self.timeStamp=(rospy.Time.now().to_nsec()/1000)#time us us
+            except:
+                 self.timeStamp=(Clock().now().nanoseconds/1000)#time us us
             self.data=[lati,longi, self.altitude,self.roll, self.pitch, self.yaw]
             myPrint ("send to server !!!!!!!!!!"+str(self.data))
             self.newData=True
