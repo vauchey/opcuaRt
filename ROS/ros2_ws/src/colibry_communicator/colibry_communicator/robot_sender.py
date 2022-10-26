@@ -16,6 +16,8 @@ from sensor_msgs.msg import NavSatFix
 from scipy.spatial.transform import Rotation as R
 import math
 
+import threading
+
 import asyncio
 import logging
 import sys
@@ -27,11 +29,21 @@ import asyncua
 import utm
 
 
-logging.basicConfig(level=logging.INFO)
-_logger = logging.getLogger("asyncua")
 
-DEBUG=True
+
+
+DEBUG=False
 #rostopic echo rosout
+
+
+if DEBUG :
+    logging.basicConfig(level=logging.INFO)
+    _logger = logging.getLogger("asyncua")
+else:
+    logging.basicConfig(level=logging.ERROR)
+
+#logging.basicConfig(level=logging.ERROR)
+
 
 def myPrint(msg):
     if DEBUG:
@@ -76,7 +88,7 @@ class RobotSender:
         
 
         #myPrint("!!!!!!!!!!!!!!!!!!sys.path="+str(sys.path))
-
+        self.lock = threading.Lock()
         #get parameters
         self.node = node
         self.robotName=getParameter(self.node,"robotName")
@@ -183,49 +195,58 @@ class RobotSender:
    
 
     def callBackNavSatFix(self,navSatFix):
-        #myPrint ("ttttttcallBackNavSatFix(navSatFix)")
-
-        #try to get zone number and letter
+        self.lock.acquire()
         try:
-            utmX, utmY, zoneNumber, zoneLetter = utm.from_latlon( navSatFix.latitude, navSatFix.longitude )
-            self.zoneNumber=zoneNumber
-            self.zoneLetter=zoneLetter
-        except:
-            pass
-        #
-        self.utmx= utmX
-        self.utmy= utmY
-        self.altitude= navSatFix.altitude
-        
-        self.sendPose()
 
+            myPrint ("ttttttcallBackNavSatFix(navSatFix)")
+
+            #try to get zone number and letter
+            try:
+                utmX, utmY, zoneNumber, zoneLetter = utm.from_latlon( navSatFix.latitude, navSatFix.longitude )
+                self.zoneNumber=zoneNumber
+                self.zoneLetter=zoneLetter
+            except:
+                pass
+            #
+            self.utmx= utmX
+            self.utmy= utmY
+            self.altitude= navSatFix.altitude
+            
+            self.sendPose()
+        finally:
+            self.lock.release()
 
 
     def callBackTwist(self,twist):
-        #myPrint ("yyyyyyycallBackTwist(Twist)")
-        self.utmx= twist.linear.x
-        self.utmy= twist.linear.y
-        self.altitude= twist.linear.z
-        self.roll= twist.angular.x
-        self.pitch= twist.angular.y
-        self.yaw= twist.angular.z
+        self.lock.acquire()
+        try:
+            #myPrint ("yyyyyyycallBackTwist(Twist)")
+            self.utmx= twist.linear.x
+            self.utmy= twist.linear.y
+            self.altitude= twist.linear.z
+            self.roll= twist.angular.x
+            self.pitch= twist.angular.y
+            self.yaw= twist.angular.z
 
-        self.sendPose()
-
+            self.sendPose()
+        finally:
+            self.lock.release()
        
 
 
     def callBackImu(self,imu):
         #myPrint ("callBackImu(Imu)")
+        self.lock.acquire()
+        try:
+            quat=[imu.orientation.w,imu.orientation.x,imu.orientation.y,imu.orientation.z]
+            [roll, pitch, yaw]= R.from_quat(quat).as_euler("ZYX",degrees=False)
+            self.roll=roll
+            self.pitch=pitch
+            self.yaw=(math.pi/2.0)-yaw
 
-        quat=[imu.orientation.w,imu.orientation.x,imu.orientation.y,imu.orientation.z]
-        [roll, pitch, yaw]= R.from_quat(quat).as_euler("ZYX",degrees=False)
-        self.roll=roll
-        self.pitch=pitch
-        self.yaw=(math.pi/2.0)-yaw
-
-        self.sendPose()
-
+            self.sendPose()
+        finally:
+            self.lock.release()
 
     def sendPose(self):
         """send current robot pose to server"""
@@ -272,6 +293,20 @@ class RobotSender:
             #asyncio.run(self.clientGesture.readRobot())
             #print ("robotGet.ts_map_id_posexyzrxryrz="+str(self.clientGesture.currentRobotDescription.ts_map_id_posexyzrxryrz))
 		
+    def processThread(self):
+        self.lock.acquire()
+        robot_sender_FREQUENCY=getParameter(self.node,"FREQUENCY")
+        rate = self.node.create_rate(robot_sender_FREQUENCY, self.node.get_clock())
+        self.lock.release()
+        while rclpy.ok():
+            self.lock.acquire()
+            try:
+                myPrint ("will process callaaaaaa")
+                self.process()###to reactivate
+            finally:
+                self.lock.release()
+            rate.sleep()
+
 """
 import rclpy
 rclpy.init()
@@ -281,6 +316,9 @@ rate = node.create_rate(10, node.get_clock())
 rate.sleep()
 #https://www.programcreek.com/python/example/118511/rclpy.ok
 """
+
+
+
 
 def main(args=None):
     #rclpy.init_node('my_broadcaster')
@@ -300,34 +338,31 @@ def main(args=None):
     node.create_subscription(NavSatFix, getCurrentFileName()+"_"+"navSatFix",robotSender.callBackNavSatFix,10)
     node.create_subscription(Imu, getCurrentFileName()+"_"+"imu",robotSender.callBackImu,10)
     node.create_subscription(Twist, getCurrentFileName()+"_"+"poseInUtmTiles",robotSender.callBackTwist,10)
-
+    
 
     #stay reactive
-
+    #currentThread = threading.Thread(target=robotSender.processThread, args=(robotSender))
+    currentThread = threading.Thread(target=robotSender.processThread)
+    currentThread.start()
+    """
+    
     robot_sender_FREQUENCY=getParameter(node,"FREQUENCY")
     myPrint("robot_sender_FREQUENCY="+str(robot_sender_FREQUENCY))
     #rate = node.create_rate(robot_sender_FREQUENCY, node.get_clock())
-    rate = node.create_rate(robot_sender_FREQUENCY)
+    rate = node.create_rate(10.0, node.get_clock())
+    #rate = node.create_rate(robot_sender_FREQUENCY)
     #rate = rclpy.Rate(robot_sender_FREQUENCY)  # 5hz
-    while not rate._is_shutdown:#rclpy.ok()
+    #while not rate._is_shutdown:#rclpy.ok()
+    while rclpy.ok():
         #while not rclpy.is_shutdown():
         myPrint ("will process callaaaaaa")
-        robotSender.process()
-        """
-        if  robotSender.newData == True:
-            asyncio.run(robotSender.clientGesture.setPosition(robotSender.timeStamp,-1,robotSender.data))#run a processing
-            print ("!send new Dataaaaaaaaaaaaaaa")
-            robotSender.newData=False
-      
-        """
-        """
-        asyncio.run(robotSender.clientGesture.readRobot())
-        print ("robotGet.ts_map_id_posexyzrxryrz="+str(robotSender.clientGesture.currentRobotDescription.ts_map_id_posexyzrxryrz))
-        """
-        rate.sleep()
+        robotSender.process()###to reactivate
+        time.sleep(0.02)
         
-
-    #rclpy.spin()
+        #rate.sleep()
+        
+    """
+    rclpy.spin(node)
     
 
     

@@ -87,6 +87,7 @@ class ClientGesture():
 	async def connect(self):
 		"""method to connect to server"""
 		self.client = Client(url=self.url)
+		print("called::connect")
 		if self.ENCRYPT:
 			print ("self.certificate ="+str(self.certificate))
 			print ("self.private_key ="+str(self.private_key))
@@ -119,6 +120,7 @@ class ClientGesture():
 	async def moveRobot(self, timestamp,enabled,Vlongi,Vrot):
 		"""method to check connection and then send to server a movement"""
 		if self.client  is None :
+			print("moveRobot::connect")
 			self.connect()
 			
 		if self.client is not None :
@@ -137,6 +139,7 @@ class ClientGesture():
 		"""method to check connection and then send to server"""
 		if self.client  is None :
 			print ("e::::::::::::::client is None::::::::::::::,reconnect")
+			print("setPosition::connect")
 			self.connect()
 			
 		if self.client is not None :

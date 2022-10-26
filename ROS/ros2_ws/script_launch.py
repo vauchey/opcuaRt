@@ -10,7 +10,7 @@ def generate_launch_description():
             parameters=[
             {'robot_sender_FREQUENCY': 10},
             {'robot_sender_robotName': "Fab1(MIR)"},
-            {'robot_sender_ENCRYPT': False},
+            {'robot_sender_ENCRYPT': 0},
             {'robot_sender_url': "opc.tcp://192.168.2.105:4840/freeopcua/server/"},
             {'robot_sender_namespace': "http://esigelec.ddns.net"},
             {'robot_sender_certificate': "vincent/my_cert.der"},
@@ -22,6 +22,7 @@ def generate_launch_description():
             output='screen',
             remappings=[
                 #("robot_simulator_cmd_vel", "robot_sender_cmd_vel")
+                #("/robot_sender_poseInUtmTiles", "/robot_simulator_poseInUtmTiles")
             ]
             )
     ld.add_action(node1)
@@ -42,10 +43,12 @@ def generate_launch_description():
             remappings=[
                 #/turtle1/cmd_vel
                 #("robot_simulator_poseInUtmTiles", "robot_sender_poseInUtmTiles")
-                ("/robot_simulator_cmd_vel", "/turtle1/cmd_vel")
+                ("/robot_simulator_cmd_vel", "/robot_sender_cmd_vel"),
+                #("/robot_simulator_cmd_vel", "/turtle1/cmd_vel"),#turle move
+                ("/robot_simulator_poseInUtmTiles", "/robot_sender_poseInUtmTiles")
             ]
             )
-    #ld.add_action(node2)
+    ld.add_action(node2)
     return ld
 
     """return launch.LaunchDescription([

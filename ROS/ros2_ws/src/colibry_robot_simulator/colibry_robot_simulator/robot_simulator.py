@@ -27,7 +27,7 @@ import utm
 import math
 import numpy as np
 
-DEBUG=True
+DEBUG=False
 #rostopic echo rosout
 
 def myPrint(msg):
