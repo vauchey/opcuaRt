@@ -1,3 +1,13 @@
+##################### install ros2 rolling (compatible with webot)
+https://docs.ros.org/en/rolling/Installation/Alternatives/Ubuntu-Development-Setup.html
+
+source ~/ros2_rolling/install/local_setup.bash
+
+
+
+
+
+
 
 #####################"install ros2
 peut etre fait sous lxd : https://ubuntu.com/blog/install-ros-2-humble-in-ubuntu-20-04-or-18-04-using-lxd-containers
@@ -94,7 +104,21 @@ cd ros2_ws/src
 ros2 pkg create --build-type ament_python --node-name robot_sender colibry_communicator
 ros2 pkg create --build-type ament_python --node-name robot_simulator colibry_robot_simulator
 cd ~/colibry/opcuaRt/ROS/ros2_ws/src/colibry_communicator/colibry_communicator$
-ln -s  ../../../../catkin_ws/src/colibry_communicator/scripts/robot_sender.py robot_sender.py
+#ln -s  ../../../../catkin_ws/src/colibry_communicator/scripts/robot_sender.py robot_sender.py
+
+#utilisation d'un bridge ros1 ros2
+https://industrial-training-master.readthedocs.io/en/melodic/_source/session7/ROS1-ROS2-bridge.html
+mkdir -p ~/ros1_bridge_ws/src
+cd ~/ros1_bridge_ws/src
+git clone -b dashing https://github.com/ros2/ros1_bridge.git
+#source ROS1 and ROS2 (only time to do it)
+source /opt/ros/noetic/setup.bash
+source ~/ros2_humble/install/local_setup.bash 
+#echo $CMAKE_PREFIX_PATH | tr ':' '\n'
+colcon build --packages-select ros1_bridge --cmake-force-configure --cmake-args -DBUILD_TESTING=FALSE
+source install/local_setup.bash
+ros2 run ros1_bridge dynamic_bridge --print-pairs
+
 
 ####################################################
 #python ros components inspired from
