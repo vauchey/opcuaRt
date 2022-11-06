@@ -32,9 +32,6 @@ sys.path.append('C:\\Users\\admin\\.ipython')
 """
 
 
-
- 
-
 #import to know the robots
 from robotDescription import *
 #import to do client gesture
@@ -122,7 +119,6 @@ class rtmaps_python(BaseComponent):
 
 # Core() is called every time you have a new input
 	def Core(self):
-		
 		print ("sys.path="+str(sys.path))
 		try :
 			timeStamp=self.inputs["inputPosition_MapID_latLongAltRPYinrad"].ioelt.ts
@@ -140,8 +136,6 @@ class rtmaps_python(BaseComponent):
 		asyncio.run(self.clientGesture.readRobot())
 		print ("robotGet.ts_map_id_posexyzrxryrz="+str(self.clientGesture.currentRobotDescription.ts_map_id_posexyzrxryrz))
 		
-		
-
 		#sortie de la commande venant du server
 		wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec=self.clientGesture.currentRobotDescription.wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec
 		enabled_vLongiwantedMBysedVrotWantedRadBySec = rtmaps.types.Ioelt()
@@ -149,8 +143,6 @@ class rtmaps_python(BaseComponent):
 		enabled_vLongiwantedMBysedVrotWantedRadBySec.vector_size = len(enabled_vLongiwantedMBysedVrotWantedRadBySec.data)
 		enabled_vLongiwantedMBysedVrotWantedRadBySec.ts = wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec[0]#rt.current_time()
 		self.outputs["enabled_vLongiwantedMBysedVrotWantedRadBySec"].write(enabled_vLongiwantedMBysedVrotWantedRadBySec)
-					
-					
 					
 		#send pose
 		currentPose = rtmaps.types.Ioelt()
@@ -169,11 +161,9 @@ class rtmaps_python(BaseComponent):
 		self.wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec=[0.0,0.0,0.0,0.0]"""
 		#print ("timeStamp="+str(timeStamp))
 		#print ("data="+str(data))
-		
-		
 		#loop.run_until_complete(task(loop))
 		#loop.close()
-		
+
 
 # Death() will be called once at diagram execution shutdown
 	def Death(self):

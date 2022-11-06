@@ -86,7 +86,7 @@ async def main():
 	
 	async with server:
 		while True:
-			await asyncio.sleep(1)
+			await asyncio.sleep(0.01)
 			#current_val = await myvar.get_value()
 			await robotsGesture.doGesture()#call the robot gesture 
 			#count = current_val + 0.1
