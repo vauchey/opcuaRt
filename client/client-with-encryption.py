@@ -89,6 +89,32 @@ def main():
 	loop.close()
 """
 
+
+def task3():
+	import time
+	
+	clientGesture = ClientGesture(url,namespace,cert,private_key,ENCRYPT,currentRobotDescription)
+	
+	print ("creaThreadAndRunIt call")
+	clientGesture.creaThreadAndRunIt(2.0)
+	print ("creaThreadAndRunIt call done")
+	
+	print("wait ready")
+	while not clientGesture.getIsReady():
+		time.sleep(0.5)
+	print("wait ready done")
+	
+	
+	import time
+	for i in range(10):
+		print ("~~~~~~send position")
+		clientGesture.setPosition(0.0,0.0,[1.0+time.time(),2.0-time.time(),3.0,4.0,5.0,6.0])
+		print ("~~~~~~send position done")
+		
+		clientGesture.moveRobot(0.0,1.0,2.0,time.time())
+		time.sleep(0.5)
+		
+		
 		
 async def task2():
 	timeToTest=120.0
@@ -131,7 +157,9 @@ def main():
 	#loop.set_debug(True)
 	#loop.run_until_complete(task(loop))
 	#loop.close()
-	asyncio.run(task2())
+	#asyncio.run(task2())
+	task3()
+	
 	
 	
 	#clientGesture = ClientGesture(url,namespace,cert,private_key,ENCRYPT,currentRobotDescription)
