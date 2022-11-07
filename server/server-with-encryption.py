@@ -22,8 +22,8 @@ USER_DICT={}
 		
 
 #url where to connecte
-#url = "opc.tcp://127.0.0.1:4840/freeopcua/server/"
-url = "opc.tcp://192.168.2.105:4840/freeopcua/server/"
+url = "opc.tcp://127.0.0.1:4840/freeopcua/server/"
+#url = "opc.tcp://192.168.2.105:4840/freeopcua/server/"
 
 namespace = "http://esigelec.ddns.net"#namespace
 

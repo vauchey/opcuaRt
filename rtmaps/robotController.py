@@ -58,6 +58,14 @@ class rtmaps_python(BaseComponent):
 	def __init__(self):
 		BaseComponent.__init__(self) # call base class constructor
 
+	"""
+	async def processTask(self):
+		""" thread asyncio permetant de communiquer avec le server"""
+		
+		clientGesture = ClientGesture(self.url,self.namespace,self.certificate,self.private_key,self.ENCRYPT,self.currentRobotDescription)
+		await clientGesture.connect()
+	"""
+		
 	def Dynamic(self):
 		
 		self.add_input("joystick", rtmaps.types.ANY) # define input[0 is -la, 1 is -ling, 2, is deadman]
@@ -111,7 +119,7 @@ class rtmaps_python(BaseComponent):
 		self.currentRobot=0
 		self.clientGesture = ClientGesture(self.url,self.namespace,self.certificate,self.private_key,self.ENCRYPT,self.currentRobotDescriptionList[self.currentRobot])
 		asyncio.run(self.clientGesture.connect())#do a connection
-		#asyncio.run(self.clientGesture.getCurrentRobot())
+		##asyncio.run(self.clientGesture.getCurrentRobot())
 		
 		self.vRot =0.0
 		self.vLongi=0.0

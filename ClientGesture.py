@@ -2,8 +2,11 @@
 
 from robotDescription import *
 
+import logging
 from asyncua import Client, Node, ua
 from asyncua.crypto.security_policies import SecurityPolicyBasic256Sha256
+from requests.exceptions import ConnectionError
+
 
 
 
@@ -42,7 +45,7 @@ class MyRobotClient():
 				#self.__dict__[values]=await self.__dict__[values+"_child"].get_value()
 				self.currentRobotDescription.__dict__[values]=await self.__dict__[values+"_child"].get_value()
 				
-		print (self.currentRobotDescription.__dict__)
+		print ("MyRobotClient::readRobot"+str(self.currentRobotDescription.__dict__))
 		return self.currentRobotDescription
 		
 	async def writeRobot(self,variabluesToUpdate):
@@ -58,8 +61,49 @@ class MyRobotClient():
 			#		self.__dict__[values+"_child"].set_value(self.currentRobotDescription.__dict__[values])#update des valeurs
 			
 			
-
+def check_connection(func):
+	"""decorator to detect error ,remove client and force reconnect"""
+	async def  wrapper(*args, **kwargs):
+		#args[0] is the self of the class
+		print ("args="+str(args))
+		#print ("kwargs="+str(**kwargs))
+		try:
 		
+			if args[0].client is None:
+				print("try ::connect")
+				await args[0].connect()
+				
+				await args[0].getCurrentRobot()
+			return await func(*args, **kwargs)
+			#return func(*args,**kwargs)
+			#except ua.utils.SocketClosedException:
+			#except ConnectionError
+			#except ua.utils.UaError:
+		except Exception as e:
+			args[0].client=None
+			args[0].logger.info("Error:"+str(e))
+			print ("!!!!!!!!!!!!!! check_connection detect an error!!!!!!!!!!!!!!!!!")
+			#raise (e)
+	return(wrapper)
+		
+def do_writing(func):
+	async def wrapper2(*args, **kwargs):
+		#variabluesToUpdate =self.myRobotClient.currentRobotDescription.setPosition(ts,mapId,poses)#ts, mapid, txyz rxyz
+		#await self.myRobotClient.writeRobot(variabluesToUpdate)#force the update of only variables usefulls
+		print (" call variabluesToUpdate =self.myRobotClient.currentRobotDescription."+str(func.__name__)+"(*args, **kwargs)")
+		#eval("variabluesToUpdate=args[0].myRobotClient.currentRobotDescription."+str(func.__name__)+"(*args, **kwargs)")
+		#variabluesToUpdate=eval("args[0].myRobotClient.currentRobotDescription."+str(func.__name__)+"(*args, **kwargs)")
+		print ("args="+str(args))
+		#variabluesToUpdate=args[0].myRobotClient.currentRobotDescription.setPosition(args[1],args[2],args[3])
+		variabluesToUpdate=eval("args[0].myRobotClient.currentRobotDescription."+str(func.__name__)+"("+ ",".join( "args["+str(i)+"]" for i in range(1,len(args)))  +")")
+		print (" variabluesToUpdate="+str(variabluesToUpdate))
+		return await args[0].myRobotClient.writeRobot(variabluesToUpdate)
+		
+	return(wrapper2)
+
+	
+
+	
 class ClientGesture():
 	def __init__(self,url,namespace, certificate, private_key,ENCRYPT,currentRobotDescription):
 		self.url=url
@@ -71,22 +115,12 @@ class ClientGesture():
 		self.currentRobotDescription = currentRobotDescription
 		
 		self.robotGet=None
+		self.logger = logging.getLogger("asyncua")
+		self.socketTimout=1.0
 		
-	async def getCurrentRobot(self):
-		"""permet de seconnecter au bon robot, peut etre appeller depuis lexterieur en cas de changement de robot"""
-		async with self.client:
-			self.idx = await self.client.get_namespace_index(self.namespace)
-			#print ("idx="+str(idx))
-		
-			#init robot
-			#print ("!!!!!!!!!!!!create robot :"+str(self.currentRobotDescription.robotName))
-			self.myRobotClient= MyRobotClient(self.client,self.idx,self.currentRobotDescription)
-			await self.myRobotClient.initialize()
-			
-			
 	async def connect(self):
 		"""method to connect to server"""
-		self.client = Client(url=self.url)
+		self.client = Client(url=self.url, timeout =self.socketTimout)
 		print("called::connect")
 		if self.ENCRYPT:
 			print ("self.certificate ="+str(self.certificate))
@@ -101,62 +135,50 @@ class ClientGesture():
 				mode=ua.MessageSecurityMode.SignAndEncrypt
 			)
 			#mode=ua.MessageSecurityMode.SignAndEncrypt
-		#async with self.client:
-		#	await self.getCurrentRobot()#
-		#print("!!!!!!!!!!!!!!!!!!!!!!!!!!call self.getCurrentRobot")
-		await self.getCurrentRobot()#
+			
+		await self.client.connect()#fait une vraie connection
 		
-		"""
-		async with self.client:
-			self.idx = await self.client.get_namespace_index(self.namespace)
-			#print ("idx="+str(idx))
+	@check_connection
+	async def getCurrentRobot(self):
+		"""permet de seconnecter au bon robot, peut etre appeller depuis lexterieur en cas de changement de robot"""
+		self.idx = await self.client.get_namespace_index(self.namespace)
+		self.myRobotClient= MyRobotClient(self.client,self.idx,self.currentRobotDescription)
+		await self.myRobotClient.initialize()
+		#except ua.utils.SocketClosedException:
+		#	self.logger.info("Socket has closed connection")
+		#		self.client= None
+
+	
+				
+	
+	@check_connection
+	async def readRobot(self):
+		"""method to get all values from a robot, it is a method which is not decorated becore we read the entire robot values"""
+
+		self.currentRobotDescription= await self.myRobotClient.readRobot()
+		return self.currentRobotDescription
 		
-			#init robot
-			self.myRobotClient= MyRobotClient(self.client,self.idx,self.currentRobotDescription)
-			await self.myRobotClient.initialize()
-		print("!!!!!!!!!!!!!!!!!!!!!!!!!!call self.getCurrentRobot done")
-		"""
-		
+	#liste des methodes denvoi au server decorées avec (do_writing)
+	
+	
+	@check_connection
+	@do_writing
 	async def moveRobot(self, timestamp,enabled,Vlongi,Vrot):
 		"""method to check connection and then send to server a movement"""
-		if self.client  is None :
-			print("moveRobot::connect")
-			self.connect()
-			
-		if self.client is not None :
-			async with self.client:
-				"""self.myRobotClient= MyRobotClient(self.client,self.idx,self.currentRobotDescription)
-				await myRobotClient.initialize()
-				robotGet=await myRobotClient.readRobot()
-				"""
-				import time
-				variabluesToUpdate =self.myRobotClient.currentRobotDescription.moveRobot( timestamp,enabled,Vlongi,Vrot)
-				await self.myRobotClient.writeRobot(variabluesToUpdate)#force the update of only variables usefulls
+		pass
+		
 				
-				#robotGet=await self.myRobotClient.readRobot()
-				
+
+	@check_connection
+	@do_writing
 	async def setPosition(self,ts,mapId,poses):
 		"""method to check connection and then send to server"""
-		if self.client  is None :
-			print ("e::::::::::::::client is None::::::::::::::,reconnect")
-			print("setPosition::connect")
-			self.connect()
-			
-		if self.client is not None :
-			async with self.client:
-				"""self.myRobotClient= MyRobotClient(self.client,self.idx,self.currentRobotDescription)
-				await myRobotClient.initialize()
-				robotGet=await myRobotClient.readRobot()
-				"""
-				import time
-				#simple call to update a value
-				#variabluesToUpdate =robotGet.setPosition(time.time(),-1,[11.0,12.0,13.0,0.0,0.0,1.5])#ts, mapid, txyz rxyz
-				variabluesToUpdate =self.myRobotClient.currentRobotDescription.setPosition(ts,mapId,poses)#ts, mapid, txyz rxyz
-				await self.myRobotClient.writeRobot(variabluesToUpdate)#force the update of only variables usefulls
-				
-				#robotGet=await self.myRobotClient.readRobot()
-				
-	async def readRobot(self):
-		"""method to get all values from a robot"""
-		async with self.client:
-			self.currentRobotDescription= await self.myRobotClient.readRobot()
+		pass
+
+
+		
+	"""
+	async def setPosition(self,ts,mapId,poses):
+		variabluesToUpdate =self.myRobotClient.currentRobotDescription.setPosition(ts,mapId,poses)#ts, mapid, txyz rxyz
+		await self.myRobotClient.writeRobot(variabluesToUpdate)#force the update of only variables usefulls
+	"""
