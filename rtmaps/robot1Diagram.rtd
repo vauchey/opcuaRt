@@ -59,8 +59,8 @@
     <Property LongName="DataViewer_1.moveable" Type="0">true</Property>
     <Property LongName="DataViewer_1.hidden" Type="0">false</Property>
     <Property LongName="DataViewer_1.title" Type="3"><![CDATA[]]></Property>
-    <Property LongName="DataViewer_1.x" Type="1">1016</Property>
-    <Property LongName="DataViewer_1.y" Type="1">87</Property>
+    <Property LongName="DataViewer_1.x" Type="1">219</Property>
+    <Property LongName="DataViewer_1.y" Type="1">64</Property>
     <Property LongName="DataViewer_1.width" Type="1">787</Property>
     <Property LongName="DataViewer_1.height" Type="1">745</Property>
     <Property LongName="DataViewer_1.end_guard" Type="0" SubType="128">true</Property>
@@ -82,8 +82,8 @@
     <Property LongName="DataViewer_1.unsignedInteger32Format" Type="3"><![CDATA[%I32u]]></Property>
     <Property LongName="DataViewer_1.unsignedInteger64Format" Type="3"><![CDATA[%I64u]]></Property>
     <Property LongName="DataViewer_1.hexDisplay" Type="0">false</Property>
-    <Property LongName="DataViewer_1.internalState" Type="3" SubType="128"><![CDATA[238;539]]></Property>
-    <Property LongName="DataViewer_1.expandedState" Type="3" SubType="128"><![CDATA[1|PythonBridge_sendPositionRobot1.enabled_vLongiwantedMBysedVrotWantedRadBySec;1|Info:PythonBridge_sendPositionRobot1.enabled_vLongiwantedMBysedVrotWantedRadBySec;1|Data:PythonBridge_sendPositionRobot1.enabled_vLongiwantedMBysedVrotWantedRadBySec;1|PythonBridge_sendPositionRobot2.enabled_vLongiwantedMBysedVrotWantedRadBySec;0|Info:PythonBridge_sendPositionRobot2.enabled_vLongiwantedMBysedVrotWantedRadBySec;1|Data:PythonBridge_sendPositionRobot2.enabled_vLongiwantedMBysedVrotWantedRadBySec;0|;0|;0|;0|]]></Property>
+    <Property LongName="DataViewer_1.internalState" Type="3" SubType="128"><![CDATA[450;327]]></Property>
+    <Property LongName="DataViewer_1.expandedState" Type="3" SubType="128"><![CDATA[1|PythonBridge_sendPositionRobot1.enabled_vLongiwantedMBysedVrotWantedRadBySec;1|Info:PythonBridge_sendPositionRobot1.enabled_vLongiwantedMBysedVrotWantedRadBySec;1|Data:PythonBridge_sendPositionRobot1.enabled_vLongiwantedMBysedVrotWantedRadBySec;0|;0|;0|;0|;0|]]></Property>
     <ReadOnlyProperty LongName="DataViewer_1.specific_end_config" Type="0" SubType="512">true</ReadOnlyProperty>
     <Property LongName="DataViewer_1.threaded" Type="0">true</Property>
     <Property LongName="DataViewer_1.priority" Type="1">128</Property>
@@ -114,8 +114,8 @@
     <Property LongName="DataViewer_2.moveable" Type="0">true</Property>
     <Property LongName="DataViewer_2.hidden" Type="0">false</Property>
     <Property LongName="DataViewer_2.title" Type="3"><![CDATA[]]></Property>
-    <Property LongName="DataViewer_2.x" Type="1">748</Property>
-    <Property LongName="DataViewer_2.y" Type="1">37</Property>
+    <Property LongName="DataViewer_2.x" Type="1">222</Property>
+    <Property LongName="DataViewer_2.y" Type="1">402</Property>
     <Property LongName="DataViewer_2.width" Type="1">654</Property>
     <Property LongName="DataViewer_2.height" Type="1">726</Property>
     <Property LongName="DataViewer_2.end_guard" Type="0" SubType="128">true</Property>
@@ -194,6 +194,28 @@
     <Property LongName="DataViewer_3.threaded" Type="0">true</Property>
     <Property LongName="DataViewer_3.priority" Type="1">128</Property>
     <Property LongName="DataViewer_3.autoStart" Type="0">true</Property>
+  </Component>
+  <Component InstanceName="Float_constants_generator_1" Model="Float_constants_generator" Version="2.2" x="696" y="136" z="0">
+    <Output LongName="Float_constants_generator_1.output" Name="output">
+      <Property LongName="Float_constants_generator_1.output.subsampling" Type="1">1</Property>
+      <Property LongName="Float_constants_generator_1.output.fifosize" Type="1">16</Property>
+      <Property LongName="Float_constants_generator_1.output.periodic" Type="0">false</Property>
+    </Output>
+    <Property LongName="Float_constants_generator_1.outputMode" Type="4"><![CDATA[3|1|Once at start|Periodic|Use trigger input]]></Property>
+    <Property LongName="Float_constants_generator_1.outputWhenValueChanges" Type="0">true</Property>
+    <Property LongName="Float_constants_generator_1.vectorSize" Type="1">8</Property>
+    <Property LongName="Float_constants_generator_1.outputPeriod" Type="1">1000000</Property>
+    <Property LongName="Float_constants_generator_1.value_1" Type="2">0</Property>
+    <Property LongName="Float_constants_generator_1.value_2" Type="2">0</Property>
+    <Property LongName="Float_constants_generator_1.value_3" Type="2">0</Property>
+    <Property LongName="Float_constants_generator_1.value_4" Type="2">0</Property>
+    <Property LongName="Float_constants_generator_1.value_5" Type="2">0</Property>
+    <Property LongName="Float_constants_generator_1.value_6" Type="2">0</Property>
+    <Property LongName="Float_constants_generator_1.value_7" Type="2">0</Property>
+    <Property LongName="Float_constants_generator_1.value_8" Type="2">0</Property>
+    <Property LongName="Float_constants_generator_1.threaded" Type="0">true</Property>
+    <Property LongName="Float_constants_generator_1.priority" Type="1">128</Property>
+    <Property LongName="Float_constants_generator_1.autoStart" Type="0">true</Property>
   </Component>
   <Component InstanceName="Joystick_1Xbox" Model="Joystick" Version="1.7" x="40" y="336" z="0">
     <Output LongName="Joystick_1Xbox.xyzAxisPosition" Name="xyzAxisPosition">
@@ -294,7 +316,7 @@
     <Property LongName="Player_Joystick.update" Type="0">true</Property>
     <ReadOnlyProperty LongName="Player_Joystick.replayPath" Type="3"><![CDATA[D:/data/apresBackup/COLIBRY/opcuaRT/opcuaRt/tests/joystickRecordForTests20221019_085217_RecFile_1/]]></ReadOnlyProperty>
     <ReadOnlyProperty LongName="Player_Joystick.comments" Type="3"><![CDATA[]]></ReadOnlyProperty>
-    <ReadOnlyProperty LongName="Player_Joystick.ahead" Type="1">1710648</ReadOnlyProperty>
+    <ReadOnlyProperty LongName="Player_Joystick.ahead" Type="1">6391184</ReadOnlyProperty>
     <ReadOnlyProperty LongName="Player_Joystick.percentage" Type="1">0</ReadOnlyProperty>
     <ReadOnlyProperty LongName="Player_Joystick.time" Type="1">0</ReadOnlyProperty>
     <ReadOnlyProperty LongName="Player_Joystick.first" Type="1">5764556</ReadOnlyProperty>
@@ -329,7 +351,7 @@
     <Property LongName="PythonBridge_ControlRobots.showTracebackInConsole" Type="0">true</Property>
     <Property LongName="PythonBridge_ControlRobots.autoReloadSubModules" Type="0">true</Property>
     <Property LongName="PythonBridge_ControlRobots.memorySize" Type="1">10000000</Property>
-    <ReadOnlyProperty LongName="PythonBridge_ControlRobots.pythonPID" Type="1">21040</ReadOnlyProperty>
+    <ReadOnlyProperty LongName="PythonBridge_ControlRobots.pythonPID" Type="1">18096</ReadOnlyProperty>
     <Property LongName="PythonBridge_ControlRobots.additionalEnvironmentVariables" Type="3"><![CDATA[]]></Property>
     <ReadOnlyProperty LongName="PythonBridge_ControlRobots.advance_end_configuration" Type="0" SubType="512">false</ReadOnlyProperty>
     <ReadOnlyProperty LongName="PythonBridge_ControlRobots.basic_begin_configuration" Type="3" SubType="256"><![CDATA[Basic Configuration]]></ReadOnlyProperty>
@@ -371,7 +393,7 @@
     <Property LongName="PythonBridge_robotSimulator.showTracebackInConsole" Type="0">true</Property>
     <Property LongName="PythonBridge_robotSimulator.autoReloadSubModules" Type="0">true</Property>
     <Property LongName="PythonBridge_robotSimulator.memorySize" Type="1">10000000</Property>
-    <ReadOnlyProperty LongName="PythonBridge_robotSimulator.pythonPID" Type="1">19828</ReadOnlyProperty>
+    <ReadOnlyProperty LongName="PythonBridge_robotSimulator.pythonPID" Type="1">14760</ReadOnlyProperty>
     <Property LongName="PythonBridge_robotSimulator.additionalEnvironmentVariables" Type="3"><![CDATA[]]></Property>
     <ReadOnlyProperty LongName="PythonBridge_robotSimulator.advance_end_configuration" Type="0" SubType="512">false</ReadOnlyProperty>
     <ReadOnlyProperty LongName="PythonBridge_robotSimulator.basic_begin_configuration" Type="3" SubType="256"><![CDATA[Basic Configuration]]></ReadOnlyProperty>
@@ -411,7 +433,7 @@
     <Property LongName="PythonBridge_robotSimulator_1.showTracebackInConsole" Type="0">true</Property>
     <Property LongName="PythonBridge_robotSimulator_1.autoReloadSubModules" Type="0">true</Property>
     <Property LongName="PythonBridge_robotSimulator_1.memorySize" Type="1">10000000</Property>
-    <ReadOnlyProperty LongName="PythonBridge_robotSimulator_1.pythonPID" Type="1">14280</ReadOnlyProperty>
+    <ReadOnlyProperty LongName="PythonBridge_robotSimulator_1.pythonPID" Type="1">5652</ReadOnlyProperty>
     <Property LongName="PythonBridge_robotSimulator_1.additionalEnvironmentVariables" Type="3"><![CDATA[]]></Property>
     <ReadOnlyProperty LongName="PythonBridge_robotSimulator_1.advance_end_configuration" Type="0" SubType="512">false</ReadOnlyProperty>
     <ReadOnlyProperty LongName="PythonBridge_robotSimulator_1.basic_begin_configuration" Type="3" SubType="256"><![CDATA[Basic Configuration]]></ReadOnlyProperty>
@@ -451,7 +473,7 @@
     <Property LongName="PythonBridge_robotSimulator_1_1.showTracebackInConsole" Type="0">true</Property>
     <Property LongName="PythonBridge_robotSimulator_1_1.autoReloadSubModules" Type="0">true</Property>
     <Property LongName="PythonBridge_robotSimulator_1_1.memorySize" Type="1">10000000</Property>
-    <ReadOnlyProperty LongName="PythonBridge_robotSimulator_1_1.pythonPID" Type="1">1988</ReadOnlyProperty>
+    <ReadOnlyProperty LongName="PythonBridge_robotSimulator_1_1.pythonPID" Type="1">23400</ReadOnlyProperty>
     <Property LongName="PythonBridge_robotSimulator_1_1.additionalEnvironmentVariables" Type="3"><![CDATA[]]></Property>
     <ReadOnlyProperty LongName="PythonBridge_robotSimulator_1_1.advance_end_configuration" Type="0" SubType="512">false</ReadOnlyProperty>
     <ReadOnlyProperty LongName="PythonBridge_robotSimulator_1_1.basic_begin_configuration" Type="3" SubType="256"><![CDATA[Basic Configuration]]></ReadOnlyProperty>
@@ -489,14 +511,14 @@
     <Property LongName="PythonBridge_sendPositionRobot1.guard_begin" Type="0" SubType="128">true</Property>
     <Property LongName="PythonBridge_sendPositionRobot1.internalInputs" Type="3" SubType="128"><![CDATA[inputPosition_MapID_latLongAltRPYinrad;1==]]></Property>
     <Property LongName="PythonBridge_sendPositionRobot1.internalOutputs" Type="3" SubType="128"><![CDATA[enabled_vLongiwantedMBysedVrotWantedRadBySec;0==;0#ouput_Mapid_Position;0==;0]]></Property>
-    <Property LongName="PythonBridge_sendPositionRobot1.internalProperties" Type="3" SubType="128"><![CDATA[robotName||13||4|0|Jean-Michel(Segway)|Jacqueline(AMI)|Jean-Jacques(ESPACE)|Fab1(MIR)||24#communicationPeriodInS||11||0.05#ENCRYPT||23||0#url||13||opc.tcp://192.168.2.105:4840/freeopcua/server/||13#namespace||13||http://esigelec.ddns.net||13#certificate||13||D:/data/apresBackup/COLIBRY/opcuaRT/opcuaRt/client/vincent/my_cert.der||14#private_key||13||D:/data/apresBackup/COLIBRY/opcuaRT/opcuaRt/client/vincent/my_private_key.pem||14]]></Property>
+    <Property LongName="PythonBridge_sendPositionRobot1.internalProperties" Type="3" SubType="128"><![CDATA[robotName||13||4|0|Jean-Michel(Segway)|Jacqueline(AMI)|Jean-Jacques(ESPACE)|Fab1(MIR)||24#communicationPeriodInS||11||0.05#ENCRYPT||23||0#url||13||opc.tcp://127.0.0.1:4840/freeopcua/server/||13#namespace||13||http://esigelec.ddns.net||13#certificate||13||D:/data/apresBackup/COLIBRY/opcuaRT/opcuaRt/client/vincent/my_cert.der||14#private_key||13||D:/data/apresBackup/COLIBRY/opcuaRT/opcuaRt/client/vincent/my_private_key.pem||14]]></Property>
     <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot1.advance_begin_configuration" Type="3" SubType="256"><![CDATA[Advanced Configuration]]></ReadOnlyProperty>
     <Property LongName="PythonBridge_sendPositionRobot1.deathBehavior" Type="4"><![CDATA[3|1|WAIT FOR PROCESS INDEFINITELY|KILL PROCESS AFTER TIMEOUT (5sec)|START ANOTHER PROCESS]]></Property>
     <Property LongName="PythonBridge_sendPositionRobot1.logDebug" Type="0">false</Property>
     <Property LongName="PythonBridge_sendPositionRobot1.showTracebackInConsole" Type="0">true</Property>
     <Property LongName="PythonBridge_sendPositionRobot1.autoReloadSubModules" Type="0">true</Property>
     <Property LongName="PythonBridge_sendPositionRobot1.memorySize" Type="1">10000000</Property>
-    <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot1.pythonPID" Type="1">24064</ReadOnlyProperty>
+    <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot1.pythonPID" Type="1">6960</ReadOnlyProperty>
     <Property LongName="PythonBridge_sendPositionRobot1.additionalEnvironmentVariables" Type="3"><![CDATA[]]></Property>
     <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot1.advance_end_configuration" Type="0" SubType="512">false</ReadOnlyProperty>
     <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot1.basic_begin_configuration" Type="3" SubType="256"><![CDATA[Basic Configuration]]></ReadOnlyProperty>
@@ -511,14 +533,14 @@
     <Property LongName="PythonBridge_sendPositionRobot1.robotName" Type="4"><![CDATA[4|0|Jean-Michel(Segway)|Jacqueline(AMI)|Jean-Jacques(ESPACE)|Fab1(MIR)]]></Property>
     <Property LongName="PythonBridge_sendPositionRobot1.communicationPeriodInS" Type="2">0.05</Property>
     <Property LongName="PythonBridge_sendPositionRobot1.ENCRYPT" Type="0">false</Property>
-    <Property LongName="PythonBridge_sendPositionRobot1.url" Type="3"><![CDATA[opc.tcp://192.168.2.105:4840/freeopcua/server/]]></Property>
+    <Property LongName="PythonBridge_sendPositionRobot1.url" Type="3"><![CDATA[opc.tcp://127.0.0.1:4840/freeopcua/server/]]></Property>
     <Property LongName="PythonBridge_sendPositionRobot1.namespace" Type="3"><![CDATA[http://esigelec.ddns.net]]></Property>
     <Property LongName="PythonBridge_sendPositionRobot1.certificate" Type="3" SubType="16"><![CDATA[D:/data/apresBackup/COLIBRY/opcuaRT/opcuaRt/client/vincent/my_cert.der]]><Relative><![CDATA[%RTMAPS_DIAGRAMDIR%/../client/vincent/my_cert.der]]></Relative></Property>
     <Property LongName="PythonBridge_sendPositionRobot1.private_key" Type="3" SubType="16"><![CDATA[D:/data/apresBackup/COLIBRY/opcuaRT/opcuaRt/client/vincent/my_private_key.pem]]><Relative><![CDATA[%RTMAPS_DIAGRAMDIR%/../client/vincent/my_private_key.pem]]></Relative></Property>
     <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot1.userSubsectionEnd" Type="0" SubType="512">true</ReadOnlyProperty>
     <Property LongName="PythonBridge_sendPositionRobot1.threaded" Type="0">true</Property>
     <Property LongName="PythonBridge_sendPositionRobot1.priority" Type="1">128</Property>
-    <Property LongName="PythonBridge_sendPositionRobot1.autoStart" Type="0">false</Property>
+    <Property LongName="PythonBridge_sendPositionRobot1.autoStart" Type="0">true</Property>
   </Component>
   <Component InstanceName="PythonBridge_sendPositionRobot2" Model="PythonBridge" Version="3.2.0" x="928" y="400" z="1">
     <Input LongName="PythonBridge_sendPositionRobot2.inputPosition_MapID_latLongAltRPYinrad" Name="inputPosition_MapID_latLongAltRPYinrad">
@@ -545,7 +567,7 @@
     <Property LongName="PythonBridge_sendPositionRobot2.showTracebackInConsole" Type="0">true</Property>
     <Property LongName="PythonBridge_sendPositionRobot2.autoReloadSubModules" Type="0">true</Property>
     <Property LongName="PythonBridge_sendPositionRobot2.memorySize" Type="1">10000000</Property>
-    <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot2.pythonPID" Type="1">9168</ReadOnlyProperty>
+    <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot2.pythonPID" Type="1">22188</ReadOnlyProperty>
     <Property LongName="PythonBridge_sendPositionRobot2.additionalEnvironmentVariables" Type="3"><![CDATA[]]></Property>
     <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot2.advance_end_configuration" Type="0" SubType="512">false</ReadOnlyProperty>
     <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot2.basic_begin_configuration" Type="3" SubType="256"><![CDATA[Basic Configuration]]></ReadOnlyProperty>
@@ -594,7 +616,7 @@
     <Property LongName="PythonBridge_sendPositionRobot2_1.showTracebackInConsole" Type="0">true</Property>
     <Property LongName="PythonBridge_sendPositionRobot2_1.autoReloadSubModules" Type="0">true</Property>
     <Property LongName="PythonBridge_sendPositionRobot2_1.memorySize" Type="1">10000000</Property>
-    <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot2_1.pythonPID" Type="1">24052</ReadOnlyProperty>
+    <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot2_1.pythonPID" Type="1">22892</ReadOnlyProperty>
     <Property LongName="PythonBridge_sendPositionRobot2_1.additionalEnvironmentVariables" Type="3"><![CDATA[]]></Property>
     <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot2_1.advance_end_configuration" Type="0" SubType="512">false</ReadOnlyProperty>
     <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot2_1.basic_begin_configuration" Type="3" SubType="256"><![CDATA[Basic Configuration]]></ReadOnlyProperty>
@@ -643,7 +665,7 @@
     <Property LongName="PythonBridge_sendPositionRobot2_1_1.showTracebackInConsole" Type="0">true</Property>
     <Property LongName="PythonBridge_sendPositionRobot2_1_1.autoReloadSubModules" Type="0">true</Property>
     <Property LongName="PythonBridge_sendPositionRobot2_1_1.memorySize" Type="1">10000000</Property>
-    <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot2_1_1.pythonPID" Type="1">20272</ReadOnlyProperty>
+    <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot2_1_1.pythonPID" Type="1">14256</ReadOnlyProperty>
     <Property LongName="PythonBridge_sendPositionRobot2_1_1.additionalEnvironmentVariables" Type="3"><![CDATA[]]></Property>
     <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot2_1_1.advance_end_configuration" Type="0" SubType="512">false</ReadOnlyProperty>
     <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot2_1_1.basic_begin_configuration" Type="3" SubType="256"><![CDATA[Basic Configuration]]></ReadOnlyProperty>
@@ -880,7 +902,7 @@
   </Connection>
   <Connection Output="PythonBridge_sendPositionRobot1.enabled_vLongiwantedMBysedVrotWantedRadBySec" Input="PythonBridge_robotSimulator.inputOdometryWanted"/>
   <Connection Output="PythonBridge_sendPositionRobot2.enabled_vLongiwantedMBysedVrotWantedRadBySec" Input="PythonBridge_robotSimulator_1.inputOdometryWanted"/>
-  <Connection Output="PythonBridge_robotSimulator.ouput_Mapid_Position" Input="PythonBridge_sendPositionRobot1.inputPosition_MapID_latLongAltRPYinrad"/>
+  <Connection Output="Float_constants_generator_1.output" Input="PythonBridge_sendPositionRobot1.inputPosition_MapID_latLongAltRPYinrad"/>
   <Connection Output="PythonBridge_robotSimulator_1.ouput_Mapid_Position" Input="PythonBridge_sendPositionRobot2.inputPosition_MapID_latLongAltRPYinrad"/>
   <Connection Output="vectors_manipulator_1Robot0.output" Input="QMLViewer_1_1_1_1_1.latlongAltYaw"/>
   <Connection Output="vectors_manipulator_1Robot0_1.output" Input="QMLViewer_1_1_1_1_1.latlongAltYaw1"/>
