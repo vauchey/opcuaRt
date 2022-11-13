@@ -20,7 +20,9 @@ import subprocess
 
 
 UDP_PORT_BEGIN=5000
+#ROBOT_ALLOWED_LIST=["Jean-Michel(Segway)","Jacqueline(AMI)","Jean-Jacques(ESPACE)","Fab1(MIR)"]
 ROBOT_ALLOWED_LIST=["Jean-Michel(Segway)","Jacqueline(AMI)","Jean-Jacques(ESPACE)","Fab1(MIR)"]
+#ROBOT_ALLOWED_LIST=["Jean-Michel(Segway)"]
 
 
 

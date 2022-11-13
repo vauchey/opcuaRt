@@ -101,12 +101,12 @@ https://docs.python.org/3/library/multiprocessing.html
 def task5():
 
 	UDP_IP = "127.0.0.1"
-	UDP_PORT=5006
+	UDP_PORT=5000 #5006
 	
 	clientGesture = ClientGesture(url,namespace,cert,private_key,ENCRYPT,currentRobotDescription)
 	
 	
-	clientGesture.createSubprocessAndRunIt(1.0,CURRENT_ROBOT_NAME,UDP_PORT,False)
+	clientGesture.createSubprocessAndRunIt(1.0,CURRENT_ROBOT_NAME,UDP_PORT,True)
 	#while True:
 	#	time.sleep(1.0)
 	#	pass

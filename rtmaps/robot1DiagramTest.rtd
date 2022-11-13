@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RTMapsDiagram version="4.8.0" EngineVersion="4.9" xmlns="http://schemas.intempora.com/RTMaps/2011/RTMapsFiles" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.intempora.com/RTMaps/2011/RTMapsFiles http://www.intempora.com/schemas/RTMaps/2011/RTMapsDiagram.xsd">
+  <RequiredPackages>
+    <File Version="3.2.1"><![CDATA[C:/Program Files/Intempora/RTMaps 4/packages/rtmaps_python_bridge/rtmaps_python_bridge.pck]]><Relative><![CDATA[%RTMAPS_INSTDIR%/packages/rtmaps_python_bridge/rtmaps_python_bridge.pck]]></Relative></File>
+  </RequiredPackages>
+  <EngineProperties>
+    <Property LongName="Engine.startTimespeed" Type="1">1000</Property>
+    <Property LongName="Engine.startTime" Type="1">0</Property>
+    <Property LongName="Engine.session" Type="3"><![CDATA[unspecified]]></Property>
+    <Property LongName="Engine.recordingAtStart" Type="0">true</Property>
+    <Property LongName="Engine.recording" Type="0">true</Property>
+    <Property LongName="Engine.sequentialStart" Type="0">false</Property>
+    <Property LongName="Engine.shutdownTimeout" Type="1">10000000</Property>
+    <Property LongName="Engine.autoDetectStartTime" Type="0">true</Property>
+    <Property LongName="Engine.coreFunctionsToSaveInDiag" Type="4"><![CDATA[0|-1]]></Property>
+    <Property LongName="Engine.useUTCTimeReference" Type="0">false</Property>
+    <Property LongName="Engine.fastForwardThreshold" Type="1">2000</Property>
+    <Property LongName="Engine.fastRewindThreshold" Type="1">-2000</Property>
+    <Property LongName="Engine.priorityClass" Type="4"><![CDATA[3|0|Shared Time|Preemptive|Auto]]></Property>
+    <Property LongName="Engine.posixTimerThread" Type="4"><![CDATA[3|0|Auto|Timer Interval|Real Time Clock]]></Property>
+    <Property LongName="Engine.posixRealTimeClockIrqFrequency" Type="4"><![CDATA[4|0|1024|2048|4096|8192]]></Property>
+    <Property LongName="Engine.posixPreemptiveSchedulingPolicy" Type="4"><![CDATA[2|0|FIFO|Round Robin]]></Property>
+    <Property LongName="Engine.windowsUsePerformanceCounter" Type="0">true</Property>
+  </EngineProperties>
+  <ClocksManagement>
+    <Property LongName="ClocksManagement.activeClock" Type="4"><![CDATA[1|0|RTMaps_standard_clock]]></Property>
+  </ClocksManagement>
+  <Component InstanceName="DataViewer_1" Model="DataViewer" Version="2.0.10" x="1144" y="216" z="0">
+    <Input LongName="DataViewer_1.input_0" Name="input_0">
+      <Property LongName="DataViewer_1.input_0.readerType" Type="1">4</Property>
+      <Property LongName="DataViewer_1.input_0.subsampling" Type="1">1</Property>
+    </Input>
+    <Input LongName="DataViewer_1.input_1" Name="input_1">
+      <Property LongName="DataViewer_1.input_1.readerType" Type="1">4</Property>
+      <Property LongName="DataViewer_1.input_1.subsampling" Type="1">1</Property>
+    </Input>
+    <Input LongName="DataViewer_1.input_2" Name="input_2">
+      <Property LongName="DataViewer_1.input_2.readerType" Type="1">4</Property>
+      <Property LongName="DataViewer_1.input_2.subsampling" Type="1">1</Property>
+    </Input>
+    <Property LongName="DataViewer_1.begin_guard" Type="0" SubType="128">true</Property>
+    <ReadOnlyProperty LongName="DataViewer_1.widget_begin_config" Type="3" SubType="256"><![CDATA[General Configuration]]></ReadOnlyProperty>
+    <Property LongName="DataViewer_1.autoDirty" Type="0">true</Property>
+    <Property LongName="DataViewer_1.run" Type="0">true</Property>
+    <Property LongName="DataViewer_1.alwaysOnTop" Type="4"><![CDATA[4|0|Only at run time|Only at design time|No|Both at run time and design time]]></Property>
+    <Property LongName="DataViewer_1.moveable" Type="0">true</Property>
+    <Property LongName="DataViewer_1.hidden" Type="0">false</Property>
+    <Property LongName="DataViewer_1.title" Type="3"><![CDATA[]]></Property>
+    <Property LongName="DataViewer_1.x" Type="1">16</Property>
+    <Property LongName="DataViewer_1.y" Type="1">144</Property>
+    <Property LongName="DataViewer_1.width" Type="1">800</Property>
+    <Property LongName="DataViewer_1.height" Type="1">744</Property>
+    <Property LongName="DataViewer_1.end_guard" Type="0" SubType="128">true</Property>
+    <ReadOnlyProperty LongName="DataViewer_1.widget_end_config" Type="0" SubType="512">false</ReadOnlyProperty>
+    <ReadOnlyProperty LongName="DataViewer_1.specific_begin_config" Type="3" SubType="256"><![CDATA[Specific Configuration]]></ReadOnlyProperty>
+    <Property LongName="DataViewer_1.nbInputs" Type="1">3</Property>
+    <Property LongName="DataViewer_1.compactMode" Type="0">false</Property>
+    <Property LongName="DataViewer_1.showInfo" Type="0">true</Property>
+    <Property LongName="DataViewer_1.showData" Type="0">true</Property>
+    <Property LongName="DataViewer_1.showPrettyTimestamp" Type="0">true</Property>
+    <Property LongName="DataViewer_1.float32Format" Type="3"><![CDATA[%9g]]></Property>
+    <Property LongName="DataViewer_1.float64Format" Type="3"><![CDATA[%9g]]></Property>
+    <Property LongName="DataViewer_1.integer8Format" Type="3"><![CDATA[%d]]></Property>
+    <Property LongName="DataViewer_1.integer16Format" Type="3"><![CDATA[%d]]></Property>
+    <Property LongName="DataViewer_1.integer32Format" Type="3"><![CDATA[%I32d]]></Property>
+    <Property LongName="DataViewer_1.integer64Format" Type="3"><![CDATA[%I64d]]></Property>
+    <Property LongName="DataViewer_1.unsignedInteger8Format" Type="3"><![CDATA[%u]]></Property>
+    <Property LongName="DataViewer_1.unsignedInteger16Format" Type="3"><![CDATA[%u]]></Property>
+    <Property LongName="DataViewer_1.unsignedInteger32Format" Type="3"><![CDATA[%I32u]]></Property>
+    <Property LongName="DataViewer_1.unsignedInteger64Format" Type="3"><![CDATA[%I64u]]></Property>
+    <Property LongName="DataViewer_1.hexDisplay" Type="0">false</Property>
+    <Property LongName="DataViewer_1.internalState" Type="3" SubType="128"><![CDATA[332;437]]></Property>
+    <Property LongName="DataViewer_1.expandedState" Type="3" SubType="128"><![CDATA[1|PythonBridge_sendPositionRobot1.enabled_vLongiwantedMBysedVrotWantedRadBySec;0|Info:PythonBridge_sendPositionRobot1.enabled_vLongiwantedMBysedVrotWantedRadBySec;1|Data:PythonBridge_sendPositionRobot1.enabled_vLongiwantedMBysedVrotWantedRadBySec;1|PythonBridge_sendPositionRobot1.ouput_Mapid_Position;1|Info:PythonBridge_sendPositionRobot1.ouput_Mapid_Position;1|Data:PythonBridge_sendPositionRobot1.ouput_Mapid_Position;1|PythonBridge_robotSimulator.ouput_Mapid_Position;0|Info:PythonBridge_robotSimulator.ouput_Mapid_Position;1|Data:PythonBridge_robotSimulator.ouput_Mapid_Position]]></Property>
+    <ReadOnlyProperty LongName="DataViewer_1.specific_end_config" Type="0" SubType="512">true</ReadOnlyProperty>
+    <Property LongName="DataViewer_1.threaded" Type="0">true</Property>
+    <Property LongName="DataViewer_1.priority" Type="1">128</Property>
+    <Property LongName="DataViewer_1.autoStart" Type="0">true</Property>
+  </Component>
+  <Component InstanceName="Float_constants_generator_1" Model="Float_constants_generator" Version="2.2" x="376" y="136" z="0">
+    <Output LongName="Float_constants_generator_1.output" Name="output">
+      <Property LongName="Float_constants_generator_1.output.subsampling" Type="1">1</Property>
+      <Property LongName="Float_constants_generator_1.output.fifosize" Type="1">16</Property>
+      <Property LongName="Float_constants_generator_1.output.periodic" Type="0">false</Property>
+    </Output>
+    <Property LongName="Float_constants_generator_1.outputMode" Type="4"><![CDATA[3|1|Once at start|Periodic|Use trigger input]]></Property>
+    <Property LongName="Float_constants_generator_1.outputWhenValueChanges" Type="0">true</Property>
+    <Property LongName="Float_constants_generator_1.vectorSize" Type="1">8</Property>
+    <Property LongName="Float_constants_generator_1.outputPeriod" Type="1">1000000</Property>
+    <Property LongName="Float_constants_generator_1.value_1" Type="2">2</Property>
+    <Property LongName="Float_constants_generator_1.value_2" Type="2">6</Property>
+    <Property LongName="Float_constants_generator_1.value_3" Type="2">8</Property>
+    <Property LongName="Float_constants_generator_1.value_4" Type="2">0</Property>
+    <Property LongName="Float_constants_generator_1.value_5" Type="2">0</Property>
+    <Property LongName="Float_constants_generator_1.value_6" Type="2">0</Property>
+    <Property LongName="Float_constants_generator_1.value_7" Type="2">0</Property>
+    <Property LongName="Float_constants_generator_1.value_8" Type="2">0</Property>
+    <Property LongName="Float_constants_generator_1.threaded" Type="0">true</Property>
+    <Property LongName="Float_constants_generator_1.priority" Type="1">128</Property>
+    <Property LongName="Float_constants_generator_1.autoStart" Type="0">true</Property>
+  </Component>
+  <Component InstanceName="Float_constants_generator_2" Model="Float_constants_generator" Version="2.2" x="528" y="272" z="0">
+    <Output LongName="Float_constants_generator_2.output" Name="output">
+      <Property LongName="Float_constants_generator_2.output.subsampling" Type="1">1</Property>
+      <Property LongName="Float_constants_generator_2.output.fifosize" Type="1">16</Property>
+      <Property LongName="Float_constants_generator_2.output.periodic" Type="0">false</Property>
+    </Output>
+    <Property LongName="Float_constants_generator_2.outputMode" Type="4"><![CDATA[3|1|Once at start|Periodic|Use trigger input]]></Property>
+    <Property LongName="Float_constants_generator_2.outputWhenValueChanges" Type="0">true</Property>
+    <Property LongName="Float_constants_generator_2.vectorSize" Type="1">3</Property>
+    <Property LongName="Float_constants_generator_2.outputPeriod" Type="1">1000000</Property>
+    <Property LongName="Float_constants_generator_2.value_1" Type="2">1</Property>
+    <Property LongName="Float_constants_generator_2.value_2" Type="2">2</Property>
+    <Property LongName="Float_constants_generator_2.value_3" Type="2">0.5</Property>
+    <Property LongName="Float_constants_generator_2.threaded" Type="0">true</Property>
+    <Property LongName="Float_constants_generator_2.priority" Type="1">128</Property>
+    <Property LongName="Float_constants_generator_2.autoStart" Type="0">true</Property>
+  </Component>
+  <Component InstanceName="PythonBridge_robotSimulator" Model="PythonBridge" Version="3.2.0" x="928" y="32" z="0">
+    <Input LongName="PythonBridge_robotSimulator.inputOdometryWanted" Name="inputOdometryWanted">
+      <Property LongName="PythonBridge_robotSimulator.inputOdometryWanted.readerType" Type="1">4</Property>
+      <Property LongName="PythonBridge_robotSimulator.inputOdometryWanted.subsampling" Type="1">1</Property>
+    </Input>
+    <Output LongName="PythonBridge_robotSimulator.ouput_Mapid_Position" Name="ouput_Mapid_Position">
+      <Property LongName="PythonBridge_robotSimulator.ouput_Mapid_Position.subsampling" Type="1">1</Property>
+      <Property LongName="PythonBridge_robotSimulator.ouput_Mapid_Position.fifosize" Type="1">16</Property>
+      <Property LongName="PythonBridge_robotSimulator.ouput_Mapid_Position.periodic" Type="0">false</Property>
+    </Output>
+    <Property LongName="PythonBridge_robotSimulator.guard_begin" Type="0" SubType="128">true</Property>
+    <Property LongName="PythonBridge_robotSimulator.internalInputs" Type="3" SubType="128"><![CDATA[inputOdometryWanted;1==]]></Property>
+    <Property LongName="PythonBridge_robotSimulator.internalOutputs" Type="3" SubType="128"><![CDATA[ouput_Mapid_Position;0==;0]]></Property>
+    <Property LongName="PythonBridge_robotSimulator.internalProperties" Type="3" SubType="128"><![CDATA[defaultLatitude||11||49.3832#defaultLongitude||11||1.07276#defaultYawDeg||11||0]]></Property>
+    <ReadOnlyProperty LongName="PythonBridge_robotSimulator.advance_begin_configuration" Type="3" SubType="256"><![CDATA[Advanced Configuration]]></ReadOnlyProperty>
+    <Property LongName="PythonBridge_robotSimulator.deathBehavior" Type="4"><![CDATA[3|1|WAIT FOR PROCESS INDEFINITELY|KILL PROCESS AFTER TIMEOUT (5sec)|START ANOTHER PROCESS]]></Property>
+    <Property LongName="PythonBridge_robotSimulator.logDebug" Type="0">false</Property>
+    <Property LongName="PythonBridge_robotSimulator.showTracebackInConsole" Type="0">true</Property>
+    <Property LongName="PythonBridge_robotSimulator.autoReloadSubModules" Type="0">true</Property>
+    <Property LongName="PythonBridge_robotSimulator.memorySize" Type="1">10000000</Property>
+    <ReadOnlyProperty LongName="PythonBridge_robotSimulator.pythonPID" Type="1">18936</ReadOnlyProperty>
+    <Property LongName="PythonBridge_robotSimulator.additionalEnvironmentVariables" Type="3"><![CDATA[]]></Property>
+    <ReadOnlyProperty LongName="PythonBridge_robotSimulator.advance_end_configuration" Type="0" SubType="512">false</ReadOnlyProperty>
+    <ReadOnlyProperty LongName="PythonBridge_robotSimulator.basic_begin_configuration" Type="3" SubType="256"><![CDATA[Basic Configuration]]></ReadOnlyProperty>
+    <Property LongName="PythonBridge_robotSimulator.pythonInstallationFolder" Type="3" SubType="32"><![CDATA[]]></Property>
+    <Property LongName="PythonBridge_robotSimulator.pythonLogDirectory" Type="3" SubType="32"><![CDATA[C:/Users/admin/RTMaps-4.0/python_log/]]></Property>
+    <Property LongName="PythonBridge_robotSimulator.className" Type="3"><![CDATA[rtmaps_python]]></Property>
+    <Property LongName="PythonBridge_robotSimulator.pythonFilename" Type="3" SubType="80"><![CDATA[D:/data/apresBackup/COLIBRY/opcuaRT/opcuaRt/rtmaps/robotSimulator.py]]><Relative><![CDATA[%RTMAPS_DIAGRAMDIR%/robotSimulator.py]]></Relative></Property>
+    <Property LongName="PythonBridge_robotSimulator.readingPolicy" Type="4"><![CDATA[5|2|Synchro|Reactive|Sampling|Triggered by First Input|Periodic Resampling While Post-Processing]]></Property>
+    <Property LongName="PythonBridge_robotSimulator.samplingPeriod" Type="1" SubType="1">100000</Property>
+    <ReadOnlyProperty LongName="PythonBridge_robotSimulator.prop_end_subsection_default_opened" Type="0" SubType="512">true</ReadOnlyProperty>
+    <ReadOnlyProperty LongName="PythonBridge_robotSimulator.userSubsection" Type="3" SubType="256"><![CDATA[User Properties]]></ReadOnlyProperty>
+    <Property LongName="PythonBridge_robotSimulator.defaultLatitude" Type="2">49.383224</Property>
+    <Property LongName="PythonBridge_robotSimulator.defaultLongitude" Type="2">1.072758</Property>
+    <Property LongName="PythonBridge_robotSimulator.defaultYawDeg" Type="2">0</Property>
+    <ReadOnlyProperty LongName="PythonBridge_robotSimulator.userSubsectionEnd" Type="0" SubType="512">true</ReadOnlyProperty>
+    <Property LongName="PythonBridge_robotSimulator.threaded" Type="0">true</Property>
+    <Property LongName="PythonBridge_robotSimulator.priority" Type="1">128</Property>
+    <Property LongName="PythonBridge_robotSimulator.autoStart" Type="0">true</Property>
+  </Component>
+  <Component InstanceName="PythonBridge_sendPositionRobot1" Model="PythonBridge" Version="3.2.0" x="896" y="168" z="0">
+    <Input LongName="PythonBridge_sendPositionRobot1.inputPosition_MapID_latLongAltRPYinrad" Name="inputPosition_MapID_latLongAltRPYinrad">
+      <Property LongName="PythonBridge_sendPositionRobot1.inputPosition_MapID_latLongAltRPYinrad.readerType" Type="1">4</Property>
+      <Property LongName="PythonBridge_sendPositionRobot1.inputPosition_MapID_latLongAltRPYinrad.subsampling" Type="1">1</Property>
+    </Input>
+    <Input LongName="PythonBridge_sendPositionRobot1.inputMove_Vlong_Vrot" Name="inputMove_Vlong_Vrot">
+      <Property LongName="PythonBridge_sendPositionRobot1.inputMove_Vlong_Vrot.readerType" Type="1">4</Property>
+      <Property LongName="PythonBridge_sendPositionRobot1.inputMove_Vlong_Vrot.subsampling" Type="1">1</Property>
+    </Input>
+    <Output LongName="PythonBridge_sendPositionRobot1.enabled_vLongiwantedMBysedVrotWantedRadBySec" Name="enabled_vLongiwantedMBysedVrotWantedRadBySec">
+      <Property LongName="PythonBridge_sendPositionRobot1.enabled_vLongiwantedMBysedVrotWantedRadBySec.subsampling" Type="1">1</Property>
+      <Property LongName="PythonBridge_sendPositionRobot1.enabled_vLongiwantedMBysedVrotWantedRadBySec.fifosize" Type="1">16</Property>
+      <Property LongName="PythonBridge_sendPositionRobot1.enabled_vLongiwantedMBysedVrotWantedRadBySec.periodic" Type="0">false</Property>
+    </Output>
+    <Output LongName="PythonBridge_sendPositionRobot1.ouput_Mapid_Position" Name="ouput_Mapid_Position">
+      <Property LongName="PythonBridge_sendPositionRobot1.ouput_Mapid_Position.subsampling" Type="1">1</Property>
+      <Property LongName="PythonBridge_sendPositionRobot1.ouput_Mapid_Position.fifosize" Type="1">16</Property>
+      <Property LongName="PythonBridge_sendPositionRobot1.ouput_Mapid_Position.periodic" Type="0">false</Property>
+    </Output>
+    <Property LongName="PythonBridge_sendPositionRobot1.guard_begin" Type="0" SubType="128">true</Property>
+    <Property LongName="PythonBridge_sendPositionRobot1.internalInputs" Type="3" SubType="128"><![CDATA[inputPosition_MapID_latLongAltRPYinrad;1==#inputMove_Vlong_Vrot;1==]]></Property>
+    <Property LongName="PythonBridge_sendPositionRobot1.internalOutputs" Type="3" SubType="128"><![CDATA[enabled_vLongiwantedMBysedVrotWantedRadBySec;0==;0#ouput_Mapid_Position;0==;0]]></Property>
+    <Property LongName="PythonBridge_sendPositionRobot1.internalProperties" Type="3" SubType="128"><![CDATA[robotName||13||4|0|Jean-Michel(Segway)|Jacqueline(AMI)|Jean-Jacques(ESPACE)|Fab1(MIR)||24#communicationPeriodInS||11||0.1]]></Property>
+    <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot1.advance_begin_configuration" Type="3" SubType="256"><![CDATA[Advanced Configuration]]></ReadOnlyProperty>
+    <Property LongName="PythonBridge_sendPositionRobot1.deathBehavior" Type="4"><![CDATA[3|1|WAIT FOR PROCESS INDEFINITELY|KILL PROCESS AFTER TIMEOUT (5sec)|START ANOTHER PROCESS]]></Property>
+    <Property LongName="PythonBridge_sendPositionRobot1.logDebug" Type="0">false</Property>
+    <Property LongName="PythonBridge_sendPositionRobot1.showTracebackInConsole" Type="0">true</Property>
+    <Property LongName="PythonBridge_sendPositionRobot1.autoReloadSubModules" Type="0">true</Property>
+    <Property LongName="PythonBridge_sendPositionRobot1.memorySize" Type="1">10000000</Property>
+    <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot1.pythonPID" Type="1">20376</ReadOnlyProperty>
+    <Property LongName="PythonBridge_sendPositionRobot1.additionalEnvironmentVariables" Type="3"><![CDATA[]]></Property>
+    <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot1.advance_end_configuration" Type="0" SubType="512">false</ReadOnlyProperty>
+    <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot1.basic_begin_configuration" Type="3" SubType="256"><![CDATA[Basic Configuration]]></ReadOnlyProperty>
+    <Property LongName="PythonBridge_sendPositionRobot1.pythonInstallationFolder" Type="3" SubType="32"><![CDATA[]]></Property>
+    <Property LongName="PythonBridge_sendPositionRobot1.pythonLogDirectory" Type="3" SubType="32"><![CDATA[C:/Users/admin/RTMaps-4.0/python_log/]]></Property>
+    <Property LongName="PythonBridge_sendPositionRobot1.className" Type="3"><![CDATA[rtmaps_python]]></Property>
+    <Property LongName="PythonBridge_sendPositionRobot1.pythonFilename" Type="3" SubType="80"><![CDATA[D:/data/apresBackup/COLIBRY/opcuaRT/opcuaRt/rtmaps/robotSender.py]]><Relative><![CDATA[%RTMAPS_DIAGRAMDIR%/robotSender.py]]></Relative></Property>
+    <Property LongName="PythonBridge_sendPositionRobot1.readingPolicy" Type="4"><![CDATA[5|2|Synchro|Reactive|Sampling|Triggered by First Input|Periodic Resampling While Post-Processing]]></Property>
+    <Property LongName="PythonBridge_sendPositionRobot1.samplingPeriod" Type="1" SubType="1">200000</Property>
+    <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot1.prop_end_subsection_default_opened" Type="0" SubType="512">true</ReadOnlyProperty>
+    <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot1.userSubsection" Type="3" SubType="256"><![CDATA[User Properties]]></ReadOnlyProperty>
+    <Property LongName="PythonBridge_sendPositionRobot1.robotName" Type="4"><![CDATA[4|0|Jean-Michel(Segway)|Jacqueline(AMI)|Jean-Jacques(ESPACE)|Fab1(MIR)]]></Property>
+    <Property LongName="PythonBridge_sendPositionRobot1.communicationPeriodInS" Type="2">0.1</Property>
+    <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot1.userSubsectionEnd" Type="0" SubType="512">true</ReadOnlyProperty>
+    <Property LongName="PythonBridge_sendPositionRobot1.threaded" Type="0">true</Property>
+    <Property LongName="PythonBridge_sendPositionRobot1.priority" Type="1">128</Property>
+    <Property LongName="PythonBridge_sendPositionRobot1.autoStart" Type="0">true</Property>
+  </Component>
+  <Connection Output="PythonBridge_sendPositionRobot1.enabled_vLongiwantedMBysedVrotWantedRadBySec" Input="DataViewer_1.input_0"/>
+  <Connection Output="PythonBridge_sendPositionRobot1.ouput_Mapid_Position" Input="DataViewer_1.input_1"/>
+  <Connection Output="PythonBridge_robotSimulator.ouput_Mapid_Position" Input="DataViewer_1.input_2"/>
+  <Connection Output="PythonBridge_sendPositionRobot1.enabled_vLongiwantedMBysedVrotWantedRadBySec" Input="PythonBridge_robotSimulator.inputOdometryWanted"/>
+  <Connection Output="PythonBridge_robotSimulator.ouput_Mapid_Position" Input="PythonBridge_sendPositionRobot1.inputPosition_MapID_latLongAltRPYinrad"/>
+  <Connection Output="Float_constants_generator_2.output" Input="PythonBridge_sendPositionRobot1.inputMove_Vlong_Vrot"/>
+  <RTBoardView ID="JavaStudio1.0">
+    <ComponentBox InstanceName="gpsaccuracySImulator_1" reversed="false">
+      <Description/>
+    </ComponentBox>
+    <ComponentBox InstanceName="JPEGDecompress_2_1" reversed="false">
+      <Description/>
+    </ComponentBox>
+    <ComponentBox InstanceName="PythonBridge_sendPositionRobot1_1" reversed="false">
+      <Description/>
+    </ComponentBox>
+    <ComponentBox InstanceName="SampleRate_CAM1_1" reversed="false">
+      <Description/>
+    </ComponentBox>
+    <ComponentBox InstanceName="SampleRate_CAM2_1" reversed="false">
+      <Description/>
+    </ComponentBox>
+    <ComponentBox InstanceName="SampleRate_Cloud_1" reversed="false">
+      <Description/>
+    </ComponentBox>
+    <ComponentBox InstanceName="SampleRate_Gen_1" reversed="false">
+      <Description/>
+    </ComponentBox>
+    <ComponentBox InstanceName="SampleRate_GPS_1" reversed="false">
+      <Description/>
+    </ComponentBox>
+    <ComponentBox InstanceName="SampleRate_Out_1_1" reversed="false">
+      <Description/>
+    </ComponentBox>
+    <ComponentBox InstanceName="stopDiagram_1" reversed="false">
+      <Description/>
+    </ComponentBox>
+    <ConnectionShape InstanceName="Calc_1speedmbysec.speed" color="0"/>
+    <ConnectionShape InstanceName="DataViewer_1.input_0" color="0"/>
+    <ConnectionShape InstanceName="DataViewer_1.input_1" color="0"/>
+    <ConnectionShape InstanceName="DataViewer_1.input_2" color="0"/>
+    <ConnectionShape InstanceName="DataViewer_4.input_0" color="0"/>
+    <ConnectionShape InstanceName="DataViewer_4.input_1" color="0"/>
+    <ConnectionShape InstanceName="DataViewer_4.input_2" color="0"/>
+    <ConnectionShape InstanceName="DataViewer_5.input_0" color="0"/>
+    <ConnectionShape InstanceName="DataViewer_5.input_1" color="0"/>
+    <ConnectionShape InstanceName="DataViewer_6.input_0" color="0"/>
+    <ConnectionShape InstanceName="DataViewer_6.input_1" color="0"/>
+    <ConnectionShape InstanceName="decoderjpeg_CAM1.iStream8" color="0"/>
+    <ConnectionShape InstanceName="decoderjpeg_CAM1_1.iStream8" color="0"/>
+    <ConnectionShape InstanceName="imageMuxer_1.iImagesJpeg1" color="0"/>
+    <ConnectionShape InstanceName="imageMuxer_1.iImagesJpeg2" color="0"/>
+    <ConnectionShape InstanceName="imageSender_CAM1.iImagesJpeg" color="0"/>
+    <ConnectionShape InstanceName="imageSender_CAM1_1.iImagesJpeg" color="0"/>
+    <ConnectionShape InstanceName="ImageViewer_2.input" color="0"/>
+    <ConnectionShape InstanceName="ImageViewer_3.input" color="0"/>
+    <ConnectionShape InstanceName="JPEGCompress_1.input" color="0"/>
+    <ConnectionShape InstanceName="JPEGDecompress_1.input" color="0"/>
+    <ConnectionShape InstanceName="JPEGDecompress_2.input" color="0"/>
+    <ConnectionShape InstanceName="JPEGDecompress_CAM1.input" color="0"/>
+    <ConnectionShape InstanceName="JPEGDecompress_CAM2.input" color="0"/>
+    <ConnectionShape InstanceName="multiplexer_GPS_Accuracy.input_1" color="0"/>
+    <ConnectionShape InstanceName="multiplexer_GPS_Accuracy.input_2" color="0"/>
+    <ConnectionShape InstanceName="OpenCV_Resize_1.imageIn" color="0"/>
+    <ConnectionShape InstanceName="OpenCV_Resize_1_1.imageIn" color="0"/>
+    <ConnectionShape InstanceName="OpenCV_RotateAndFlip_1.imageIn" color="0"/>
+    <ConnectionShape InstanceName="PythonBridge_1.in" color="0"/>
+    <ConnectionShape InstanceName="PythonBridge_baterymeasurementdecoder.in" color="0"/>
+    <ConnectionShape InstanceName="PythonBridge_ExifDecoder.in" color="0"/>
+    <ConnectionShape InstanceName="PythonBridge_ExifEncoder.imageCamera1" color="0"/>
+    <ConnectionShape InstanceName="PythonBridge_ExifEncoder.imageCamera2" color="0"/>
+    <ConnectionShape InstanceName="PythonBridge_ExifEncoder_1.imageCamera2" color="0"/>
+    <ConnectionShape InstanceName="PythonBridge_robotSimulator.inputOdometryWanted" color="0"/>
+    <ConnectionShape InstanceName="PythonBridge_sendPositionRobot1.inputMove_Vlong_Vrot" color="0"/>
+    <ConnectionShape InstanceName="PythonBridge_sendPositionRobot1.inputPosition_MapID_latLongAltRPYinrad" color="0"/>
+    <ConnectionShape InstanceName="QMLViewer_1_1_1_1.batteryValue" color="0"/>
+    <ConnectionShape InstanceName="QMLViewer_1_1_1_1.latlongAltYaw" color="0"/>
+    <ConnectionShape InstanceName="QMLViewer_1_1_1_1.leds" color="0"/>
+    <ConnectionShape InstanceName="QMLViewer_1_1_1_1.vehiculeSpeed" color="0"/>
+    <ConnectionShape InstanceName="QMLViewer_1_1_1_1.videoCam1" color="0"/>
+    <ConnectionShape InstanceName="QMLViewer_1_1_1_1.videoCam1Main" color="0"/>
+    <ConnectionShape InstanceName="QMLViewer_1_1_1_1.videoCam2" color="0"/>
+    <ConnectionShape InstanceName="QMLViewer_1_1_1_1.videoCam2Main" color="0"/>
+    <ConnectionShape InstanceName="RecFile_1.decoderjpeg_CAM1.outputImageJPEG.input" color="0"/>
+    <ConnectionShape InstanceName="SampleRate_BatteryMeasurement.input" color="0"/>
+    <ConnectionShape InstanceName="SampleRate_CAM1.input" color="0"/>
+    <ConnectionShape InstanceName="SampleRate_CAM2.input" color="0"/>
+    <ConnectionShape InstanceName="SampleRate_Cloud.input" color="0"/>
+    <ConnectionShape InstanceName="SampleRate_Gen.input" color="0"/>
+    <ConnectionShape InstanceName="SampleRate_GPS.input" color="0"/>
+    <ConnectionShape InstanceName="SampleRate_Out.input" color="0"/>
+    <ConnectionShape InstanceName="shutdownComputer.input" color="0"/>
+    <ConnectionShape InstanceName="stopDiagram.input" color="0"/>
+    <ConnectionShape InstanceName="Stream2Text_1.inputStream8" color="0"/>
+    <ConnectionShape InstanceName="switcher_CAM1.index" color="0"/>
+    <ConnectionShape InstanceName="switcher_CAM1.input_1" color="0"/>
+    <ConnectionShape InstanceName="switcher_CAM1.input_2" color="0"/>
+    <ConnectionShape InstanceName="switcher_CAM1.input_3" color="0"/>
+    <ConnectionShape InstanceName="switcher_CAM2.index" color="0"/>
+    <ConnectionShape InstanceName="switcher_CAM2.input_1" color="0"/>
+    <ConnectionShape InstanceName="switcher_CAM2.input_2" color="0"/>
+    <ConnectionShape InstanceName="switcher_CAM2.input_3" color="0"/>
+    <ConnectionShape InstanceName="SystemCall_1Poweroff.trigger" color="0"/>
+    <ConnectionShape InstanceName="TCPClient_Server.input" color="0"/>
+    <ConnectionShape InstanceName="TCPClient_Server_1.input" color="0"/>
+    <ConnectionShape InstanceName="TextViewer_2.input" color="0"/>
+    <ConnectionShape InstanceName="Vectorizer_LEDS.input1" color="0"/>
+    <ConnectionShape InstanceName="Vectorizer_LEDS.input2" color="0"/>
+    <ConnectionShape InstanceName="Vectorizer_LEDS.input3" color="0"/>
+    <ConnectionShape InstanceName="Vectorizer_LEDS.input4" color="0"/>
+    <ConnectionShape InstanceName="Vectorizer_LEDS.input5" color="0"/>
+    <ConnectionShape InstanceName="Vectorizer_LEDS.input6" color="0"/>
+    <ConnectionShape InstanceName="vectors_manipulator_1LatlongAltYaw.input" color="0"/>
+  </RTBoardView>
+</RTMapsDiagram>

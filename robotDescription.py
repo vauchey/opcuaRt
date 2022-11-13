@@ -61,6 +61,14 @@ def getCurrentRobotName(name):
 		if robots.robotName == name:
 			return robots
 	return None
+	
+def getCurrentRobotNameIndex(name):
+	i=0
+	for robots in ROBOT_LIST:
+		if robots.robotName == name:
+			return i
+		i+=1
+	return -1
 
 def listNames():
 	robotNameList=[]

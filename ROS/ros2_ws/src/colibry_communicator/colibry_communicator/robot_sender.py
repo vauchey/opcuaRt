@@ -60,9 +60,6 @@ from robotDescription import *
 from ClientGesture import *
 
 
-class ClientGestureRtMaps(ClientGesture):
-	def __init__(self,url,namespace, certificate, private_key,ENCRYPT,currentRobotDescription):
-		
 def getCurrentFileName():
     """function to get current filename without slash or extension"""
     return __file__.split("/")[-1].split(".")[0]

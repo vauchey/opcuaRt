@@ -107,7 +107,8 @@ def do_writing(func):
 def automatically_call_fromDescription(func):
 	"""decorateur to automatically call fonction from robotDescritpion and then ask the loop to update the properties needed"""
 	def wrapper3(*args, **kwargs):
-		if args[0].sock is not None:
+		#if args[0].sock is not None:
+		if args[0].runInSubProcess==True:
 			print ("call un runInSubProcess with sock")
 
 			commandtoExecute="clientGesture."+str(func.__name__)+"("+ ",".join( str(args[i]) for i in range(1,len(args)))  +")"
@@ -164,6 +165,7 @@ class ClientGesture():
 		self.robotHasChanged=False
 		self.neewReadDone=False
 		self.runInMultriProcess=False
+		self.runInSubProcess=False
 		
 		self.sock = None
 		self.subp=None
@@ -175,6 +177,7 @@ class ClientGesture():
 			self.subp=None
 			
 	def createSubprocessAndRunIt(self,periodInS,CURRENT_ROBOT_NAME,UDP_PORT,disableSubProcess):
+		self.runInSubProcess=True #force to send bysocket
 		UDP_IP = "127.0.0.1"
 		command=""
 	
@@ -208,7 +211,9 @@ class ClientGesture():
 		
 		
 		command+="print (\"creaThreadAndRunIt call\")" +"\n"
-		command+="clientGesture.creaThreadAndRunIt(0.1)" +"\n"
+		#command+="clientGesture.creaThreadAndRunIt(0.1)" +"\n"
+		command+="clientGesture.creaThreadAndRunIt("+str(periodInS)+")" +"\n"
+		
 		command+="print (\"creaThreadAndRunIt call done\")" +"\n"
 		
 		command+="while not clientGesture.getIsReady():" +"\n"
@@ -218,10 +223,20 @@ class ClientGesture():
 
 		command+="\tbytesAddressPair = sock.recvfrom(1024)" +"\n"
 		command+="\tmessage = bytesAddressPair[0]" +"\n"
+		
+		
 		command+="\ttry:" +"\n"
+		command+="\t\tprint(\"!!!!!!!!!!!!!!!!!!!!!execute:\"+str(message.decode()))" +"\n"
 		command+="\t\treturnMsg=eval(message.decode())" +"\n"
 		command+="\texcept:" +"\n"
 		command+="\t\treturnMsg=None" +"\n"
+		
+		
+		
+		#command+="\tprint(\"!!!!!!!!!!!!!!!!!!!!!execute:\"+str(message.decode()))" +"\n"
+		#command+="\treturnMsg=eval(message.decode())" +"\n"
+		
+		
 		
 		command+="\taddress = bytesAddressPair[1]" +"\n"
 		#command+="\tsock.sendto(str.encode(\"salut3\"), address)" +"\n"
@@ -234,9 +249,9 @@ class ClientGesture():
 	
 		
 		if not disableSubProcess:
-			self.subp = subprocess.Popen(["C:\\ProgramData\\Anaconda3\\python.exe", "-c", command], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)#
+			#self.subp = subprocess.Popen(["C:\\ProgramData\\Anaconda3\\python.exe", "-c", command], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)#
 			
-			#self.subp = subprocess.Popen(["C:\\ProgramData\\Anaconda3\\python.exe", "-c", command],shell=False)
+			self.subp = subprocess.Popen(["C:\\ProgramData\\Anaconda3\\python.exe", "-c", command],shell=False)
 		#print ("read:"+str(subp.stdout.read(10)))
 		
 	def creaThreadAndRunIt(self,periodInS):
@@ -314,19 +329,7 @@ class ClientGesture():
 			eval(readValue)#execution de la fonction
 		
 			
-		#object.pipOut.send("salut")
-		#while 1:
-			
-		
-		"""object.listOfValueToSend=[]
-		object.lock = threading.Lock()
-	
-		print("runMultiProcessTask called")
-		print("object"+str(object))
-		print("period"+str(period))
-		
-		object.runProcessTask(period)
-		"""
+
 		
 		
 	def runProcessTask(self,periodInS):
@@ -335,7 +338,9 @@ class ClientGesture():
 		#	print ("runProcessTask working")
 		#	#time.sleep(0.5)
 		print (" runProcessTask call")
-		asyncio.run(self.processTask(periodInS))
+		while(True):
+			asyncio.run(self.processTask(periodInS))
+			time.sleep(0.5)#si le serveur lache je reessaye
 		
 		"""
 		#loop = asyncio.get_event_loop()
@@ -357,8 +362,10 @@ class ClientGesture():
 	async def processTask(self,periodInS):
 		""" thread asyncio permetant de communiquer avec le server"""
 		print ("calllllllllllllllll processTask with period"+str(periodInS))
-		#clientGesture = ClientGesture(self.url,self.namespace,self.certificate,self.private_key,self.ENCRYPT,self.currentRobotDescription)
-		#await clientGesture.connect()
+		self.lock.acquire()
+		self.robotGet=None
+		self.lock.release()
+		
 		await self.connect()# force une premiere connection
 		
 		await self.getCurrentRobot()#force de recuperer le robot courrant
@@ -409,7 +416,10 @@ class ClientGesture():
 			await self.mysleep(periodInS)
 			#await asyncio.sleep(periodInS)
 			
-			
+		self.lock.acquire()
+		self.robotGet=None
+		self.lock.release()
+		
 		#await clientGesture.client.disconnect() #ne marche pas vraiment
 
 	async def mysleep(self,periodInS):
