@@ -100,6 +100,7 @@ class RobotSimulator:
             myPrint("deltaDist  ="+str(deltaDist ))
             myPrint("deltaAngle  ="+str(deltaAngle ))
             
+            
 
             utmx=utmx + deltaDist*math.cos( yaw+deltaAngle/2.0 ) 
             utmy=utmy + deltaDist*math.sin( yaw+deltaAngle/2.0 ) 

@@ -1,3 +1,6 @@
+###in stall git client
+https://github.com/gitextensions/gitextensions/wiki/How-To:-run-Git-Extensions-on-Linux
+
 ##################### install ros2 rolling (compatible with webot)
 https://docs.ros.org/en/rolling/Installation/Alternatives/Ubuntu-Development-Setup.html
 

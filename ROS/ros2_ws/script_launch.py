@@ -48,7 +48,7 @@ def generate_launch_description():
                 ("/robot_simulator_poseInUtmTiles", "/robot_sender_poseInUtmTiles")
             ]
             )
-    ld.add_action(node2)
+    #ld.add_action(node2)
     return ld
 
     """return launch.LaunchDescription([

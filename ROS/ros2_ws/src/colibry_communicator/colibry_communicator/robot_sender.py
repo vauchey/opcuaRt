@@ -32,7 +32,7 @@ import utm
 
 
 
-DEBUG=False
+DEBUG=True
 #rostopic echo rosout
 
 
@@ -144,8 +144,9 @@ class RobotSender:
         currentRobotDescription = getCurrentRobotName(self.robotName)
 
 
+        #self.initConnection()
         self.clientGesture = ClientGesture(self.url,self.namespace,self.certificate,self.private_key,self.ENCRYPT,currentRobotDescription)
-        asyncio.run(self.clientGesture.connect())#do a connection
+        #asyncio.run(self.clientGesture.connect())#do a connection
 
         
         #initiallisation des topics out
@@ -154,7 +155,54 @@ class RobotSender:
         self.pubVelocity = self.node.create_publisher(Twist, getCurrentFileName()+"_"+'cmd_vel'  , 10)
         pass
 
-    def process(self):
+    """
+    async def initConnection(self):
+            print ("call initConnection")
+            #self.clientGesture = ClientGesture(self.url,self.namespace,self.certificate,self.private_key,self.ENCRYPT,self.currentRobotDescription)
+            #asyncio.run(self.clientGesture.connect())#do a connection
+            self.clientGesture.connect()
+    """
+        
+    async def process(self):
+
+        #envoit d'informations au server
+        if  self.newData == True:
+            myPrint ("!will send new Dataaaaaaaaaaaaaaa")
+            #asyncio.run(self.clientGesture.setPosition(self.timeStamp,-1,self.data))#run a processing
+            print ("self.data send:"+str(self.data))
+            await self.clientGesture.setPosition(self.timeStamp,-1,self.data)
+            myPrint ("!send new Dataaaaaaaaaaaaaaa")
+            self.newData=False
+
+        #recuperation d'infos du robot
+        await self.clientGesture.readRobot()
+        myPrint ("robotGet.ts_map_id_posexyzrxryrz="+str(self.clientGesture.currentRobotDescription.ts_map_id_posexyzrxryrz))
+
+
+        #sortie de la commande venant du server
+        wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec= self.clientGesture.currentRobotDescription.wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec
+        myPrint ("wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec="+str(wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec))
+
+        twist = Twist()
+        if wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec[1] :
+            twist.linear.x = wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec[2] #already meter by sec
+            twist.linear.y = 0.0
+            twist.linear.z = 0.0
+
+            twist.angular.x = 0.0
+            twist.angular.y = 0.0
+            twist.angular.z = wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec[3]#rad by sec
+        else:
+            twist.linear.x  =0.0
+            twist.linear.y  =0.0
+            twist.linear.z  =0.0
+            twist.angular.x =0.0
+            twist.angular.y =0.0
+            twist.angular.z =0.0
+
+        #self.pubVelocity.publish(twist)
+
+    def processOld(self):
         #myPrint ("process call")
         #send a new position only if neede
         #asyncio.run(self.clientGesture.setPosition(timeStamp,-1,data))#run a processing
@@ -260,6 +308,9 @@ class RobotSender:
         myPrint ("self.roll :::"+str(self.roll))
         myPrint ("self.pitch :::"+str(self.pitch))
         myPrint ("self.yaw :::"+str(self.yaw))
+
+        self.data=[49.1,2.0, 3.0,1.5, 2.5 ,2.8]
+        self.newData=True
         """
 
 
@@ -318,9 +369,43 @@ rate.sleep()
 """
 
 
+async def main2(args=None):
+    rclpy.init(args=args)
+    node = rclpy.create_node("robot_sender")
+    robotSender = RobotSender(node)
 
+    await robotSender.clientGesture.connect()
+    #robotSender.initConnection()#connection async
+    i=0
+    #async with robotSender.clientGesture.client:
+    if True:
+        while True:
+            print ("pricess Thread")
+            #robotSender.process()
+            #asyncio.run(robotSender.clientGesture.readRobot())
+
+            #simule un envoi
+            robotSender.timeStamp=(Clock().now().nanoseconds/1000)
+            robotSender.data=[49.1,2.0, 3.0,1.5+(i*0.1), 2.5 ,2.8]
+            i+=0.01
+            robotSender.newData=True
+
+        
+            await robotSender.process()
+            await asyncio.sleep(0.05)
+            """
+            robotSender.clientGesture.readRobot()
+            myPrint ("robotGet.ts_map_id_posexyzrxryrz="+str(robotSender.clientGesture.currentRobotDescription.ts_map_id_posexyzrxryrz))
+            """
+            #async with robotSender.clientGesture.client:
+            #robotSender.clientGesture.currentRobotDescription= await robotSender.clientGesture.myRobotClient.readRobot()
+            #myPrint ("robotGet.ts_map_id_posexyzrxryrz="+str(robotSender.clientGesture.currentRobotDescription.ts_map_id_posexyzrxryrz))
 
 def main(args=None):
+    asyncio.run(main2())
+    return
+
+    #raise 1
     #rclpy.init_node('my_broadcaster')
     rclpy.init(args=args)
     node = rclpy.create_node("robot_sender")
@@ -335,6 +420,8 @@ def main(args=None):
     #rclpy.Subscriber(getCurrentFileName()+"_"+"imu", Imu, robotSender.callBackImu)
     #rclpy.Subscriber(getCurrentFileName()+"_"+"poseInUtmTiles", Twist, robotSender.callBackTwist)
 
+    
+    
     node.create_subscription(NavSatFix, getCurrentFileName()+"_"+"navSatFix",robotSender.callBackNavSatFix,10)
     node.create_subscription(Imu, getCurrentFileName()+"_"+"imu",robotSender.callBackImu,10)
     node.create_subscription(Twist, getCurrentFileName()+"_"+"poseInUtmTiles",robotSender.callBackTwist,10)
@@ -371,3 +458,5 @@ def main(args=None):
 
 if __name__ == '__main__':
     main()
+    
+    #main2()
