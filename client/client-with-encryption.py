@@ -100,7 +100,7 @@ https://docs.python.org/3/library/multiprocessing.html
 """
 
 def task5():
-
+	"""version sub process OK"""
 	UDP_IP = "127.0.0.1"
 	UDP_PORT=5000 #5006
 	

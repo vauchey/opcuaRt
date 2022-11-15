@@ -6,7 +6,7 @@
         {
             "taskName": "source ros2",
             "type": "shell",
-            "command": "source ~/ros2_humble/install/local_setup.bash",
+            "command": "source /opt/ros/rolling/setup.bash",
             "problemMatcher": [
                 "$gcc"
             ]
@@ -16,55 +16,24 @@
         {
             "taskName": "colcon build",
             "type": "shell",
-            "command": "source ~/ros2_humble/install/local_setup.bash && colcon build --symlink-install",
-            "problemMatcher": [
-                "$gcc"
-            ]
-        },
-
-        {
-            "taskName": "run listener",
-            "type": "shell",
-            "command": "source ~/ros2_humble/install/local_setup.bash && ros2 run demo_nodes_py listener",
-            
-            "problemMatcher": [
-                "$gcc"
-            ]
-        },
-
-        {
-            "taskName": "ros2 run component",
-            "type": "shell",
-            "command": "source ~/ros2_rolling/install/local_setup.bash && source ./install/setup.bash && ros2 run colibry_communicator robot_sender",
-            
-            "problemMatcher": [
-                "$gcc"
-            ]
-        },
-
-        {
-            "taskName": "ros2 launch",
-            "type": "shell",
-            "command": "source ~/ros2_rolling/install/local_setup.bash && source ./install/setup.bash && ros2 launch script_launch.py",
-            
-            "problemMatcher": [
-                "$gcc"
-            ]
-        },
-
-
-
-        {
-            "taskName": "run ros 2 lauch",
-            "type": "shell",
-            "command": "source ~/ros2_humble/install/local_setup.bash && source ./install/setup.bash && ros2 launch script_launch.py",
-            
+            "command": "source /opt/ros/rolling/setup.bash && colcon build --symlink-install",
             "problemMatcher": [
                 "$gcc"
             ]
         },
 
        
-      
+
+        {
+            "taskName": "ros2 launch",
+            "type": "shell",
+            "command": "source /opt/ros/rolling/setup.bash && source ./install/setup.bash && ros2 launch script_launch.py",
+            
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+
+
 
 }
