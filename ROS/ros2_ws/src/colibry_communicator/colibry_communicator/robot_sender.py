@@ -210,93 +210,7 @@ class RobotSender:
 
         pass
 
-    """
-    async def initConnection(self):
-            print ("call initConnection")
-            #self.clientGesture = ClientGesture(self.url,self.namespace,self.certificate,self.private_key,self.ENCRYPT,self.currentRobotDescription)
-            #asyncio.run(self.clientGesture.connect())#do a connection
-            self.clientGesture.connect()
-    
-        
 
-    async def process(self):
-
-        #envoit d'informations au server
-        if  self.newData == True:
-            myPrint ("!will send new Dataaaaaaaaaaaaaaa")
-            #asyncio.run(self.clientGesture.setPosition(self.timeStamp,-1,self.data))#run a processing
-            print ("self.data send:"+str(self.data))
-            await self.clientGesture.setPosition(self.timeStamp,-1,self.data)
-            myPrint ("!send new Dataaaaaaaaaaaaaaa")
-            self.newData=False
-
-        #recuperation d'infos du robot
-        await self.clientGesture.readRobot()
-        myPrint ("robotGet.ts_map_id_posexyzrxryrz="+str(self.clientGesture.currentRobotDescription.ts_map_id_posexyzrxryrz))
-
-
-        #sortie de la commande venant du server
-        wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec= self.clientGesture.currentRobotDescription.wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec
-        myPrint ("wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec="+str(wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec))
-
-        twist = Twist()
-        if wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec[1] :
-            twist.linear.x = wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec[2] #already meter by sec
-            twist.linear.y = 0.0
-            twist.linear.z = 0.0
-
-            twist.angular.x = 0.0
-            twist.angular.y = 0.0
-            twist.angular.z = wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec[3]#rad by sec
-        else:
-            twist.linear.x  =0.0
-            twist.linear.y  =0.0
-            twist.linear.z  =0.0
-            twist.angular.x =0.0
-            twist.angular.y =0.0
-            twist.angular.z =0.0
-
-        #self.pubVelocity.publish(twist)
-
-    def processOld(self):
-        #myPrint ("process call")
-        #send a new position only if neede
-        #asyncio.run(self.clientGesture.setPosition(timeStamp,-1,data))#run a processing
-
-        #envoit d'informations au server
-        if  self.newData == True:
-            myPrint ("!will send new Dataaaaaaaaaaaaaaa")
-            asyncio.run(self.clientGesture.setPosition(self.timeStamp,-1,self.data))#run a processing
-            myPrint ("!send new Dataaaaaaaaaaaaaaa")
-            self.newData=False
-
-        #recuperation d'infos du robot
-        asyncio.run(self.clientGesture.readRobot())
-        myPrint ("robotGet.ts_map_id_posexyzrxryrz="+str(self.clientGesture.currentRobotDescription.ts_map_id_posexyzrxryrz))
-		
-        #sortie de la commande venant du server
-        wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec=self.clientGesture.currentRobotDescription.wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec
-        myPrint ("wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec="+str(wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec))
-		
-        twist = Twist()
-        if wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec[1] :
-            twist.linear.x = wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec[2] #already meter by sec
-            twist.linear.y = 0.0
-            twist.linear.z = 0.0
-
-            twist.angular.x = 0.0
-            twist.angular.y = 0.0
-            twist.angular.z = wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec[3]#rad by sec
-        else:
-            twist.linear.x  =0.0
-            twist.linear.y  =0.0
-            twist.linear.z  =0.0
-            twist.angular.x =0.0
-            twist.angular.y =0.0
-            twist.angular.z =0.0
-
-        self.pubVelocity.publish(twist)
-    """
 
     def callBackNavSatFix(self,navSatFix):
 
@@ -315,28 +229,7 @@ class RobotSender:
         self.sendPose()
 
         pass
-        """
-        self.lock.acquire()
-        try:
 
-            myPrint ("ttttttcallBackNavSatFix(navSatFix)")
-
-            #try to get zone number and letter
-            try:
-                utmX, utmY, zoneNumber, zoneLetter = utm.from_latlon( navSatFix.latitude, navSatFix.longitude )
-                self.zoneNumber=zoneNumber
-                self.zoneLetter=zoneLetter
-            except:
-                pass
-            #
-            self.utmx= utmX
-            self.utmy= utmY
-            self.altitude= navSatFix.altitude
-            
-            self.sendPose()
-        finally:
-            self.lock.release()
-        """
 
 
     def callBackTwist(self,twist):
@@ -351,21 +244,7 @@ class RobotSender:
         self.sendPose()
 
         pass
-        """
-        self.lock.acquire()
-        try:
-            #myPrint ("yyyyyyycallBackTwist(Twist)")
-            self.utmx= twist.linear.x
-            self.utmy= twist.linear.y
-            self.altitude= twist.linear.z
-            self.roll= twist.angular.x
-            self.pitch= twist.angular.y
-            self.yaw= twist.angular.z
 
-            self.sendPose()
-        finally:
-            self.lock.release()
-        """
 
 
     def callBackImu(self,imu):
@@ -377,38 +256,9 @@ class RobotSender:
 
         self.sendPose()
 
-        """
-        #myPrint ("callBackImu(Imu)")
-        self.lock.acquire()
-        try:
-            quat=[imu.orientation.w,imu.orientation.x,imu.orientation.y,imu.orientation.z]
-            [roll, pitch, yaw]= R.from_quat(quat).as_euler("ZYX",degrees=False)
-            self.roll=roll
-            self.pitch=pitch
-            self.yaw=(math.pi/2.0)-yaw
-
-            self.sendPose()
-        finally:
-            self.lock.release()
-        """
 
     def sendPose(self):
         """send current robot pose to server"""
-
-        """
-        myPrint ("self.utmx :::"+str(self.utmx))
-        myPrint ("self.utmy :::"+str(self.utmy))
-        myPrint ("self.altitude :::"+str(self.altitude))
-        myPrint ("self.zoneNumber :::"+str(self.zoneNumber))
-        myPrint ("self.zoneLetter :::"+str(self.zoneLetter))
-        myPrint ("self.roll :::"+str(self.roll))
-        myPrint ("self.pitch :::"+str(self.pitch))
-        myPrint ("self.yaw :::"+str(self.yaw))
-
-        self.data=[49.1,2.0, 3.0,1.5, 2.5 ,2.8]
-        self.newData=True
-        """
-
 
         if ( \
             (self.utmx is not None) \
@@ -441,66 +291,6 @@ class RobotSender:
 
             #asyncio.run(self.clientGesture.readRobot())
             #print ("robotGet.ts_map_id_posexyzrxryrz="+str(self.clientGesture.currentRobotDescription.ts_map_id_posexyzrxryrz))
-		
-    """
-    def processThread(self):
-        self.lock.acquire()
-        robot_sender_FREQUENCY=getParameter(self.node,"FREQUENCY")
-        rate = self.node.create_rate(robot_sender_FREQUENCY, self.node.get_clock())
-        self.lock.release()
-            
-            self.lock.acquire()
-            try:
-                myPrint ("will process callaaaaaa")
-                self.process()###to reactivate
-            finally:
-                self.lock.release()
-            rate.sleep()
-    """
-
-"""
-import rclpy
-rclpy.init()
-node = rclpy.create_node("robot_sender")
-rate = node.create_rate(10)
-rate = node.create_rate(10, node.get_clock())
-rate.sleep()
-#https://www.programcreek.com/python/example/118511/rclpy.ok
-"""
-
-
-async def main2(args=None):
-    rclpy.init(args=args)
-    node = rclpy.create_node("robot_sender")
-    robotSender = RobotSender(node)
-
-    await robotSender.clientGesture.connect()
-    #robotSender.initConnection()#connection async
-    i=0
-    #async with robotSender.clientGesture.client:
-    if True:
-        while True:
-            print ("pricess Thread")
-            #robotSender.process()
-            #asyncio.run(robotSender.clientGesture.readRobot())
-
-            #simule un envoi
-            robotSender.timeStamp=(Clock().now().nanoseconds/1000)
-            robotSender.data=[49.1,2.0, 3.0,1.5+(i*0.1), 2.5 ,2.8]
-            i+=0.01
-            robotSender.newData=True
-
-        
-            await robotSender.process()
-            await asyncio.sleep(0.05)
-            """
-            robotSender.clientGesture.readRobot()
-            myPrint ("robotGet.ts_map_id_posexyzrxryrz="+str(robotSender.clientGesture.currentRobotDescription.ts_map_id_posexyzrxryrz))
-            """
-            #async with robotSender.clientGesture.client:
-            #robotSender.clientGesture.currentRobotDescription= await robotSender.clientGesture.myRobotClient.readRobot()
-            #myPrint ("robotGet.ts_map_id_posexyzrxryrz="+str(robotSender.clientGesture.currentRobotDescription.ts_map_id_posexyzrxryrz))
-
 def main(args=None):
     rclpy.init(args=args)
     node = rclpy.create_node("robot_sender")
@@ -515,61 +305,9 @@ def main(args=None):
     rclpy.spin(node)
 
     return
-    #asyncio.run(main2())
-    #return
-
-    #raise 1
-    #rclpy.init_node('my_broadcaster')
-    rclpy.init(args=args)
-    node = rclpy.create_node("robot_sender")
-    #node.get_parameter("FREQUENCY")
-    robotSender = RobotSender(node)
-
-    
-    
-
-    #create several callback
-    #rclpy.Subscriber(getCurrentFileName()+"_"+"navSatFix", NavSatFix, robotSender.callBackNavSatFix)
-    #rclpy.Subscriber(getCurrentFileName()+"_"+"imu", Imu, robotSender.callBackImu)
-    #rclpy.Subscriber(getCurrentFileName()+"_"+"poseInUtmTiles", Twist, robotSender.callBackTwist)
-
-    
-    
-    node.create_subscription(NavSatFix, getCurrentFileName()+"_"+"navSatFix",robotSender.callBackNavSatFix,10)
-    node.create_subscription(Imu, getCurrentFileName()+"_"+"imu",robotSender.callBackImu,10)
-    node.create_subscription(Twist, getCurrentFileName()+"_"+"poseInUtmTiles",robotSender.callBackTwist,10)
-    
-
-    #stay reactive
-    #currentThread = threading.Thread(target=robotSender.processThread, args=(robotSender))
-    currentThread = threading.Thread(target=robotSender.processThread)
-    currentThread.start()
-    """
-    
-    robot_sender_FREQUENCY=getParameter(node,"FREQUENCY")
-    myPrint("robot_sender_FREQUENCY="+str(robot_sender_FREQUENCY))
-    #rate = node.create_rate(robot_sender_FREQUENCY, node.get_clock())
-    rate = node.create_rate(10.0, node.get_clock())
-    #rate = node.create_rate(robot_sender_FREQUENCY)
-    #rate = rclpy.Rate(robot_sender_FREQUENCY)  # 5hz
-    #while not rate._is_shutdown:#rclpy.ok()
-    while rclpy.ok():
-        #while not rclpy.is_shutdown():
-        myPrint ("will process callaaaaaa")
-        robotSender.process()###to reactivate
-        time.sleep(0.02)
-        
-        #rate.sleep()
-        
-    """
-    rclpy.spin(node)
-    
-
-    
-    
+ 
     
 
 if __name__ == '__main__':
     main()
     
-    #main2()

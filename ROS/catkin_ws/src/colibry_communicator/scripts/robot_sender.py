@@ -2,13 +2,10 @@
 
 
 
-try:
-    import rospy
-    from rospy import Time 
-except :
-    print ("rospy not find, will try ros 2 rclpy")
-    import rclpy as rospy
-    from rclpy.clock import Clock
+
+import rospy
+from rospy import Time 
+
 
 
 from geometry_msgs.msg import Twist
@@ -44,7 +41,7 @@ def myPrint(msg):
 
 print ("sys.path[0]="+str(sys.path[0]))
 sys.path.append( os.path.abspath(sys.path[0]+"/../../../../../"))
-sys.path.append( os.path.abspath(sys.path[0]+"/../../../../../../"))#for ros2 arch
+#sys.path.append( os.path.abspath(sys.path[0]+"/../../../../../../"))#for ros2 arch
 
 #import to know the robots
 from robotDescription import *
@@ -64,22 +61,67 @@ def getParameter(parameterName):
     else:
         raise ValueError("parameter "+str(fullParameterName)+"is missing!!")
 
+class ClientGestureROS(ClientGesture):
+    def __init__(self,url,namespace, certificate, private_key,ENCRYPT,currentRobotDescription):
+        super().__init__(url,namespace, certificate, private_key,ENCRYPT,currentRobotDescription)
+
+
+
+    def isDying(self):
+        """function to redefine for ros or rtmaps, for example on rtmaps it will be rt.is_dying()"""
+        if rospy.is_shutdown():
+            return True
+        else:
+            return False
+
+
+
+    def sendRobotInformations(self,robotGet):
+        """function to redefine for ros or rtmaps, for example on rtmaps it will be start writing, and on ros a publisher"""
+        print ("sendRobotInformations from ROS2 :: wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec ="+str(robotGet.wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec))
+        print ("sendRobotInformations from ROS2 :: ts_map_id_posexyzrxryrz ="+str(robotGet.ts_map_id_posexyzrxryrz))
+        print ("sendRobotInformations  from ROS2:: wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec ="+str(robotGet.wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec))
+		
+        wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec= robotGet.wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec
+        myPrint ("wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec="+str(wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec))
+
+        twist = Twist()
+        if wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec[1] :
+            twist.linear.x = wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec[2] #already meter by sec
+            twist.linear.y = 0.0
+            twist.linear.z = 0.0
+
+            twist.angular.x = 0.0
+            twist.angular.y = 0.0
+            twist.angular.z = wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec[3]#rad by sec
+        else:
+            twist.linear.x  =0.0
+            twist.linear.y  =0.0
+            twist.linear.z  =0.0
+            twist.angular.x =0.0
+            twist.angular.y =0.0
+            twist.angular.z =0.0
+
+        self.pubVelocity.publish(twist)
+
 
 
 class RobotSender:
     def __init__(self):
         
 
-        myPrint("!!!!!!!!!!!!!!!!!!sys.path="+str(sys.path))
-
+        #myPrint("!!!!!!!!!!!!!!!!!!sys.path="+str(sys.path))
+       
         #get parameters
+
         self.robotName=getParameter("robotName")
         self.url=getParameter("url")
         self.namespace=getParameter("namespace")
         self.certificate=getParameter("certificate")
         self.private_key=getParameter("private_key")
         self.ENCRYPT=getParameter("ENCRYPT")
-
+        self.robot_sender_FREQUENCY=getParameter("FREQUENCY")
+        self.robot_sender_Period=1/self.robot_sender_FREQUENCY
         #init parameters
         self.utmx=None
         self.utmy=None
@@ -126,76 +168,53 @@ class RobotSender:
         currentRobotDescription = getCurrentRobotName(self.robotName)
 
 
-        self.clientGesture = ClientGesture(self.url,self.namespace,self.certificate,self.private_key,self.ENCRYPT,currentRobotDescription)
-        asyncio.run(self.clientGesture.connect())#do a connection
+        
+        self.clientGesture = ClientGestureROS(self.url,self.namespace,self.certificate,self.private_key,self.ENCRYPT,currentRobotDescription)
+        #rajout des object necessaires a rose
+
+
+        #initiallisation des topics out
+        #self.pubVelocity = rclpy.Publisher(getCurrentFileName()+"_"+'cmd_vel', Twist, queue_size=10)
+        #self.pubVelocity = rclpy.Publisher(getCurrentFileName()+"_"+'cmd_vel', Twist, queue_size=10)
+        self.pubVelocity = rospy.Publisher(getCurrentFileName()+"_"+'cmd_vel', Twist, queue_size=10)
+        self.clientGesture.pubVelocity=self.pubVelocity
+
+
+        #run the thread and wait it
+        self.clientGesture.creaThreadAndRunIt(self.robot_sender_Period)
+        while self.clientGesture.getIsReady() == False:
+            time.sleep(0.5)         
+        #asyncio.run(self.clientGesture.connect())#do a connection
 
         
-        #initiallisation des topics out
-        self.pubVelocity = rospy.Publisher(getCurrentFileName()+"_"+'cmd_vel', Twist, queue_size=10)
+        
 
         pass
 
-    def process(self):
-        #myPrint ("process call")
-        #send a new position only if neede
-        #asyncio.run(self.clientGesture.setPosition(timeStamp,-1,data))#run a processing
 
-        #envoit d'informations au server
-        if  self.newData == True:
-            myPrint ("!will send new Dataaaaaaaaaaaaaaa")
-            asyncio.run(self.clientGesture.setPosition(self.timeStamp,-1,self.data))#run a processing
-            myPrint ("!send new Dataaaaaaaaaaaaaaa")
-            self.newData=False
-
-        #recuperation d'infos du robot
-        asyncio.run(self.clientGesture.readRobot())
-        myPrint ("robotGet.ts_map_id_posexyzrxryrz="+str(self.clientGesture.currentRobotDescription.ts_map_id_posexyzrxryrz))
-		
-        #sortie de la commande venant du server
-        wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec=self.clientGesture.currentRobotDescription.wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec
-        myPrint ("wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec="+str(wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec))
-		
-        twist = Twist()
-        if wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec[1] :
-            twist.linear.x = wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec[2] #already meter by sec
-            twist.linear.y = 0.0
-            twist.linear.z = 0.0
-
-            twist.angular.x = 0.0
-            twist.angular.y = 0.0
-            twist.angular.z = wantedSpeed_Ts_enable_Vlongimbysec_Vrotradbysec[3]#rad by sec
-        else:
-            twist.linear.x  =0.0
-            twist.linear.y  =0.0
-            twist.linear.z  =0.0
-            twist.angular.x =0.0
-            twist.angular.y =0.0
-            twist.angular.z =0.0
-
-        self.pubVelocity.publish(twist)
-   
 
     def callBackNavSatFix(self,navSatFix):
-        #myPrint ("ttttttcallBackNavSatFix(navSatFix)")
 
-        #try to get zone number and letter
+          #try to get zone number and letter
         try:
             utmX, utmY, zoneNumber, zoneLetter = utm.from_latlon( navSatFix.latitude, navSatFix.longitude )
             self.zoneNumber=zoneNumber
             self.zoneLetter=zoneLetter
         except:
             pass
-        #
+
         self.utmx= utmX
         self.utmy= utmY
         self.altitude= navSatFix.altitude
         
         self.sendPose()
 
+        pass
+
 
 
     def callBackTwist(self,twist):
-        #myPrint ("yyyyyyycallBackTwist(Twist)")
+
         self.utmx= twist.linear.x
         self.utmy= twist.linear.y
         self.altitude= twist.linear.z
@@ -205,12 +224,11 @@ class RobotSender:
 
         self.sendPose()
 
-       
+        pass
+
 
 
     def callBackImu(self,imu):
-        #myPrint ("callBackImu(Imu)")
-
         quat=[imu.orientation.w,imu.orientation.x,imu.orientation.y,imu.orientation.z]
         [roll, pitch, yaw]= R.from_quat(quat).as_euler("ZYX",degrees=False)
         self.roll=roll
@@ -222,18 +240,6 @@ class RobotSender:
 
     def sendPose(self):
         """send current robot pose to server"""
-
-        """
-        myPrint ("self.utmx :::"+str(self.utmx))
-        myPrint ("self.utmy :::"+str(self.utmy))
-        myPrint ("self.altitude :::"+str(self.altitude))
-        myPrint ("self.zoneNumber :::"+str(self.zoneNumber))
-        myPrint ("self.zoneLetter :::"+str(self.zoneLetter))
-        myPrint ("self.roll :::"+str(self.roll))
-        myPrint ("self.pitch :::"+str(self.pitch))
-        myPrint ("self.yaw :::"+str(self.yaw))
-        """
-
 
         if ( \
             (self.utmx is not None) \
@@ -255,55 +261,25 @@ class RobotSender:
 
             #myPrint ("send to server !!!!!!!!!!")
             lati,longi = utm.to_latlon(self.utmx,self.utmy,self.zoneNumber,self.zoneLetter)
-            try :
-                self.timeStamp=(rospy.Time.now().to_nsec()/1000)#time us us
-            except:
-                 self.timeStamp=(Clock().now().nanoseconds/1000)#time us us
-            self.data=[lati,longi, self.altitude,self.roll, self.pitch, self.yaw]
-            myPrint ("send to server !!!!!!!!!!"+str(self.data))
-            self.newData=True
-            #asyncio.run(self.clientGesture.setPosition(timeStamp,-1,data))#run a processing
 
-            #asyncio.run(self.clientGesture.readRobot())
-            #print ("robotGet.ts_map_id_posexyzrxryrz="+str(self.clientGesture.currentRobotDescription.ts_map_id_posexyzrxryrz))
-		
+
+            self.timeStamp=(rospy.Time.now().to_nsec()/1000)#time us us
+            self.data=[lati,longi, self.altitude,self.roll, self.pitch, self.yaw]#must be a list
+            myPrint ("send to server !!!!!!!!!!"+str(self.data))
+            self.clientGesture.setPosition(self.timeStamp,-1,self.data)
 
 def main():
-    rospy.init_node('my_broadcaster')
     
-   
+    #rclpy.init(args=args)
+    rospy.init_node('my_broadcaster')#node = rclpy.create_node("robot_sender")
     robotSender = RobotSender()
 
-    
-    
 
-    #create several callback
     rospy.Subscriber(getCurrentFileName()+"_"+"navSatFix", NavSatFix, robotSender.callBackNavSatFix)
     rospy.Subscriber(getCurrentFileName()+"_"+"imu", Imu, robotSender.callBackImu)
     rospy.Subscriber(getCurrentFileName()+"_"+"poseInUtmTiles", Twist, robotSender.callBackTwist)
-
-    #stay reactive
-
-    robot_sender_FREQUENCY=getParameter("FREQUENCY")
-    myPrint("robot_sender_FREQUENCY="+str(robot_sender_FREQUENCY))
-    rate = rospy.Rate(robot_sender_FREQUENCY)  # 5hz
-    while not rospy.is_shutdown():
-        #myPrint ("will process callaaaaaa")
-        robotSender.process()
-        """
-        if  robotSender.newData == True:
-            asyncio.run(robotSender.clientGesture.setPosition(robotSender.timeStamp,-1,robotSender.data))#run a processing
-            print ("!send new Dataaaaaaaaaaaaaaa")
-            robotSender.newData=False
-      
-        """
-        """
-        asyncio.run(robotSender.clientGesture.readRobot())
-        print ("robotGet.ts_map_id_posexyzrxryrz="+str(robotSender.clientGesture.currentRobotDescription.ts_map_id_posexyzrxryrz))
-        """
-        rate.sleep()
-
-    #rospy.spin()
+   
+    rospy.spin()
     
 
     
