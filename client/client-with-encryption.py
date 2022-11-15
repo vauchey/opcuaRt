@@ -28,7 +28,8 @@ assert (currentRobotDescription!=None)#verification que le robot existe
 ENCRYPT=False#enable encryption
 
 #url where to connecte
-url = "opc.tcp://127.0.0.1:4840/freeopcua/server/"
+#url = "opc.tcp://127.0.0.1:4840/freeopcua/server/"
+url = "opc.tcp://esigelec.ddns.net:11111/freeopcua/server/"
 #url = "opc.tcp://192.168.2.105:4840/freeopcua/server/"
 
 namespace = "http://esigelec.ddns.net"#namespace
@@ -297,9 +298,9 @@ def main():
 	#loop.run_until_complete(task(loop))
 	#loop.close()
 	#asyncio.run(task2())
-	#task3()#multi thread
+	task3()#multi thread
 	#task4()#multi process
-	task5()#multi process
+	#task5()#sub process
 	
 	
 	
