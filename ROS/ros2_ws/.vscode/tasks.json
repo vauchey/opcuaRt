@@ -22,25 +22,7 @@
             ]
         },
 
-        {
-            "taskName": "run listener",
-            "type": "shell",
-            "command": "source /opt/ros/rolling/setup.bash && ros2 run demo_nodes_py listener",
-            
-            "problemMatcher": [
-                "$gcc"
-            ]
-        },
-
-        {
-            "taskName": "ros2 run component",
-            "type": "shell",
-            "command": "source /opt/ros/rolling/setup.bash && source ./install/setup.bash && ros2 run colibry_communicator robot_sender",
-            
-            "problemMatcher": [
-                "$gcc"
-            ]
-        },
+       
 
         {
             "taskName": "ros2 launch",
@@ -53,18 +35,5 @@
         },
 
 
-
-        {
-            "taskName": "run ros 2 lauch",
-            "type": "shell",
-            "command": "source ~/ros2_humble/install/local_setup.bash && source ./install/setup.bash && ros2 launch script_launch.py",
-            
-            "problemMatcher": [
-                "$gcc"
-            ]
-        },
-
-       
-      
 
 }
