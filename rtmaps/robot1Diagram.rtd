@@ -74,8 +74,8 @@
     <Property LongName="DataViewer_2.unsignedInteger32Format" Type="3"><![CDATA[%I32u]]></Property>
     <Property LongName="DataViewer_2.unsignedInteger64Format" Type="3"><![CDATA[%I64u]]></Property>
     <Property LongName="DataViewer_2.hexDisplay" Type="0">false</Property>
-    <Property LongName="DataViewer_2.internalState" Type="3" SubType="128"><![CDATA[238;406]]></Property>
-    <Property LongName="DataViewer_2.expandedState" Type="3" SubType="128"><![CDATA[0|;0|;0|;0|]]></Property>
+    <Property LongName="DataViewer_2.internalState" Type="3" SubType="128"><![CDATA[238;385]]></Property>
+    <Property LongName="DataViewer_2.expandedState" Type="3" SubType="128"><![CDATA[1|Joystick_1Xbox.xyzAxisPosition;0|Info:Joystick_1Xbox.xyzAxisPosition;1|Data:Joystick_1Xbox.xyzAxisPosition;1|Joystick_1Xbox.xyzAxisRotation;0|Info:Joystick_1Xbox.xyzAxisRotation;1|Data:Joystick_1Xbox.xyzAxisRotation;1|Joystick_1Xbox.sliders;0|Info:Joystick_1Xbox.sliders;1|Data:Joystick_1Xbox.sliders;1|Joystick_1Xbox.rgbButtons;0|Info:Joystick_1Xbox.rgbButtons;1|Data:Joystick_1Xbox.rgbButtons]]></Property>
     <ReadOnlyProperty LongName="DataViewer_2.specific_end_config" Type="0" SubType="512">true</ReadOnlyProperty>
     <Property LongName="DataViewer_2.threaded" Type="0">true</Property>
     <Property LongName="DataViewer_2.priority" Type="1">128</Property>
@@ -161,8 +161,8 @@
     <Property LongName="DataViewer_4.moveable" Type="0">true</Property>
     <Property LongName="DataViewer_4.hidden" Type="0">false</Property>
     <Property LongName="DataViewer_4.title" Type="3"><![CDATA[]]></Property>
-    <Property LongName="DataViewer_4.x" Type="1">89</Property>
-    <Property LongName="DataViewer_4.y" Type="1">323</Property>
+    <Property LongName="DataViewer_4.x" Type="1">48</Property>
+    <Property LongName="DataViewer_4.y" Type="1">298</Property>
     <Property LongName="DataViewer_4.width" Type="1">530</Property>
     <Property LongName="DataViewer_4.height" Type="1">420</Property>
     <Property LongName="DataViewer_4.end_guard" Type="0" SubType="128">true</Property>
@@ -184,8 +184,8 @@
     <Property LongName="DataViewer_4.unsignedInteger32Format" Type="3"><![CDATA[%I32u]]></Property>
     <Property LongName="DataViewer_4.unsignedInteger64Format" Type="3"><![CDATA[%I64u]]></Property>
     <Property LongName="DataViewer_4.hexDisplay" Type="0">false</Property>
-    <Property LongName="DataViewer_4.internalState" Type="3" SubType="128"><![CDATA[385;135]]></Property>
-    <Property LongName="DataViewer_4.expandedState" Type="3" SubType="128"><![CDATA[0|;0|;0|;0|;0|]]></Property>
+    <Property LongName="DataViewer_4.internalState" Type="3" SubType="128"><![CDATA[385;114]]></Property>
+    <Property LongName="DataViewer_4.expandedState" Type="3" SubType="128"><![CDATA[1|PythonBridge_ControlRobots.robotId;0|Info:PythonBridge_ControlRobots.robotId;1|Data:PythonBridge_ControlRobots.robotId;1|PythonBridge_ControlRobots.robotOutJean_Michel_Segway_;0|Info:PythonBridge_ControlRobots.robotOutJean_Michel_Segway_;1|Data:PythonBridge_ControlRobots.robotOutJean_Michel_Segway_;1|PythonBridge_ControlRobots.robotOutJacqueline_AMI_;0|Info:PythonBridge_ControlRobots.robotOutJacqueline_AMI_;1|Data:PythonBridge_ControlRobots.robotOutJacqueline_AMI_;1|PythonBridge_ControlRobots.robotOutJean_Jacques_ESPACE_;0|Info:PythonBridge_ControlRobots.robotOutJean_Jacques_ESPACE_;1|Data:PythonBridge_ControlRobots.robotOutJean_Jacques_ESPACE_;1|PythonBridge_ControlRobots.robotOutFab1_MIR_;0|Info:PythonBridge_ControlRobots.robotOutFab1_MIR_;1|Data:PythonBridge_ControlRobots.robotOutFab1_MIR_]]></Property>
     <ReadOnlyProperty LongName="DataViewer_4.specific_end_config" Type="0" SubType="512">true</ReadOnlyProperty>
     <Property LongName="DataViewer_4.threaded" Type="0">true</Property>
     <Property LongName="DataViewer_4.priority" Type="1">128</Property>
@@ -385,13 +385,6 @@
       <Property LongName="Player_Joystick.Joystick_1Xbox.xyzAxisPosition.subsampling" Type="1">1</Property>
       <Property LongName="Player_Joystick.Joystick_1Xbox.xyzAxisPosition.fifosize" Type="1">16</Property>
       <Property LongName="Player_Joystick.Joystick_1Xbox.xyzAxisPosition.periodic" Type="0">false</Property>
-      <Property LongName="Player_Joystick.Joystick_1Xbox.xyzAxisPosition.replayPath" Type="3" SubType="96"><![CDATA[]]></Property>
-      <Property LongName="Player_Joystick.Joystick_1Xbox.xyzAxisPosition.fastReplayPath" Type="3" SubType="96"><![CDATA[]]></Property>
-      <Property LongName="Player_Joystick.Joystick_1Xbox.xyzAxisPosition.replayMode" Type="4"><![CDATA[3|0|Normal|Immediate|Timestamp]]></Property>
-      <Property LongName="Player_Joystick.Joystick_1Xbox.xyzAxisPosition.autopause" Type="0">false</Property>
-      <Property LongName="Player_Joystick.Joystick_1Xbox.xyzAxisPosition.threaded" Type="0">false</Property>
-      <Property LongName="Player_Joystick.Joystick_1Xbox.xyzAxisPosition.priority" Type="1">128</Property>
-      <Property LongName="Player_Joystick.Joystick_1Xbox.xyzAxisPosition.replayThreadPriority" Type="1">128</Property>
     </Output>
     <Output LongName="Player_Joystick.Joystick_1Xbox.xyzAxisRotation" Name="Joystick_1Xbox.xyzAxisRotation">
       <Property LongName="Player_Joystick.Joystick_1Xbox.xyzAxisRotation.subsampling" Type="1">1</Property>
@@ -402,13 +395,6 @@
       <Property LongName="Player_Joystick.Joystick_1Xbox.rgbButtons.subsampling" Type="1">1</Property>
       <Property LongName="Player_Joystick.Joystick_1Xbox.rgbButtons.fifosize" Type="1">16</Property>
       <Property LongName="Player_Joystick.Joystick_1Xbox.rgbButtons.periodic" Type="0">false</Property>
-      <Property LongName="Player_Joystick.Joystick_1Xbox.rgbButtons.replayPath" Type="3" SubType="96"><![CDATA[]]></Property>
-      <Property LongName="Player_Joystick.Joystick_1Xbox.rgbButtons.fastReplayPath" Type="3" SubType="96"><![CDATA[]]></Property>
-      <Property LongName="Player_Joystick.Joystick_1Xbox.rgbButtons.replayMode" Type="4"><![CDATA[3|0|Normal|Immediate|Timestamp]]></Property>
-      <Property LongName="Player_Joystick.Joystick_1Xbox.rgbButtons.autopause" Type="0">false</Property>
-      <Property LongName="Player_Joystick.Joystick_1Xbox.rgbButtons.threaded" Type="0">false</Property>
-      <Property LongName="Player_Joystick.Joystick_1Xbox.rgbButtons.priority" Type="1">128</Property>
-      <Property LongName="Player_Joystick.Joystick_1Xbox.rgbButtons.replayThreadPriority" Type="1">128</Property>
     </Output>
     <Property LongName="Player_Joystick.file" Type="3" SubType="80"><![CDATA[D:/data/apresBackup/COLIBRY/opcuaRT/opcuaRt/tests/joystickRecordForTests20221019_085217_RecFile_1]]><Relative><![CDATA[%RTMAPS_DIAGRAMDIR%/../tests/joystickRecordForTests20221019_085217_RecFile_1]]></Relative></Property>
     <Property LongName="Player_Joystick.offset" Type="1">0</Property>
@@ -418,7 +404,7 @@
     <Property LongName="Player_Joystick.update" Type="0">true</Property>
     <ReadOnlyProperty LongName="Player_Joystick.replayPath" Type="3"><![CDATA[D:/data/apresBackup/COLIBRY/opcuaRT/opcuaRt/tests/joystickRecordForTests20221019_085217_RecFile_1/]]></ReadOnlyProperty>
     <ReadOnlyProperty LongName="Player_Joystick.comments" Type="3"><![CDATA[]]></ReadOnlyProperty>
-    <ReadOnlyProperty LongName="Player_Joystick.ahead" Type="1">526551</ReadOnlyProperty>
+    <ReadOnlyProperty LongName="Player_Joystick.ahead" Type="1">0</ReadOnlyProperty>
     <ReadOnlyProperty LongName="Player_Joystick.percentage" Type="1">0</ReadOnlyProperty>
     <ReadOnlyProperty LongName="Player_Joystick.time" Type="1">0</ReadOnlyProperty>
     <ReadOnlyProperty LongName="Player_Joystick.first" Type="1">5764556</ReadOnlyProperty>
@@ -473,7 +459,7 @@
     <Property LongName="PythonBridge_ControlRobots.showTracebackInConsole" Type="0">true</Property>
     <Property LongName="PythonBridge_ControlRobots.autoReloadSubModules" Type="0">true</Property>
     <Property LongName="PythonBridge_ControlRobots.memorySize" Type="1">10000000</Property>
-    <ReadOnlyProperty LongName="PythonBridge_ControlRobots.pythonPID" Type="1">15940</ReadOnlyProperty>
+    <ReadOnlyProperty LongName="PythonBridge_ControlRobots.pythonPID" Type="1">15148</ReadOnlyProperty>
     <Property LongName="PythonBridge_ControlRobots.additionalEnvironmentVariables" Type="3"><![CDATA[]]></Property>
     <ReadOnlyProperty LongName="PythonBridge_ControlRobots.advance_end_configuration" Type="0" SubType="512">false</ReadOnlyProperty>
     <ReadOnlyProperty LongName="PythonBridge_ControlRobots.basic_begin_configuration" Type="3" SubType="256"><![CDATA[Basic Configuration]]></ReadOnlyProperty>
@@ -510,7 +496,7 @@
     <Property LongName="PythonBridge_robotSimulator.showTracebackInConsole" Type="0">true</Property>
     <Property LongName="PythonBridge_robotSimulator.autoReloadSubModules" Type="0">true</Property>
     <Property LongName="PythonBridge_robotSimulator.memorySize" Type="1">10000000</Property>
-    <ReadOnlyProperty LongName="PythonBridge_robotSimulator.pythonPID" Type="1">19192</ReadOnlyProperty>
+    <ReadOnlyProperty LongName="PythonBridge_robotSimulator.pythonPID" Type="1">19660</ReadOnlyProperty>
     <Property LongName="PythonBridge_robotSimulator.additionalEnvironmentVariables" Type="3"><![CDATA[]]></Property>
     <ReadOnlyProperty LongName="PythonBridge_robotSimulator.advance_end_configuration" Type="0" SubType="512">false</ReadOnlyProperty>
     <ReadOnlyProperty LongName="PythonBridge_robotSimulator.basic_begin_configuration" Type="3" SubType="256"><![CDATA[Basic Configuration]]></ReadOnlyProperty>
@@ -550,7 +536,7 @@
     <Property LongName="PythonBridge_robotSimulator_1.showTracebackInConsole" Type="0">true</Property>
     <Property LongName="PythonBridge_robotSimulator_1.autoReloadSubModules" Type="0">true</Property>
     <Property LongName="PythonBridge_robotSimulator_1.memorySize" Type="1">10000000</Property>
-    <ReadOnlyProperty LongName="PythonBridge_robotSimulator_1.pythonPID" Type="1">16148</ReadOnlyProperty>
+    <ReadOnlyProperty LongName="PythonBridge_robotSimulator_1.pythonPID" Type="1">20104</ReadOnlyProperty>
     <Property LongName="PythonBridge_robotSimulator_1.additionalEnvironmentVariables" Type="3"><![CDATA[]]></Property>
     <ReadOnlyProperty LongName="PythonBridge_robotSimulator_1.advance_end_configuration" Type="0" SubType="512">false</ReadOnlyProperty>
     <ReadOnlyProperty LongName="PythonBridge_robotSimulator_1.basic_begin_configuration" Type="3" SubType="256"><![CDATA[Basic Configuration]]></ReadOnlyProperty>
@@ -590,7 +576,7 @@
     <Property LongName="PythonBridge_robotSimulator_1_1.showTracebackInConsole" Type="0">true</Property>
     <Property LongName="PythonBridge_robotSimulator_1_1.autoReloadSubModules" Type="0">true</Property>
     <Property LongName="PythonBridge_robotSimulator_1_1.memorySize" Type="1">10000000</Property>
-    <ReadOnlyProperty LongName="PythonBridge_robotSimulator_1_1.pythonPID" Type="1">5256</ReadOnlyProperty>
+    <ReadOnlyProperty LongName="PythonBridge_robotSimulator_1_1.pythonPID" Type="1">14212</ReadOnlyProperty>
     <Property LongName="PythonBridge_robotSimulator_1_1.additionalEnvironmentVariables" Type="3"><![CDATA[]]></Property>
     <ReadOnlyProperty LongName="PythonBridge_robotSimulator_1_1.advance_end_configuration" Type="0" SubType="512">false</ReadOnlyProperty>
     <ReadOnlyProperty LongName="PythonBridge_robotSimulator_1_1.basic_begin_configuration" Type="3" SubType="256"><![CDATA[Basic Configuration]]></ReadOnlyProperty>
@@ -639,7 +625,7 @@
     <Property LongName="PythonBridge_sendPositionRobot1.showTracebackInConsole" Type="0">true</Property>
     <Property LongName="PythonBridge_sendPositionRobot1.autoReloadSubModules" Type="0">true</Property>
     <Property LongName="PythonBridge_sendPositionRobot1.memorySize" Type="1">10000000</Property>
-    <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot1.pythonPID" Type="1">19356</ReadOnlyProperty>
+    <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot1.pythonPID" Type="1">1204</ReadOnlyProperty>
     <Property LongName="PythonBridge_sendPositionRobot1.additionalEnvironmentVariables" Type="3"><![CDATA[]]></Property>
     <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot1.advance_end_configuration" Type="0" SubType="512">false</ReadOnlyProperty>
     <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot1.basic_begin_configuration" Type="3" SubType="256"><![CDATA[Basic Configuration]]></ReadOnlyProperty>
@@ -687,7 +673,7 @@
     <Property LongName="PythonBridge_sendPositionRobot2.showTracebackInConsole" Type="0">true</Property>
     <Property LongName="PythonBridge_sendPositionRobot2.autoReloadSubModules" Type="0">true</Property>
     <Property LongName="PythonBridge_sendPositionRobot2.memorySize" Type="1">10000000</Property>
-    <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot2.pythonPID" Type="1">18016</ReadOnlyProperty>
+    <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot2.pythonPID" Type="1">19832</ReadOnlyProperty>
     <Property LongName="PythonBridge_sendPositionRobot2.additionalEnvironmentVariables" Type="3"><![CDATA[]]></Property>
     <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot2.advance_end_configuration" Type="0" SubType="512">false</ReadOnlyProperty>
     <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot2.basic_begin_configuration" Type="3" SubType="256"><![CDATA[Basic Configuration]]></ReadOnlyProperty>
@@ -735,7 +721,7 @@
     <Property LongName="PythonBridge_sendPositionRobot2_1.showTracebackInConsole" Type="0">true</Property>
     <Property LongName="PythonBridge_sendPositionRobot2_1.autoReloadSubModules" Type="0">true</Property>
     <Property LongName="PythonBridge_sendPositionRobot2_1.memorySize" Type="1">10000000</Property>
-    <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot2_1.pythonPID" Type="1">3988</ReadOnlyProperty>
+    <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot2_1.pythonPID" Type="1">13436</ReadOnlyProperty>
     <Property LongName="PythonBridge_sendPositionRobot2_1.additionalEnvironmentVariables" Type="3"><![CDATA[]]></Property>
     <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot2_1.advance_end_configuration" Type="0" SubType="512">false</ReadOnlyProperty>
     <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot2_1.basic_begin_configuration" Type="3" SubType="256"><![CDATA[Basic Configuration]]></ReadOnlyProperty>
@@ -783,7 +769,7 @@
     <Property LongName="PythonBridge_sendPositionRobot2_1_1.showTracebackInConsole" Type="0">true</Property>
     <Property LongName="PythonBridge_sendPositionRobot2_1_1.autoReloadSubModules" Type="0">true</Property>
     <Property LongName="PythonBridge_sendPositionRobot2_1_1.memorySize" Type="1">10000000</Property>
-    <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot2_1_1.pythonPID" Type="1">19088</ReadOnlyProperty>
+    <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot2_1_1.pythonPID" Type="1">20548</ReadOnlyProperty>
     <Property LongName="PythonBridge_sendPositionRobot2_1_1.additionalEnvironmentVariables" Type="3"><![CDATA[]]></Property>
     <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot2_1_1.advance_end_configuration" Type="0" SubType="512">false</ReadOnlyProperty>
     <ReadOnlyProperty LongName="PythonBridge_sendPositionRobot2_1_1.basic_begin_configuration" Type="3" SubType="256"><![CDATA[Basic Configuration]]></ReadOnlyProperty>
