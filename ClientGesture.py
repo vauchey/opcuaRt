@@ -14,6 +14,9 @@ import sys
 import socket 
 import subprocess
 
+#modify under linux or if python is installed somewhere else
+PYTHONEXE="C:\\ProgramData\\Anaconda3\\python.exe"
+
 class MyRobotClient():
 	
 	def __init__(self,client,idx,currentRobotDescription):
@@ -249,9 +252,9 @@ class ClientGesture():
 	
 		
 		if not disableSubProcess:
-			#self.subp = subprocess.Popen(["C:\\ProgramData\\Anaconda3\\python.exe", "-c", command], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)#
+			#self.subp = subprocess.Popen([PYTHONEXE, "-c", command], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)#
 			
-			self.subp = subprocess.Popen(["C:\\ProgramData\\Anaconda3\\python.exe", "-c", command],shell=False)
+			self.subp = subprocess.Popen([PYTHONEXE, "-c", command],shell=False)
 		#print ("read:"+str(subp.stdout.read(10)))
 		
 	def creaThreadAndRunIt(self,periodInS):
