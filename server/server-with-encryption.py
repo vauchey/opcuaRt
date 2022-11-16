@@ -11,18 +11,23 @@ from ServerGesture import *
 logging.basicConfig(level=logging.INFO)
 
 #################### CONFIG AREA START ####################
-ENCRYPT=False
+ENCRYPT=True
 
 #add your admin and user, only admin can write data
 ADMIN_DICT={}
-ADMIN_DICT["VAUCHEY"] = {"certificate": "vincent/my_cert.der", "key":"vincent/my_private_key.pem" }
+#ADMIN_DICT["VAUCHEY"] = {"certificate": "vincent/my_cert.der", "key":"vincent/my_private_key.pem" }
+ADMIN_DICT["AMI"] = {"certificate": "../../generate/AMI/my_cert.der", "key":"../../generate/AMI/my_private_key.pem" }
+ADMIN_DICT["ESPACE"] = {"certificate": "../../generate/ESPACE/my_cert.der", "key":"../../generate/ESPACE/my_private_key.pem" }
+ADMIN_DICT["MIR1"] = {"certificate": "../../generate/MIR1/my_cert.der", "key":"../../generate/MIR1/my_private_key.pem" }
+ADMIN_DICT["Segway"] = {"certificate": "../../generate/segway/my_cert.der", "key":"../../generate/segway/my_private_key.pem" }
 USER_DICT={}
 
 
 		
 
 #url where to connecte
-url = "opc.tcp://127.0.0.1:4840/freeopcua/server/"
+#url = "opc.tcp://127.0.0.1:4840/freeopcua/server/"
+url = "opc.tcp://192.168.2.149:11111/freeopcua/server/"
 #url = "opc.tcp://192.168.2.105:4840/freeopcua/server/"
 
 namespace = "http://esigelec.ddns.net"#namespace
