@@ -15,13 +15,17 @@
     <!--> 
     <param name="robot_sender_FREQUENCY" type="int" value="10" /><!--><wakeup frequency to communicate with ua server<!-->
     <param name="robot_sender_robotName" type="str" value="Fab1(MIR)"/><!--> robot list can be fin in robotDescription.py<!--> 
-    <param name="robot_sender_ENCRYPT" type="int" value="0" />
+    <param name="robot_sender_ENCRYPT" type="int" value="1" />
     <!--><param name="robot_sender_url" type="str" value="opc.tcp://127.0.0.1:4840/freeopcua/server/"/><!-->
     <!--><param name="robot_sender_url" type="str" value="opc.tcp://192.168.2.105:4840/freeopcua/server/"/><!-->
     <param name="robot_sender_url" type="str" value="opc.tcp://esigelec.ddns.net:11111/freeopcua/server/"/>
     <param name="robot_sender_namespace" type="str" value="http://esigelec.ddns.net"/>
-    <param name="robot_sender_certificate" type="str" value="vincent/my_cert.der"/>
-    <param name="robot_sender_private_key" type="str" value="vincent/my_private_key.pem"/>
+    <!--> <param name="robot_sender_certificate" type="str" value="vincent/my_cert.der"/><!-->
+    <!--><param name="robot_sender_private_key" type="str" value="vincent/my_private_key.pem"/><!-->
+    <param name="robot_sender_certificate" type="str" value="/home/user/colibry/opcuaRt/MIR1/my_cert.der"/>
+    <param name="robot_sender_private_key" type="str" value="/home/user/colibry/opcuaRt/MIR1/my_private_key.pem"/>
+    
+    
     <param name="robot_sender_defaultLatitude" type="double" value="49.383224" /><!-->   only here to know the default utm tile<!-->  
     <param name="robot_sender_defaultLongitude" type="double" value="1.073758" /><!-->   only here to know the default utm tile<!-->  
     <node name="robot_sender" pkg="colibry_communicator" type="robot_sender.py"  output="screen"/>
