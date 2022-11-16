@@ -539,7 +539,7 @@ class ClientGesture():
 		else:
 			return False
 			
-	#############metdhode to have access from ros or rtmaps
+	#############method to have access from ros or rtmaps
 	@automatically_call_fromDescription
 	def setPosition(self,ts,mapId,poses):
 		pass

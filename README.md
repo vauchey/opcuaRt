@@ -18,10 +18,14 @@ apt install python-opcua-tools  # Command-line tools
 work is based o git https://github.com/FreeOpcUa/opcua-asyncio
 
 ## starting 
-* first create certificate with generate_certificate.sh
+* first create certificate with generate_certificate.sh under linux, that will generate 3 files :
+** my_cert.der
+** my_cert.pem
+** my_private_key.pem
 
+# server side
 * To beguin to use it with your robots, modify file robotDescription.py file.
-(The principe, is that all data availaibles in your robot will be availaible in the server area and client will have access to it)
+(The principe, is that all data availaibles in your robot (ROBOT_LIST) will be availaible in the server area and client will have access to it)
 
 * run the server (cd opcuaRt\server\ then python server-with-encryption.py)
 
