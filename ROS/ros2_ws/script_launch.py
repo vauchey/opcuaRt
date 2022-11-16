@@ -10,13 +10,15 @@ def generate_launch_description():
             parameters=[
             {'robot_sender_FREQUENCY': 10},
             {'robot_sender_robotName': "Fab1(MIR)"},
-            {'robot_sender_ENCRYPT': 0},
+            {'robot_sender_ENCRYPT': 1},
             #{'robot_sender_url': "opc.tcp://127.0.0.1:4840/freeopcua/server/"},
             {'robot_sender_url': "opc.tcp://esigelec.ddns.net:11111/freeopcua/server/"},
             #{'robot_sender_url': "opc.tcp://192.168.2.105:4840/freeopcua/server/"},
             {'robot_sender_namespace': "http://esigelec.ddns.net"},
-            {'robot_sender_certificate': "vincent/my_cert.der"},
-            {'robot_sender_private_key': "vincent/my_private_key.pem"},
+            #{'robot_sender_certificate': "vincent/my_cert.der"},
+            #{'robot_sender_private_key': "vincent/my_private_key.pem"},
+            {'robot_sender_certificate': "/home/user/colibry/opcuaRt/MIR1/my_cert.der"},
+            {'robot_sender_private_key': "/home/user/colibry/opcuaRt/MIR1/my_private_key.pem"},
             {'robot_sender_defaultLatitude': 49.383224},
             {'robot_sender_defaultLongitude': 1.073758}
             ],
