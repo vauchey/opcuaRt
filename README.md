@@ -4,6 +4,11 @@ projet to try to create an architecture to communicate with robots from/to Rtmap
 
 The basic example in rtmaps directory allowed the possibility to operate several robots (4) from a main controller with Xbox joysticK
 
+The architecture of the demo is visible here :
+![](images/archi.png )
+
+A video of the system working is availaible here 
+[![video of the system](https://img.youtube.com/vi/u2pMlTYwNlo/0.jpg)](https://www.youtube.com/watch?v=u2pMlTYwNlo "video of the system")
 
 # installs done :
 
@@ -37,7 +42,7 @@ some parameters need to be filled to work well :
     - namespace : just a namespace
 # client side (general informations)
 
-to have access to method defined in  robotDescription.py, just modify clientGesture.py to add id decorated like following :
+to have access to method defined in  robotDescription.py robot class, just modify clientGesture.py to add methods decorated like following :
 for example for methode "moveToPose" the python decoration will be :
 ```
 @automatically_call_fromDescription
@@ -49,8 +54,8 @@ def moveToPose(self,timestamp, mapId, poseXYZrXYZ):
 # client side (ROS1)
 
 * needed before:
-    ROS1 (ros noetic in my case, but can easyly be adapted to other ros)
-    python3 with asyncua, utm, scipy ...
+    - ROS1 (ros noetic in my case, but can easyly be adapted to other ros)
+    - python3 with asyncua, utm, scipy ...
 
 * how to run it :
     - with vscode open directory :\ROS\catkin_ws 
@@ -68,8 +73,8 @@ def moveToPose(self,timestamp, mapId, poseXYZrXYZ):
 
 # client side (ROS2)
 * needed before:
-    ROS2 (ros rolling in my case, but can easyly be adapted to other ros)
-    python3 with asyncua, utm, scipy ...
+    - ROS2 (ros rolling in my case, but can easyly be adapted to other ros)
+    - python3 with asyncua, utm, scipy ...
 
 * how to run it :
     - with vscode open directory :\ROS\ros2_ws 
