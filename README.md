@@ -24,9 +24,9 @@ work is based o git https://github.com/FreeOpcUa/opcua-asyncio
 
 ## starting 
 * first create certificate with generate_certificate.sh under linux, that will generate 3 files :
-** my_cert.der
-** my_cert.pem
-** my_private_key.pem
+    - my_cert.der
+    - my_cert.pem
+    - my_private_key.pem
 
 # server side
 * To beguin to use it with your robots, modify file robotDescription.py file.
